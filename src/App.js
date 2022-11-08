@@ -7,21 +7,24 @@ import UserRecs from './components/pages/UserRecs';
 import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
+import { getUser } from './utilities/UsersService';
 
 function App() {
-	const [token, setToken] = useState(localStorage.getItem('JWT') || '');
+	// const [token, setToken] = useState(localStorage.getItem('JWT') || '');
 	// console.log(token)
 
+	// const [user, setUser] = useState(getUser());
 	const [user, setUser] = useState(null);
+
 	return (
 		<div className='App'>
 			{/* <Header token={token} setToken={setToken} /> */}
-			<NavBar user={user} />
+			<NavBar user={user} setUser={setUser} />
 			<Routes>
 				{/* <Route path='/' element={<MainResults />} /> */}
 				<Route path='/user-recs' element={<UserRecs />} />
 				<Route path='/search-results' element={<SearchResults />} />
-				<Route path='/auth' element={<AuthPage/>} />
+				<Route path='/auth' element={<AuthPage setUser={setUser} />} />
 			</Routes>
 		</div>
 	);
