@@ -44,6 +44,8 @@ function App() {
 							setUser={setUser}
 							token={token}
 							setToken={setToken}
+							JWT={JWT}
+							setJWT={setJWT}
 						/>
 					}
 				/>

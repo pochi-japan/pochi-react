@@ -78,9 +78,11 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 			const res = await axios.post(url, user);
 			console.log('Login Response: ', res);
 			console.log('res.data Response:', res.data);
+			console.log('res.data.token Response:', res.data.token);
 			console.log('user: ', user);
 			// setJWT(res.data.token);
 			setJWT(res.data);
+			console.log('JWT: ', JWT);
 
 			localStorage.setItem('token', res.data);
 			localStorage.setItem('loginEmail', user.email);
