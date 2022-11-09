@@ -13,8 +13,8 @@ function App() {
 	// const [token, setToken] = useState(localStorage.getItem('JWT') || '');
 	// console.log(token)
 
-	// const [user, setUser] = useState(getUser());
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(getUser());
+	// const [user, setUser] = useState(null);
 
 	return (
 		<div className='App'>

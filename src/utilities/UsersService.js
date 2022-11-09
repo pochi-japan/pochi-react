@@ -16,9 +16,9 @@ export function getToken() {
 	const token = localStorage.getItem('token');
 	if (!token) return null;
 	// Obtain the payload of the token
-	console.log(token);
-	const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
-	console.log(payload);
+	// console.log(JSON.parse(token));
+	const payload = JSON.parse(token);
+	console.log('payload', payload);
 	// A JWT's exp is expressed in seconds, not milliseconds, so convert
 	if (payload.exp < Date.now() / 1000) {
 		// Token has expired - remove it from localStorage
@@ -30,18 +30,24 @@ export function getToken() {
 
 export function getUser() {
 	const token = getToken();
+	console.log('getuser tokennnnnnn', token);
 	// If there's a token, return the user in the payload, otherwise return null
-	return token
-		? JSON.parse(Buffer.from(token.split('.')[1], 'base64')).user
-		: null;
+	return token ? JSON.parse(token).user : null;
 }
 
 export async function login(credentials) {
 	const token = await usersAPI.login(credentials);
-	localStorage.setItem('token', token);
+	console.log('login tokennnnnnn', token);
+	localStorage.setItem('token', JSON.stringify(token));
 	return getUser();
 }
 
 export function logOut() {
 	localStorage.removeItem('token');
+}
+
+/*-- This is not necessary in your MERN-Stack projects ---*/
+/*-- It's only to see how to send a token to the server ---*/
+export function checkToken() {
+	return usersAPI.checkToken().then((dateStr) => new Date(dateStr));
 }

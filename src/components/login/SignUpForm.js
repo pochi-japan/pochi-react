@@ -1,6 +1,7 @@
 import { Component } from 'react';
 // import { signUp } from '../../utilities/UsersService';
 import { signUp } from '../../utilities/UsersApi';
+import { useNavigate } from 'react-router-dom';
 
 export default class SignUpForm extends Component {
 	state = {
@@ -31,7 +32,10 @@ export default class SignUpForm extends Component {
 			// payload of the JSON Web Token (JWT)
 			const user = await signUp(formData);
 			// Baby step!
+			// this.props.setUser(user);
 			console.log(user);
+			const navigate = useNavigate();
+			navigate('/');
 		} catch {
 			// An error occurred
 			this.setState({ error: 'Sign Up Failed - Try Again' });
@@ -44,8 +48,9 @@ export default class SignUpForm extends Component {
 			<div>
 				<div className='form-container'>
 					<form autoComplete='off' onSubmit={this.handleSubmit}>
-						<label>Name</label>
+						<label htmlFor='name'>Name</label>
 						<input
+							id='name'
 							type='text'
 							name='name'
 							value={this.state.name}
@@ -61,16 +66,18 @@ export default class SignUpForm extends Component {
 							onChange={this.handleChange}
 							required
 						/>
-						<label>Password</label>
+						<label htmlFor='password'>Password</label>
 						<input
+							id='password'
 							type='password'
 							name='password'
 							value={this.state.password}
 							onChange={this.handleChange}
 							required
 						/>
-						<label>Confirm Password</label>
+						<label htmlFor='confirm'>Confirm Password</label>
 						<input
+							id='confirm'
 							type='password'
 							name='confirm'
 							value={this.state.confirm}
