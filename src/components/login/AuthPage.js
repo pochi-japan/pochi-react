@@ -2,7 +2,7 @@ import SignUpForm from './SignUpForm';
 import LoginForm from './LoginForm';
 import { useState } from 'react';
 
-function AuthPage({ setUser }) {
+function AuthPage({ token, setToken, user, setUser, JWT, setJWT }) {
 	const [showSignUp, setShowSignUp] = useState(false);
 	return (
 		<main>
@@ -10,7 +10,18 @@ function AuthPage({ setUser }) {
 			<button onClick={() => setShowSignUp(!showSignUp)}>
 				{showSignUp ? 'Log In' : 'Sign Up'}
 			</button>
-			{showSignUp ? <SignUpForm /> : <LoginForm setUser={setUser} />}
+			{showSignUp ? (
+				<SignUpForm />
+			) : (
+				<LoginForm
+					token={token}
+					setToken={setToken}
+					user={user}
+					setUser={setUser}
+					JWT={JWT}
+					setJWT={setJWT}
+				/>
+			)}
 		</main>
 	);
 }

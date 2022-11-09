@@ -1,23 +1,43 @@
-import { Link } from 'react-router-dom';
-import * as usersService from '../../utilities/UsersService';
+import { Link, useNavigate } from 'react-router-dom';
 
-function NavBar({ user, setUser }) {
-	function handleLogOut() {
-		usersService.logOut();
-		setUser(null);
+function NavBar({ token, setToken }) {
+	let navigate = useNavigate();
+
+	function handleLogOut(e) {
+		e.preventDefault();
+		setToken(false); //can be null as well?
+		localStorage.clear();
+		navigate('/');
 	}
 
 	return (
 		<nav>
-			{user ? (
-				<Link to='/user-recs'>Your Page</Link> && (
-					<Link to='' onClick={handleLogOut}>
-						Log Out
-					</Link>
-				)
-			) : (
-				<Link to='/auth'>Log-in</Link>
-			)}
+			<ul>
+				{/* Links that show regardless of logged status */}
+				<li>
+					<Link to='/'>Home</Link>
+				</li>
+
+				{/* Requires logged in status */}
+				{token ? (
+					(
+						<li>
+							<Link to='/user-recs'>Your Page</Link>
+						</li>
+					) && (
+						<li>
+							<Link to='' onClick={handleLogOut}>
+								Log Out
+							</Link>
+						</li>
+					)
+				) : (
+					// Show below if not logged in
+					<li>
+						<Link to='/auth'>Log-in</Link>
+					</li>
+				)}
+			</ul>
 		</nav>
 	);
 }

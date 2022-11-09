@@ -42,10 +42,6 @@ export async function login(credentials) {
 	return getUser();
 }
 
-export function logOut() {
-	localStorage.removeItem('token');
-}
-
 /*-- This is not necessary in your MERN-Stack projects ---*/
 /*-- It's only to see how to send a token to the server ---*/
 export function checkToken() {
