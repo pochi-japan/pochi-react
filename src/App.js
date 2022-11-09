@@ -11,7 +11,7 @@ import { getUser } from './utilities/UsersService';
 
 function App() {
 	//Default States
-	const defaultSignUp = {
+	const defaultRegister = {
 		email: '',
 		password: '',
 	};
@@ -23,11 +23,11 @@ function App() {
 
 	// STATES
 	// If a user is signed in, use the token that's saved in localStorage
-	const [token, setToken] = useState(localStorage.getItem('token') || '');
+	const [token, setToken] = useState(localStorage.getItem('token') || false);
 	// console.log(token)
 
 	// Signing up
-	const [signUp, setSignUp] = useState(defaultSignUp);
+	const [register, setRegister] = useState(defaultRegister);
 
 	// Logging in - when user logs in, assign a token
 	const [user, setUser] = useState(defaultUser);

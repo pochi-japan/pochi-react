@@ -1,43 +1,30 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import NavLoggedIn from './NavLoggedIn';
+import NavLoggedOut from './NavLoggedOut';
 
 function NavBar({ token, setToken }) {
-	let navigate = useNavigate();
+	// let navigate = useNavigate();
 
-	function handleLogOut(e) {
-		e.preventDefault();
-		setToken(false); //can be null as well?
-		localStorage.clear();
-		navigate('/');
-	}
+	// function handleLogOut(e) {
+	// 	e.preventDefault();
+	// 	setToken(false); //can be null as well?
+	// 	localStorage.clear();
+	// 	navigate('/');
+	// }
 
 	return (
 		<nav>
-			<ul>
+			<div>
 				{/* Links that show regardless of logged status */}
-				<li>
-					<Link to='/'>Home</Link>
-				</li>
-
+				<Link to='/'>Home</Link>
 				{/* Requires logged in status */}
 				{token ? (
-					(
-						<li>
-							<Link to='/user-recs'>Your Page</Link>
-						</li>
-					) && (
-						<li>
-							<Link to='' onClick={handleLogOut}>
-								Log Out
-							</Link>
-						</li>
-					)
+					<NavLoggedIn setToken={setToken} />
 				) : (
 					// Show below if not logged in
-					<li>
-						<Link to='/auth'>Log-in</Link>
-					</li>
+					<NavLoggedOut />
 				)}
-			</ul>
+			</div>
 		</nav>
 	);
 }

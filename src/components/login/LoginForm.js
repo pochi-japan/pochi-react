@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import * as usersService from '../../utilities/UsersService';
+import * as usersService from '../../utilities/UsersService';
 
 // export default function LoginForm({ setUser }) {
-// 	const [credentials, setCredentials] = useState({
-// 		email: '',
-// 		password: '',
-// 	});
+// const [credentials, setCredentials] = useState({
+// 	email: '',
+// 	password: '',
+// });
 // const [error, setError] = useState('');
 
 // 	const navigate = useNavigate();
@@ -17,24 +17,28 @@ import { useNavigate } from 'react-router-dom';
 // 		setError('');
 // 	}
 
-// 	async function handleSubmit(e) {
-// 		// Prevent form from being submitted to the server
-// 		e.preventDefault();
-// 		try {
-// 			// The promise returned by the signUp service method
-// 			// will resolve to the user object included in the
-// 			// payload of the JSON Web Token (JWT)
-// 			const user = await usersService.login(credentials);
-// 			setUser(user);
-// 			// navigate('/');
-// 			console.log('userrrrrrrrr', user);
-// 			console.log('credentialsssss', credentials);
-// 		} catch {
-// 			setError('Log In Failed - Try Again');
-// 		}
+// async function handleSubmit(e) {
+// 	// Prevent form from being submitted to the server
+// 	e.preventDefault();
+// 	try {
+// 		// The promise returned by the signUp service method
+// 		// will resolve to the user object included in the
+// 		// payload of the JSON Web Token (JWT)
+// 		const user = await usersService.login(credentials);
+// 		setUser(user);
+// 		// navigate('/');
+// 		console.log('userrrrrrrrr', user);
+// 		console.log('credentialsssss', credentials);
+// 	} catch {
+// 		setError('Log In Failed - Try Again');
 // 	}
+// }
 
-function LoginForm({ token, setToken, user, setUser, setJWT }) {
+function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
+	// const [credentials, setCredentials] = useState({
+	// 	email: '',
+	// 	password: '',
+	// });
 	const navigate = useNavigate();
 	const [invalidEmail, setInvalidEmail] = useState(false);
 	const [error, setError] = useState('');
@@ -46,22 +50,44 @@ function LoginForm({ token, setToken, user, setUser, setJWT }) {
 		});
 	}
 
+	//constant version with credentials
+	// const handleSubmit = async (e) => {
+	// 	// Prevent form from being submitted to the server
+	// 	e.preventDefault();
+	// 	try {
+	// 		// The promise returned by the signUp service method
+	// 		// will resolve to the user object included in the
+	// 		// payload of the JSON Web Token (JWT)
+	// 		const user = await usersService.login(credentials);
+	// 		setUser(user);
+	// 		// navigate('/');
+	// 		console.log('userrrrrrrrr', user);
+	// 		console.log('credentialsssss', credentials);
+	// 	} catch {
+	// 		setError('Log In Failed - Try Again');
+	// 	}
+	// };
+
+	//other version
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await setUser(user);
 		try {
 			// update to heroku later
-			const url = 'http://localhost:8000/api/users/login';
+			const url = 'http://localhost:8000/api/users/signin';
+			// const url = 'https://pochi-japan.herokuapp.com/api/users/signin';
 			const res = await axios.post(url, user);
 			console.log('Login Response: ', res);
+			console.log('res.data Response:', res.data);
 			console.log('user: ', user);
-			setJWT(res.data.token);
+			// setJWT(res.data.token);
+			setJWT(res.data);
 
-			localStorage.setItem('token', res.data.token);
+			localStorage.setItem('token', res.data);
 			localStorage.setItem('loginEmail', user.email);
-			if (res.data.token == null) {
+			if (res.data == null) {
 				setInvalidEmail(true);
-			} else if (res.data.token != null) {
+			} else if (res.data != null) {
 				setToken(true);
 				navigate('/');
 			}
