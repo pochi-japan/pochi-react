@@ -82,7 +82,6 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 			console.log('user: ', user);
 			// setJWT(res.data.token);
 			setJWT(res.data);
-			console.log('JWT: ', JWT);
 
 			localStorage.setItem('token', res.data);
 			localStorage.setItem('loginEmail', user.email);
