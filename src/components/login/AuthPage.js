@@ -12,14 +12,14 @@ function AuthPage({
 	register,
 	setRegister,
 }) {
-	const [showSignUp, setShowSignUp] = useState(false);
+	const [showRegister, setShowRegister] = useState(false);
 	return (
 		<main>
 			<h1>AuthPage</h1>
-			<button onClick={() => setShowSignUp(!showSignUp)}>
-				{showSignUp ? 'Log In' : 'Sign Up'}
+			<button onClick={() => setShowRegister(!showRegister)}>
+				{showRegister ? 'Log In' : 'Sign Up'}
 			</button>
-			{showSignUp ? (
+			{showRegister ? (
 				<RegisterForm register={register} setRegister={setRegister} />
 			) : (
 				<LoginForm

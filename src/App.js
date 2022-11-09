@@ -21,17 +21,15 @@ function App() {
 	};
 
 	// STATES
-	// If a user is signed in, use the token that's saved in localStorage
+	// If a user is signed in, use the token that's saved in localStorage (true/false)
 	const [token, setToken] = useState(localStorage.getItem('token') || false);
-	// console.log(token)
 
 	// Signing up
 	const [register, setRegister] = useState(defaultRegister);
 
-	// Logging in - when user logs in, assign a token
+	// Logging in - when user logs in, assign a token. JWT is the token value
 	const [user, setUser] = useState(defaultUser);
 	const [JWT, setJWT] = useState('');
-	// const [user, setUser] = useState(null);
 
 	return (
 		<div className='App'>

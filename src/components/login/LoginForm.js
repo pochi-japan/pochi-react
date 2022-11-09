@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as usersService from '../../utilities/UsersService';
 
 // export default function LoginForm({ setUser }) {
 // const [credentials, setCredentials] = useState({
