@@ -1,13 +1,5 @@
-import React from 'react';
-import RecForm from '../forms/RecForm';
-
-function UserRecs(props) {
-	return (
-		<div>
-			User Recs
-			<RecForm />
-		</div>
-	);
+function UserRecs({ token }) {
+	return <div>User Recs</div>;
 }
 
 export default UserRecs;
