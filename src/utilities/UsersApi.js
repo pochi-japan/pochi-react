@@ -1,5 +1,5 @@
 // This is the base path of the Express route we'll define
-const BASE_URL = 'https://pochi-japan.herokuapp.com/api/users';
+const BASE_URL = 'http://localhost:8000/api/users';
 
 export async function signUp(userData) {
 	// Fetch uses an options object as a second arg to make requests

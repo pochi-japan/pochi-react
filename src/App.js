@@ -21,7 +21,7 @@ function App() {
 			{/* <Header token={token} setToken={setToken} /> */}
 			<NavBar user={user} setUser={setUser} />
 			<Routes>
-				{/* <Route path='/' element={<MainResults />} /> */}
+				<Route path='/' element={<MainResults />} />
 				<Route path='/user-recs' element={<UserRecs />} />
 				<Route path='/search-results' element={<SearchResults />} />
 				<Route path='/auth' element={<AuthPage setUser={setUser} />} />

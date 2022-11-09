@@ -1,4 +1,5 @@
 import * as usersAPI from './UsersApi';
+import { Buffer } from 'buffer';
 
 // export async function signUp(userData) {
 // 	// Delegate the network request code to the users-api.js API module
@@ -15,7 +16,9 @@ export function getToken() {
 	const token = localStorage.getItem('token');
 	if (!token) return null;
 	// Obtain the payload of the token
-	const payload = JSON.parse(atob(token.split('.')[1]));
+	console.log(token);
+	const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64'));
+	console.log(payload);
 	// A JWT's exp is expressed in seconds, not milliseconds, so convert
 	if (payload.exp < Date.now() / 1000) {
 		// Token has expired - remove it from localStorage
@@ -28,7 +31,9 @@ export function getToken() {
 export function getUser() {
 	const token = getToken();
 	// If there's a token, return the user in the payload, otherwise return null
-	return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+	return token
+		? JSON.parse(Buffer.from(token.split('.')[1], 'base64')).user
+		: null;
 }
 
 export async function login(credentials) {

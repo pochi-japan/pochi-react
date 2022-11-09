@@ -52,8 +52,9 @@ export default class SignUpForm extends Component {
 							onChange={this.handleChange}
 							required
 						/>
-						<label>Email</label>
+						<label htmlFor='email'>Email</label>
 						<input
+							id='email'
 							type='email'
 							name='email'
 							value={this.state.email}
