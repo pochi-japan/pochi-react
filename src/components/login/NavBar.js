@@ -3,7 +3,7 @@ import NavLoggedIn from './NavLoggedIn';
 import NavLoggedOut from './NavLoggedOut';
 import Search from '../Search';
 
-function NavBar({ token, setToken }) {
+function NavBar({ token, setToken, user, JWT }) {
 	// let navigate = useNavigate();
 
 	// function handleLogOut(e) {
@@ -21,7 +21,10 @@ function NavBar({ token, setToken }) {
 				<Search />
 				{/* Requires logged in status */}
 				{token ? (
-					<NavLoggedIn setToken={setToken} />
+					<div>
+						<NavLoggedIn setToken={setToken} />
+						<Link to='/user-rec-form'>Add a Recommendation</Link>
+					</div>
 				) : (
 					// Show below if not logged in
 					<NavLoggedOut />

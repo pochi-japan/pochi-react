@@ -77,17 +77,16 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 			// const url = 'https://pochi-japan.herokuapp.com/api/users/signin';
 			const res = await axios.post(url, user);
 			console.log('Login Response: ', res);
-			console.log('res.data Response:', res.data);
 			console.log('res.data.token Response:', res.data.token);
 			console.log('user: ', user);
-			// setJWT(res.data.token);
-			setJWT(res.data);
+			setJWT(res.data.token);
+			console.log('jawwwwttt', res.data.token);
 
-			localStorage.setItem('token', res.data);
+			localStorage.setItem('token', res.data.token);
 			localStorage.setItem('loginEmail', user.email);
-			if (res.data == null) {
+			if (res.data.token == null) {
 				setInvalidEmail(true);
-			} else if (res.data != null) {
+			} else if (res.data.token != null) {
 				setToken(true);
 				navigate('/');
 			}

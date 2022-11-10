@@ -6,6 +6,7 @@ import UserRecs from './components/pages/UserRecs';
 import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
+import UserRecForm from './components/pages/UserRecForm';
 import { getUser } from './utilities/UsersService';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 	// STATES
 	// If a user is signed in, use the token that's saved in localStorage (true/false)
 	const [token, setToken] = useState(localStorage.getItem('token') || false);
+	console.log('localStorage token:', localStorage.getItem('token'));
 
 	// Signing up
 	const [register, setRegister] = useState(defaultRegister);
@@ -33,7 +35,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			<NavBar token={token} setToken={setToken} />
+			<NavBar token={token} setToken={setToken} user={user} JWT={JWT} />
 			<Routes>
 				<Route path='/' element={<MainResults />} />
 				<Route
@@ -64,6 +66,10 @@ function App() {
 							setRegister={setRegister}
 						/>
 					}
+				/>
+				<Route
+					path='/user-rec-form'
+					element={<UserRecForm user={user} JWT={JWT} token={token} />}
 				/>
 			</Routes>
 		</div>
