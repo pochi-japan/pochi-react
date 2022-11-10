@@ -2,16 +2,7 @@ import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import { useState } from 'react';
 
-function AuthPage({
-	token,
-	setToken,
-	user,
-	setUser,
-	JWT,
-	setJWT,
-	register,
-	setRegister,
-}) {
+function AuthPage({ token, setToken, user, setUser, JWT, setJWT }) {
 	const [showRegister, setShowRegister] = useState(false);
 	return (
 		<main>
@@ -20,7 +11,7 @@ function AuthPage({
 				{showRegister ? 'Log In' : 'Sign Up'}
 			</button>
 			{showRegister ? (
-				<RegisterForm register={register} setRegister={setRegister} />
+				<RegisterForm />
 			) : (
 				<LoginForm
 					token={token}

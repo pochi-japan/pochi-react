@@ -2,37 +2,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// export default function LoginForm({ setUser }) {
-// const [credentials, setCredentials] = useState({
-// 	email: '',
-// 	password: '',
-// });
-// const [error, setError] = useState('');
-
-// 	const navigate = useNavigate();
-
-// 	function handleChange(e) {
-// 		setCredentials({ ...credentials, [e.target.name]: e.target.value });
-// 		setError('');
-// 	}
-
-// async function handleSubmit(e) {
-// 	// Prevent form from being submitted to the server
-// 	e.preventDefault();
-// 	try {
-// 		// The promise returned by the signUp service method
-// 		// will resolve to the user object included in the
-// 		// payload of the JSON Web Token (JWT)
-// 		const user = await usersService.login(credentials);
-// 		setUser(user);
-// 		// navigate('/');
-// 		console.log('userrrrrrrrr', user);
-// 		console.log('credentialsssss', credentials);
-// 	} catch {
-// 		setError('Log In Failed - Try Again');
-// 	}
-// }
-
 function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 	// const [credentials, setCredentials] = useState({
 	// 	email: '',
@@ -49,25 +18,6 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 		});
 	}
 
-	//constant version with credentials
-	// const handleSubmit = async (e) => {
-	// 	// Prevent form from being submitted to the server
-	// 	e.preventDefault();
-	// 	try {
-	// 		// The promise returned by the signUp service method
-	// 		// will resolve to the user object included in the
-	// 		// payload of the JSON Web Token (JWT)
-	// 		const user = await usersService.login(credentials);
-	// 		setUser(user);
-	// 		// navigate('/');
-	// 		console.log('userrrrrrrrr', user);
-	// 		console.log('credentialsssss', credentials);
-	// 	} catch {
-	// 		setError('Log In Failed - Try Again');
-	// 	}
-	// };
-
-	//other version
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await setUser(user);

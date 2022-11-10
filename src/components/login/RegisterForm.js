@@ -2,10 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-//new code
+function RegisterForm() {
+	const defaultRegister = {
+		name: '',
+		email: '',
+		password: '',
+		confirm: '',
+	};
 
-function RegisterForm({ register, setRegister }) {
 	const navigate = useNavigate();
+	const [register, setRegister] = useState(defaultRegister);
 	const [duplicateUser, setDuplicateUser] = useState(false);
 	const [error, setError] = useState('');
 	const disable = register.password !== register.confirm;
@@ -28,9 +34,10 @@ function RegisterForm({ register, setRegister }) {
 			const res = await axios.post(url, register);
 			console.log('Register Response:', res);
 
-			if (res.status === 200) {
+			if (res.status === 201) {
 				setDuplicateUser(false);
-				navigate('/auth');
+				setRegister(defaultRegister);
+				navigate('/success');
 			}
 		} catch (err) {
 			setDuplicateUser(true);

@@ -1,12 +1,26 @@
 import { useNavigate, Link } from 'react-router-dom';
 import Search from '../Search';
+import { useState } from 'react';
 
-function NavBar({ token, setToken, user, JWT }) {
+function NavBar({
+	token,
+	setToken,
+	JWT,
+	searchString,
+	setSearchString,
+	handleSubmit,
+	handleChange,
+	user,
+	setUser,
+	defaultUser,
+}) {
 	let navigate = useNavigate();
 
+	// Log Out
 	function handleLogOut(e) {
 		e.preventDefault();
 		setToken(false); //can be null as well?
+		setUser(defaultUser);
 		localStorage.clear();
 		navigate('/');
 	}
@@ -16,7 +30,12 @@ function NavBar({ token, setToken, user, JWT }) {
 			<div>
 				{/* Links that show regardless of logged status */}
 				<Link to='/'>Home</Link>
-				<Search />
+				<Search
+					searchString={searchString}
+					setSearchString={setSearchString}
+					handleChange={handleChange}
+					handleSubmit={handleSubmit}
+				/>
 				{/* Requires logged in status */}
 				{token ? (
 					<div>

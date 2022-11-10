@@ -41,6 +41,7 @@ function UserRecForm({ JWT, user, token }) {
 			console.log('Recommendation Response:', res);
 
 			if (res.status === 200) {
+				setRec(initialRecState);
 				navigate('/user-recs');
 			}
 		} catch (err) {
@@ -62,6 +63,7 @@ function UserRecForm({ JWT, user, token }) {
 						onChange={handleChange}
 						required
 					/>
+					<br />
 					<label htmlFor='description'>Description: </label>
 					<textarea
 						placeholder='...description'
@@ -74,6 +76,7 @@ function UserRecForm({ JWT, user, token }) {
 						onChange={handleChange}
 						required
 					/>
+					<br />
 					<fieldset>
 						<legend>Category: </legend>
 						<input
@@ -104,6 +107,7 @@ function UserRecForm({ JWT, user, token }) {
 						onChange={handleChange}
 						required
 					/>
+					<br />
 					<label htmlFor='pictures'>Pictures: </label>
 					<input
 						placeholder='...put in multiple pics by putting a space between each url'
@@ -113,6 +117,7 @@ function UserRecForm({ JWT, user, token }) {
 						value={user.pictures}
 						onChange={handleChange}
 					/>
+					<br />
 					{/* <label htmlFor='picture2'>Picture #2: </label>
 						<input
 							id='picture2'
@@ -146,6 +151,7 @@ function UserRecForm({ JWT, user, token }) {
 						value={user.location}
 						onChange={handleChange}
 					/>
+					<br />
 					<label htmlFor='url'>URL: </label>
 					<input
 						placeholder='...url'
@@ -155,6 +161,7 @@ function UserRecForm({ JWT, user, token }) {
 						value={user.url}
 						onChange={handleChange}
 					/>
+					<br />
 					<label htmlFor='hashtag'>Hashtag: </label>
 					<textarea
 						placeholder='...add multiple hashtags by adding a space between each'
