@@ -47,6 +47,8 @@ function UserRecForm({ JWT, user, token }) {
 		try {
 			const url = 'http://localhost:8000/api';
 			// const url = 'https://pochi-japan.herokuapp.com/api/';
+			rec.pictures = rec.pictures.split(' ');
+			rec.hashtag = rec.hashtag.split(' ');
 			const res = await axios.post(url, rec, {
 				headers: { Authorization: `Bearer ${JWT}` },
 			});
@@ -63,8 +65,8 @@ function UserRecForm({ JWT, user, token }) {
 
 	return (
 		<div>
-			<div className='rec-form-container' onSubmit={handleSubmit}>
-				<form autoComplete='off'>
+			<div className='rec-form-container'>
+				<form autoComplete='off' onSubmit={handleSubmit}>
 					<label htmlFor='name'>Name: </label>
 					<input
 						placeholder='...name'
@@ -120,7 +122,7 @@ function UserRecForm({ JWT, user, token }) {
 						required
 					/>
 					<br />
-					<label htmlFor='pictures'>Pictures: </label>
+					<label htmlFor='pictures'>Pictures (up to 4): </label>
 					<input
 						placeholder='...put in multiple pics by putting a space between each url'
 						id='pictures'

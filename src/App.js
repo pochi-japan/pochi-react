@@ -10,6 +10,7 @@ import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
 import UserRecForm from './components/pages/UserRecForm';
 import LoginSuccess from './components/pages/LoginSuccess';
+import RecDetail from './components/pages/RecDetail';
 
 function App() {
 	const defaultUser = {
@@ -89,6 +90,7 @@ function App() {
 						/>
 					}
 				/>
+				<Route path='/detail' element={<RecDetail />}></Route>
 				<Route
 					path='/user-rec-form'
 					element={<UserRecForm user={user} JWT={JWT} token={token} />}

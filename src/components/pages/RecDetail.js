@@ -1,7 +1,7 @@
 import React from 'react';
 
 function RecDetail(props) {
-	return <div></div>;
+	return <div>Rec Detail</div>;
 }
 
 export default RecDetail;

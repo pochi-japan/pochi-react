@@ -29,8 +29,8 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 			console.log('Login Response: ', res);
 			console.log('res.data.token Response:', res.data.token);
 			console.log('user: ', user);
+			//setJWT is not working
 			setJWT(res.data.token);
-			console.log('jawwwwttt', res.data.token);
 
 			localStorage.setItem('token', res.data.token);
 			localStorage.setItem('loginEmail', user.email);
