@@ -20,12 +20,24 @@ function UserRecForm({ JWT, user, token }) {
 	const [rec, setRec] = useState(initialRecState);
 	const [error, setError] = useState('');
 
+	// function splitter() {
+	// 	const pics = rec.pictures.split(' ');
+	// 	rec.pictures = pics;
+	// }
+
 	function handleChange(e) {
 		setRec({
 			...rec,
 			[e.target.id]: e.target.value,
 		});
-		console.log(rec);
+		// rec.pictures.split(' ');
+		// toString(rec.pictures);
+		// const split = rec.pictures.split(' ');
+		// rec.pictures = split;
+		// console.log('rec.pictures', rec.pictures);
+		// const pics = rec.pictures.split(' ');
+		// rec.pictures = pics;
+		console.log('recccc', rec);
 	}
 
 	const handleSubmit = async (e) => {
