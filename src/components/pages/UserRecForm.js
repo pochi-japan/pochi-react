@@ -23,25 +23,19 @@ function UserRecForm({ JWT, user, token }) {
 	const [rec, setRec] = useState(initialRecState);
 	const [error, setError] = useState('');
 
-	// function splitter() {
-	// 	const pics = rec.pictures.split(' ');
-	// 	rec.pictures = pics;
-	// }
-
 	function handleChange(e) {
-		setRec({
-			...rec,
-			[e.target.id]: e.target.value,
-		});
-		// rec.pictures.split(' ');
-		// toString(rec.pictures);
-		// const split = rec.pictures.split(' ');
-		// rec.pictures = split;
-		// console.log('rec.pictures', rec.pictures);
-		// const pics = rec.pictures.split(' ');
-		// rec.pictures = pics;
-		console.log('recccc', rec);
-		console.log('rec pics', rec.pictures);
+		// Destructure event to access value and type
+		const { value, type } = e.target;
+		// If input type is radio, then set the category key to the value of the radio
+		if (type === 'radio') {
+			setRec({ ...rec, category: value });
+		} else {
+			setRec({
+				...rec,
+				[e.target.id]: e.target.value,
+			});
+		}
+		console.log('rec', rec);
 	}
 
 	const handleSubmit = async (e) => {
@@ -78,7 +72,7 @@ function UserRecForm({ JWT, user, token }) {
 						id='name'
 						type='text'
 						name='name'
-						value={user.name}
+						value={rec.name}
 						onChange={handleChange}
 						required
 					/>
@@ -91,29 +85,34 @@ function UserRecForm({ JWT, user, token }) {
 						id='description'
 						type='text'
 						name='description'
-						value={user.description}
+						value={rec.description}
 						onChange={handleChange}
 						required
 					/>
 					<br />
-					<fieldset>
-						<legend>Category: </legend>
-						<input
-							type='radio'
-							id='place'
-							name='category'
-							value={user.category}
-							required
-						/>
-						<label htmlFor='place'>place</label>
-						<input
-							type='radio'
-							id='thing'
-							name='category'
-							value={user.category}
-						/>
-						<label htmlFor='thing'>thing</label>
-					</fieldset>
+					{/* <fieldset>
+						<legend>Category: </legend> */}
+					<input
+						type='radio'
+						id='place'
+						name='category'
+						value='place'
+						checked={rec.category === 'place'}
+						onChange={handleChange}
+						required
+					/>
+					<label htmlFor='place'>place</label>
+					<input
+						type='radio'
+						id='thing'
+						name='category'
+						value='thing'
+						checked={rec.category === 'thing'}
+						onChange={handleChange}
+					/>
+					<label htmlFor='thing'>thing</label>
+					{/* </fieldset> */}
+					<br />
 					<label htmlFor='recRating'>Rating: </label>
 					<input
 						placeholder='1-3'
@@ -122,7 +121,7 @@ function UserRecForm({ JWT, user, token }) {
 						min={1}
 						max={3}
 						name='recRating'
-						value={user.recRating}
+						value={rec.recRating}
 						onChange={handleChange}
 						required
 					/>
@@ -134,7 +133,7 @@ function UserRecForm({ JWT, user, token }) {
 						id='picture1'
 						type='text'
 						name='picture1'
-						value={user.picture1}
+						value={rec.picture1}
 						onChange={handleChange}
 					/>
 					<br />
@@ -144,8 +143,8 @@ function UserRecForm({ JWT, user, token }) {
 						id='picture2'
 						type='text'
 						name='picture2'
-						value={user.picture2}
-						// onChange={handleChange}
+						value={rec.picture2}
+						onChange={handleChange}
 					/>
 					<label htmlFor='picture3'>Picture #3: </label>
 					<input
@@ -153,8 +152,8 @@ function UserRecForm({ JWT, user, token }) {
 						id='picture3'
 						type='text'
 						name='picture3'
-						value={user.picture3}
-						// onChange={handleChange}
+						value={rec.picture3}
+						onChange={handleChange}
 					/>
 					<label htmlFor='picture4'>Picture #4: </label>
 					<input
@@ -162,8 +161,8 @@ function UserRecForm({ JWT, user, token }) {
 						id='picture4'
 						type='text'
 						name='picture4'
-						value={user.picture4}
-						// onChange={handleChange}
+						value={rec.picture4}
+						onChange={handleChange}
 					/>
 					<label htmlFor='location'>Location: </label>
 					<input
@@ -171,7 +170,7 @@ function UserRecForm({ JWT, user, token }) {
 						id='location'
 						type='text'
 						name='location'
-						value={user.location}
+						value={rec.location}
 						onChange={handleChange}
 					/>
 					<br />
@@ -181,7 +180,7 @@ function UserRecForm({ JWT, user, token }) {
 						id='url'
 						type='text'
 						name='url'
-						value={user.url}
+						value={rec.url}
 						onChange={handleChange}
 					/>
 					<br />
@@ -193,7 +192,7 @@ function UserRecForm({ JWT, user, token }) {
 						id='hashtag'
 						type='text'
 						name='hashtag'
-						value={user.hashtag}
+						value={rec.hashtag}
 						onChange={handleChange}
 					/>
 					<button type='submit'>SUBMIT</button>
