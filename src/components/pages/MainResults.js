@@ -5,6 +5,7 @@ import axios from 'axios';
 function MainResults(props) {
 	const [randomResults, setRandomResults] = useState([]);
 	const [error, setError] = useState(null);
+	// const [imgSrc, setImgSrc] = useState('');
 
 	// Function to shuffle the results
 	function shuffle(array) {
@@ -30,24 +31,40 @@ function MainResults(props) {
 			});
 	}, []);
 
+	// Handle when res.picture1 does not exist or provides an error image
+	// const handleImgError = (e) => (e.target.onerror = null);
+	// e.target.src = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
 	//Filter by category
 	// function filterPlace(randomResults, query) {
 	//     return randomResults.filter((el) => el.includes())
 	// }
 	// let placeResults = randomResults.filter(category => )
 
+	// function dummyPic(pic) {
+	// 	if (pic === null) {
+	// 		return pic === 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
+	// 	}
+	// }
+
 	return (
 		<section>
 			Main Results - delete this line later
-			{/* Limit random results to 5 images */}
-			{randomResults.slice(0, 3).map((res) => {
+			{/* Limit random results to 5 images, set fallback image if image is null or gives an invalid image */}
+			{randomResults.slice(0, 4).map((res) => {
 				return (
 					<div key={`${res.name}-card`}>
 						<div className='results-img'>
 							<Link to={`/detail/:${res._id}`} key={res.name}>
 								<h1>{res.name}</h1>
 								<p></p>
-								<img src={res.picture1} alt={res.name} />
+								<img
+									src={res.picture1}
+									onError={(e) =>
+										(e.currentTarget.src =
+											'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+									}
+									alt={res.name}
+								/>
 							</Link>
 						</div>
 					</div>
