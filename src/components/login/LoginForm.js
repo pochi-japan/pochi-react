@@ -47,8 +47,8 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 
 	return (
 		<div>
-			<div className='form-container' onSubmit={handleSubmit}>
-				<form autoComplete='off'>
+			<div onSubmit={handleSubmit}>
+				<form className='login-form center' autoComplete='off'>
 					<label htmlFor='email'>Email</label>
 					<input
 						id='email'
@@ -58,6 +58,7 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 						onChange={handleChange}
 						required
 					/>
+					<br />
 					<label htmlFor='password'>Password</label>
 					<input
 						id='password'
@@ -68,7 +69,8 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 						required
 					/>
 					{invalidEmail ? <div>Username or password is incorrect. </div> : ''}
-					<button type='submit'>LOG IN</button>
+					<br />
+					<button className='submit' type='submit'>LOG IN</button>
 				</form>
 			</div>
 			<p className='error-message'>&nbsp;{error}</p>

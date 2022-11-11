@@ -5,3 +5,23 @@
 textarea {
   resize: none;
 }
+
+.center {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-form {
+  height: 12rem;
+  margin-top: 5rem;
+  padding: 8rem;
+  border: 1px solid black;
+  font-size: .8rem;
+  text-shadow: .5px .5px .10px black;
+  border-radius: .5rem;
+  width: fit-content;
+  background-image: url('./images/shiba-manga.jpeg');
+  background-position: center
+}
