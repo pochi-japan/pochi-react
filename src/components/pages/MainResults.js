@@ -5,7 +5,6 @@ import axios from 'axios';
 function MainResults(props) {
 	const [randomResults, setRandomResults] = useState([]);
 	const [error, setError] = useState(null);
-	// const [imgSrc, setImgSrc] = useState('');
 
 	// Function to shuffle the results
 	function shuffle(array) {
@@ -30,21 +29,6 @@ function MainResults(props) {
 				setError(err.message);
 			});
 	}, []);
-
-	// Handle when res.picture1 does not exist or provides an error image
-	// const handleImgError = (e) => (e.target.onerror = null);
-	// e.target.src = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
-	//Filter by category
-	// function filterPlace(randomResults, query) {
-	//     return randomResults.filter((el) => el.includes())
-	// }
-	// let placeResults = randomResults.filter(category => )
-
-	// function dummyPic(pic) {
-	// 	if (pic === null) {
-	// 		return pic === 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
-	// 	}
-	// }
 
 	return (
 		<section>

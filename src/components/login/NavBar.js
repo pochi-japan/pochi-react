@@ -13,6 +13,8 @@ function NavBar({
 	user,
 	setUser,
 	defaultUser,
+	handleSearch,
+	handleFilter,
 }) {
 	let navigate = useNavigate();
 
@@ -32,9 +34,9 @@ function NavBar({
 				<Link to='/'>Home</Link>
 				<Search
 					searchString={searchString}
-					setSearchString={setSearchString}
 					handleChange={handleChange}
 					handleSubmit={handleSubmit}
+					handleFilter={handleFilter}
 				/>
 				{/* Requires logged in status */}
 				{token ? (

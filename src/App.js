@@ -40,6 +40,8 @@ function App() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		navigate(`/results/:${searchString}`);
+		// Clear input
+		e.target.reset();
 	};
 
 	return (
@@ -52,6 +54,8 @@ function App() {
 				defaultUser={defaultUser}
 				JWT={JWT}
 				setSearchString={setSearchString}
+				handleChange={handleChange}
+				handleSubmit={handleSubmit}
 			/>
 			<Routes>
 				<Route path='/' element={<MainResults />} />
@@ -69,7 +73,7 @@ function App() {
 					}
 				/>
 				<Route
-					path='/results'
+					path='/results/:searchString'
 					element={
 						<SearchResults
 							searchString={searchString}
