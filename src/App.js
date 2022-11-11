@@ -90,7 +90,7 @@ function App() {
 						/>
 					}
 				/>
-				<Route path='/detail' element={<RecDetail />}></Route>
+				<Route path='/detail/:id' element={<RecDetail />}></Route>
 				<Route
 					path='/user-rec-form'
 					element={<UserRecForm user={user} JWT={JWT} token={token} />}

@@ -56,7 +56,7 @@ function MainResults(props) {
 						<div className='results-img'>
 							<Link to={`/detail/:${res._id}`} key={res.name}>
 								<h1>{res.name}</h1>
-								<p></p>
+								<br />
 								<img
 									src={res.picture1}
 									onError={(e) =>
