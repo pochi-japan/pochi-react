@@ -45,9 +45,9 @@ function MainResults(props) {
 					<div key={`${res.name}-card`}>
 						<div className='results-img'>
 							<Link to={`/detail/:${res._id}`} key={res.name}>
-								{res.name}
+								<h1>{res.name}</h1>
 								<p></p>
-								<img src={res.pictures[0]} alt={res.name} />
+								<img src={res.picture1} alt={res.name} />
 							</Link>
 						</div>
 					</div>

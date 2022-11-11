@@ -9,7 +9,10 @@ function UserRecForm({ JWT, user, token }) {
 		description: '',
 		category: '',
 		recRating: 3,
-		pictures: [],
+		picture1: '',
+		picture2: '',
+		picture3: '',
+		picture4: '',
 		location: '',
 		url: '',
 		hashtag: [],
@@ -124,40 +127,44 @@ function UserRecForm({ JWT, user, token }) {
 						required
 					/>
 					<br />
-					<label htmlFor='pictures'>Pictures (up to 4): </label>
+					<p>Pictures (up to 4)</p>
+					<label htmlFor='picture1'>Picture #1: </label>
 					<input
-						placeholder='...put in multiple pics by putting a space between each url'
-						id='pictures'
+						placeholder='url for picture 1'
+						id='picture1'
 						type='text'
-						name='pictures'
-						value={user.pictures}
+						name='picture1'
+						value={user.picture1}
 						onChange={handleChange}
 					/>
 					<br />
-					{/* <label htmlFor='picture2'>Picture #2: </label>
-						<input
-							id='picture2'
-							type='text'
-							name='pictures'
-							value={user.pictures}
-							// onChange={handleChange}
-						/>
-						<label htmlFor='picture3'>Picture #3: </label>
-						<input
-							id='picture3'
-							type='text'
-							name='pictures'
-							value={user.pictures}
-							// onChange={handleChange}
-						/>
-						<label htmlFor='picture4'>Picture #4: </label>
-						<input
-							id='picture4'
-							type='text'
-							name='pictures'
-							value={user.pictures}
-							// onChange={handleChange}
-						/> */}
+					<label htmlFor='picture2'>Picture #2: </label>
+					<input
+						placeholder='url for picture 2'
+						id='picture2'
+						type='text'
+						name='picture2'
+						value={user.picture2}
+						// onChange={handleChange}
+					/>
+					<label htmlFor='picture3'>Picture #3: </label>
+					<input
+						placeholder='url for picture 3'
+						id='picture3'
+						type='text'
+						name='picture3'
+						value={user.picture3}
+						// onChange={handleChange}
+					/>
+					<label htmlFor='picture4'>Picture #4: </label>
+					<input
+						placeholder='url for picture 4'
+						id='picture4'
+						type='text'
+						name='picture4'
+						value={user.picture4}
+						// onChange={handleChange}
+					/>
 					<label htmlFor='location'>Location: </label>
 					<input
 						placeholder='...location'
