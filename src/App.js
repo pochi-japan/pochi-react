@@ -8,7 +8,7 @@ import UserRecs from './components/pages/UserRecs';
 import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
-import UserRecForm from './components/pages/UserRecForm';
+import UserRecForm from './components/pages/Forms/UserRecForm';
 import LoginSuccess from './components/pages/LoginSuccess';
 import RecDetail from './components/pages/RecDetail';
 
