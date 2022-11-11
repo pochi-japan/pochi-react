@@ -6,7 +6,7 @@ function MainResults(props) {
 	const [randomResults, setRandomResults] = useState([]);
 	const [error, setError] = useState(null);
 
-	// Function to randomize the results
+	// Function to shuffle the results
 	function shuffle(array) {
 		for (let i = array.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
@@ -21,9 +21,9 @@ function MainResults(props) {
 			.get(`http://localhost:8000/api`)
 			.then((res) => {
 				const data = shuffle(res.data);
-				//randomize the results here
+				//call the function to randomize the data
 				setRandomResults(res.data);
-				console.log(res.data);
+				// console.log(res.data);
 			})
 			.catch((err) => {
 				setError(err.message);

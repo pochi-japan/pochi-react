@@ -38,6 +38,7 @@ function UserRecForm({ JWT, user, token }) {
 		// const pics = rec.pictures.split(' ');
 		// rec.pictures = pics;
 		console.log('recccc', rec);
+		console.log('rec pics', rec.pictures);
 	}
 
 	const handleSubmit = async (e) => {
@@ -47,9 +48,10 @@ function UserRecForm({ JWT, user, token }) {
 		try {
 			const url = 'http://localhost:8000/api';
 			// const url = 'https://pochi-japan.herokuapp.com/api/';
-			rec.pictures = rec.pictures.split(' ');
-			rec.hashtag = rec.hashtag.split(' ');
+			// rec.pictures = rec.pictures.split(' ');
+			// rec.hashtag = rec.hashtag.split(' ');
 			const res = await axios.post(url, rec, {
+				// Bearer JWT is not working after refresh?
 				headers: { Authorization: `Bearer ${JWT}` },
 			});
 			console.log('Recommendation Response:', res);
@@ -109,14 +111,14 @@ function UserRecForm({ JWT, user, token }) {
 						/>
 						<label htmlFor='thing'>thing</label>
 					</fieldset>
-					<label htmlFor='rating'>Rating: </label>
+					<label htmlFor='recRating'>Rating: </label>
 					<input
 						placeholder='1-3'
-						id='rating'
+						id='recRating'
 						type='number'
 						min={1}
 						max={3}
-						name='rating'
+						name='recRating'
 						value={user.recRating}
 						onChange={handleChange}
 						required
