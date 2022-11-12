@@ -24,6 +24,8 @@ function App() {
 	// console.log('localStorage token:', localStorage.getItem('token'));
 	const [error, setError] = useState(null);
 
+	const [showRegister, setShowRegister] = useState(false);
+
 	// Search Bar
 	const [allResults, setAllResults] = useState([]);
 	const [searchString, setSearchString] = useState('');
@@ -93,6 +95,8 @@ function App() {
 	return (
 		<div className='App'>
 			<NavBar
+				showRegister={showRegister}
+				setShowRegister={setShowRegister}
 				token={token}
 				setToken={setToken}
 				user={user}
@@ -144,6 +148,8 @@ function App() {
 							setUser={setUser}
 							JWT={JWT}
 							setJWT={setJWT}
+							showRegister={showRegister}
+							setShowRegister={setShowRegister}
 						/>
 					}
 				/>

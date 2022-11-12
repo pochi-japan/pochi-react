@@ -51,7 +51,7 @@ function Search({
 
 	return (
 		<div>
-			{/* <input
+			<input
 				type='text'
 				value={searchString}
 				onChange={handleChange}
@@ -60,7 +60,7 @@ function Search({
 			/>
 			<button onClick={() => handleSubmit(searchString)}>Search</button>
 			<div className='search-dropdown'>
-				{allResults
+				{/* {allResults
 					.slice(0, 10)
 					.filter((rec) => {
 						{
@@ -85,8 +85,8 @@ function Search({
 							onClick={() => handleSubmit(rec.name)}>
 							{rec.name}
 						</div>
-					))}
-			</div> */}
+					))} */}
+			</div>
 		</div>
 	);
 }

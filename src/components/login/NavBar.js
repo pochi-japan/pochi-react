@@ -20,6 +20,8 @@ function NavBar({
 	searchShow,
 	allResults,
 	searchTerm,
+	showRegister,
+	setShowRegister,
 }) {
 	let navigate = useNavigate();
 
@@ -41,24 +43,35 @@ function NavBar({
 				</button>
 				{/* Requires logged in status */}
 				{token ? (
-					<div>
-						<button>
-							<Link to='/user-rec-form'>Add a Recommendation</Link>
-						</button>
-						<button>
-							<Link to='/user-recs'>Your Page</Link>
-						</button>
-						<button>
-							<Link to='' onClick={handleLogOut}>
-								Log Out
-							</Link>
-						</button>
+					<div className='flex'>
+						<div className='nav-butt1'>
+							<button>
+								<Link to='/user-rec-form'>Add a Recommendation</Link>
+							</button>
+						</div>
+						<div className='nav-butt2'>
+							<button>
+								<Link to='/user-recs'>Your Page</Link>
+							</button>
+						</div>
+						<div className='nav-butt3'>
+							<button>
+								<Link to='' onClick={handleLogOut}>
+									Log Out
+								</Link>
+							</button>
+						</div>
 					</div>
 				) : (
 					// Show below if not logged in
-					<button>
-						<Link to='/auth'>Log In</Link>
-					</button>
+					<div>
+						<button onClick={() => setShowRegister(!showRegister)}>
+							{showRegister ? 'Log In' : 'Sign Up'}
+						</button>
+						<button>
+							<Link to='/auth'>Log In</Link>
+						</button>
+					</div>
 				)}
 				<img className='logo' src={pochiLogo} alt='pochi-logo-img' />
 			</div>
