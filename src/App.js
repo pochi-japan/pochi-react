@@ -124,7 +124,7 @@ function App() {
 					}
 				/>
 				<Route
-					path='/results/:searchString'
+					path='/results'
 					element={
 						<SearchResults
 						// allResults={allResults}

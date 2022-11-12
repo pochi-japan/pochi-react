@@ -17,10 +17,10 @@ function UserRecs({ allResults, token, user, lang }) {
 
 	const userResults = allResults.filter(includesUserEmail);
 
-	console.log('user', user);
-	console.log('useremail', user.email);
-	console.log('allResults in UserRecs', allResults);
-	console.log('includes user email', userResults);
+	// console.log('user', user);
+	// console.log('useremail', user.email);
+	// console.log('allResults in UserRecs', allResults);
+	// console.log('includes user email', userResults);
 
 	return (
 		<div>

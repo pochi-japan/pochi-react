@@ -20,9 +20,9 @@ function Search({
 	const handleSubmit = (searchTerm) => {
 		// Fetches the searched Result
 		setSearchString(searchTerm);
-		console.log('search term:', searchTerm);
+		// console.log('search term:', searchTerm);
 		// Navigates to SearchResults.js
-		navigate(`/results/:${searchTerm}`);
+		navigate(`/results/?q=${searchTerm}`);
 	};
 
 	return (

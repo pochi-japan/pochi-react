@@ -24,34 +24,32 @@ function UserRecForm({ JWT, user, token, lang }) {
 	const [error, setError] = useState('');
 
 	function handleChange(e) {
-		// Destructure event to access value and type
-		const { value, type } = e.target;
+		// Destructure event to access value, type, id
+		const { value, type, id } = e.target;
 		// If input type is radio, then set the category key to the value of the radio
 		if (type === 'radio') {
 			setRec({ ...rec, category: value });
 		} else {
 			setRec({
 				...rec,
-				[e.target.id]: e.target.value,
+				[id]: value,
 			});
 		}
-		console.log('rec', rec);
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await setRec(rec);
 
 		try {
 			const url = 'http://localhost:8000/api';
-			// const url = 'https://pochi-japan.herokuapp.com/api/';
-			// rec.pictures = rec.pictures.split(' ');
-			// rec.hashtag = rec.hashtag.split(' ');
-			const res = await axios.post(url, rec, {
-				// Bearer JWT is not working after refresh?
-				headers: { Authorization: `Bearer ${JWT}` },
-			});
-			console.log('Recommendation Response:', res);
+			const res = await axios.post(
+				url,
+				{ ...rec, hashtag: rec.hashtag.split(' ') },
+				{
+					// Bearer JWT is not working after refresh?
+					headers: { Authorization: `Bearer ${JWT}` },
+				}
+			);
 
 			if (res.status === 200) {
 				setRec(initialRecState);
@@ -61,7 +59,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 			setError('Upload Failed. Please try again.');
 		}
 	};
-
+	console.log(rec);
 	return (
 		<div>
 			{lang ? (
@@ -199,7 +197,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								onChange={handleChange}
 							/>
 							<br />
-							<label htmlFor='hashtag'>Hashtag: </label>
+							<label htmlFor='hashtag'>Hashtags: </label>
 							<br />
 							<textarea
 								rows='4'
