@@ -5,14 +5,6 @@ import axios from 'axios';
 function SearchResults({ searchString, setSearchString }) {
 	const [searchResults, setSearchResults] = useState([]);
 
-	// const filterResults = allResults.filter((rec) => {
-	// 	return (
-	// 		rec.name.toLowerWithString ||
-	// 		rec.description.toLowerWithString ||
-	// 		rec.hashtag.toLowerWithString
-	// 	);
-	// });
-
 	if (!searchResults.length) {
 		return <h2>No Results</h2>;
 	}

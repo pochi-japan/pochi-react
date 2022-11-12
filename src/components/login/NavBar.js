@@ -85,6 +85,7 @@ function NavBar({
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
 				handleFilter={handleFilter}
+				allResults={allResults}
 			/>
 		</nav>
 	);

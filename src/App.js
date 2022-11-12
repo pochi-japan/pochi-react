@@ -105,6 +105,7 @@ function App() {
 				setUser={setUser}
 				defaultUser={defaultUser}
 				JWT={JWT}
+				searchString={searchString}
 				setSearchString={setSearchString}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}

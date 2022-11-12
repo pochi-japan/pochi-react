@@ -194,3 +194,9 @@ textarea {
 .ポチ {
   font-size: 3rem;
 }
+
+/* change this! */
+.search-dropdown {
+  background: rgba(137, 127, 127, 0.7);
+  margin: 0rem 10rem 0rem 10rem;
+}
