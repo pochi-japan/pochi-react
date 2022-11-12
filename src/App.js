@@ -1,14 +1,14 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { getUser } from './utilities/UsersService';
 import MainResults from './components/pages/MainResults';
 import UserRecs from './components/pages/UserRecs';
 import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
-import UserRecForm from './components/pages/Forms/UserRecForm';
+import UserRecForm from './components/pages/forms/UserRecForm';
 import LoginSuccess from './components/pages/LoginSuccess';
 import RecDetail from './components/pages/RecDetail';
 
@@ -18,30 +18,76 @@ function App() {
 		password: '',
 	};
 
-	let navigate = useNavigate();
-
 	// STATES
 	// If a user is signed in, use the token that's saved in localStorage (true/false)
 	const [token, setToken] = useState(localStorage.getItem('token') || false);
-	console.log('localStorage token:', localStorage.getItem('token'));
+	// console.log('localStorage token:', localStorage.getItem('token'));
+	const [error, setError] = useState(null);
 
 	// Search Bar
+	const [allResults, setAllResults] = useState([]);
 	const [searchString, setSearchString] = useState('');
 
 	// Logging in - when user logs in, assign a token. JWT is the token value
 	const [user, setUser] = useState(defaultUser);
 	const [JWT, setJWT] = useState('');
 
-	// Search Bar
+	let navigate = useNavigate();
+
+	//From MainResults
+	const [randomResults, setRandomResults] = useState([]);
+
+	// Function to shuffle the results
+	function shuffle(array) {
+		for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]];
+		}
+	}
+
+	// Read results from API
+	useEffect(() => {
+		//update to heroku later
+		axios
+			.get(`http://localhost:8000/api`)
+			.then((res) => {
+				setAllResults(res.data);
+				const data = shuffle(res.data);
+				//call the function to randomize the data
+				setRandomResults(res.data);
+				// console.log('useEffect res.data', res.data);
+			})
+			.catch((err) => {
+				setError(err.message);
+			});
+	}, []);
+	//End From Main Results
+
 	const handleChange = (e) => {
 		setSearchString(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
+	// console.log('randomResults', randomResults);
+	// console.log('all Results', allResults);
+
+	// Showing the suggested results while user types
+	// const [searchShow, setSearchShow] = useState(false);
+
+	// Search Bar
+	// const filterResults = allResults.filter((res) => {
+	// 	return res.name.toLowerCase().includes(searchString.toLowerCase());
+	// ||
+	// res.description.toLowerCase().includes(searchString.toLowerCase())
+	// ||
+	// res.hashtag.toLowerCase().includes(searchString.toLowerCase())
+	// });
+
+	const handleSubmit = (searchTerm) => {
+		// Fetches the searched Result
+		setSearchString(searchTerm);
+		console.log('search term:', searchTerm);
+		// Navigates to SearchResults.js
 		navigate(`/results/:${searchString}`);
-		// Clear input
-		e.target.reset();
 	};
 
 	return (
@@ -56,9 +102,15 @@ function App() {
 				setSearchString={setSearchString}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
+				// filterResults={filterResults}
+				// searchShow={searchShow}
+				allResults={allResults}
 			/>
 			<Routes>
-				<Route path='/' element={<MainResults />} />
+				<Route
+					path='/'
+					element={<MainResults randomResults={randomResults} error={error} />}
+				/>
 				<Route
 					path='/user-recs'
 					element={
@@ -76,6 +128,7 @@ function App() {
 					path='/results/:searchString'
 					element={
 						<SearchResults
+							allResults={allResults}
 							searchString={searchString}
 							setSearchString={setSearchString}
 						/>

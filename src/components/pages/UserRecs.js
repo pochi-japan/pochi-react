@@ -1,4 +1,4 @@
-import RecEditForm from './Forms/RecEditForm';
+import RecEditForm from './forms/RecEditForm';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
