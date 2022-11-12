@@ -34,6 +34,8 @@ function App() {
 	const [user, setUser] = useState(defaultUser);
 	const [JWT, setJWT] = useState('');
 
+	const [lang, setLang] = useState(true);
+
 	let navigate = useNavigate();
 
 	//From MainResults
@@ -109,11 +111,19 @@ function App() {
 				// filterResults={filterResults}
 				// searchShow={searchShow}
 				allResults={allResults}
+				lang={lang}
+				setLang={setLang}
 			/>
 			<Routes>
 				<Route
 					path='/'
-					element={<MainResults randomResults={randomResults} error={error} />}
+					element={
+						<MainResults
+							randomResults={randomResults}
+							error={error}
+							lang={lang}
+						/>
+					}
 				/>
 				<Route
 					path='/user-recs'
@@ -125,6 +135,7 @@ function App() {
 							setToken={setToken}
 							JWT={JWT}
 							setJWT={setJWT}
+							lang={lang}
 						/>
 					}
 				/>
@@ -150,6 +161,7 @@ function App() {
 							setJWT={setJWT}
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
+							lang={lang}
 						/>
 					}
 				/>

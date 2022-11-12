@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-function RegisterForm() {
+function RegisterForm({ lang }) {
 	const defaultRegister = {
 		name: '',
 		email: '',
@@ -47,68 +47,139 @@ function RegisterForm() {
 
 	return (
 		<div>
-			<div>
-				<form
-					className='signup-form'
-					autoComplete='off'
-					onSubmit={handleSubmit}>
-					<div className='container'>
-						<label htmlFor='name'>Name</label>
-						<br />
-						<input
-							autoFocus
-							id='name'
-							type='text'
-							name='name'
-							value={register.name}
-							onChange={handleChange}
-							required
-						/>
-						<br />
-						<label htmlFor='email'>Email</label>
-						<br />
-						<input
-							id='email'
-							type='email'
-							name='email'
-							value={register.email}
-							onChange={handleChange}
-							required
-						/>
-						<br />
-						<label htmlFor='password'>Password</label>
-						<br />
-						<input
-							id='password'
-							type='password'
-							name='password'
-							value={register.password}
-							onChange={handleChange}
-							required
-						/>
-						<br />
-						<label htmlFor='confirm'>Confirm Password</label>
-						<br />
-						<input
-							id='confirm'
-							type='password'
-							name='confirm'
-							value={register.confirm}
-							onChange={handleChange}
-							required
-						/>
-						{duplicateUser ? <div>Username unavailable</div> : ''}
-						<br />
-						<button type='submit' disabled={disable}>
-							Sign Up
-						</button>
+			{lang ? (
+				<div>
+					<div>
+						<form
+							className='signup-form'
+							autoComplete='off'
+							onSubmit={handleSubmit}>
+							<div className='container'>
+								<label htmlFor='name'>Name</label>
+								<br />
+								<input
+									autoFocus
+									id='name'
+									type='text'
+									name='name'
+									value={register.name}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label htmlFor='email'>Email</label>
+								<br />
+								<input
+									id='email'
+									type='email'
+									name='email'
+									value={register.email}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label htmlFor='password'>Password</label>
+								<br />
+								<input
+									id='password'
+									type='password'
+									name='password'
+									value={register.password}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label htmlFor='confirm'>Confirm Password</label>
+								<br />
+								<input
+									id='confirm'
+									type='password'
+									name='confirm'
+									value={register.confirm}
+									onChange={handleChange}
+									required
+								/>
+								{duplicateUser ? <div>Username unavailable</div> : ''}
+								<br />
+								<button type='submit' disabled={disable}>
+									Sign Up
+								</button>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
-			<p className='error-message'>
-				{''}
-				{error}
-			</p>
+					<p className='error-message'>{error}</p>
+				</div>
+			) : (
+				<div>
+					<div>
+						<form
+							className='signup-form'
+							autoComplete='off'
+							onSubmit={handleSubmit}>
+							<div className='container'>
+								<label className='日本' htmlFor='name'>
+									名前:
+								</label>
+								<br />
+								<input
+									autoFocus
+									id='name'
+									type='text'
+									name='name'
+									value={register.name}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label className='日本' htmlFor='email'>
+									Eメール:
+								</label>
+								<br />
+								<input
+									id='email'
+									type='email'
+									name='email'
+									value={register.email}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label className='日本' htmlFor='password'>
+									パスワード:
+								</label>
+								<br />
+								<input
+									id='password'
+									type='password'
+									name='password'
+									value={register.password}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label className='日本' htmlFor='confirm'>
+									パスワードを認証する:
+								</label>
+								<br />
+								<input
+									id='confirm'
+									type='password'
+									name='confirm'
+									value={register.confirm}
+									onChange={handleChange}
+									required
+								/>
+								{duplicateUser ? <div>Username unavailable</div> : ''}
+								<br />
+								<button className='日本' type='submit' disabled={disable}>
+									サインアップ
+								</button>
+							</div>
+						</form>
+					</div>
+					<p className='error-message'>{error}</p>
+				</div>
+			)}
 		</div>
 	);
 }

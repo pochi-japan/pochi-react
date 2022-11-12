@@ -22,6 +22,8 @@ function NavBar({
 	searchTerm,
 	showRegister,
 	setShowRegister,
+	lang,
+	setLang,
 }) {
 	let navigate = useNavigate();
 
@@ -38,28 +40,26 @@ function NavBar({
 		<nav className='nav'>
 			<div className='flex'>
 				{/* Links that show regardless of logged status */}
-				<button>
-					<Link to='/'>Home</Link>
-				</button>
+				<Link to='/'>
+					<button>Home</button>
+				</Link>
 				{/* Requires logged in status */}
 				{token ? (
 					<div className='flex'>
 						<div className='nav-butt1'>
-							<button>
-								<Link to='/user-rec-form'>Add a Recommendation</Link>
-							</button>
+							<Link to='/user-rec-form'>
+								<button>Add a Recommendation</button>
+							</Link>
 						</div>
 						<div className='nav-butt2'>
-							<button>
-								<Link to='/user-recs'>Your Page</Link>
-							</button>
+							<Link to='/user-recs'>
+								<button>Your Page</button>
+							</Link>
 						</div>
 						<div className='nav-butt3'>
-							<button>
-								<Link to='' onClick={handleLogOut}>
-									Log Out
-								</Link>
-							</button>
+							<Link to='' onClick={handleLogOut}>
+								<button>Log Out</button>
+							</Link>
 						</div>
 					</div>
 				) : (
@@ -68,12 +68,16 @@ function NavBar({
 						<button onClick={() => setShowRegister(!showRegister)}>
 							{showRegister ? 'Log In' : 'Sign Up'}
 						</button>
-						<button>
-							<Link to='/auth'>Log In</Link>
-						</button>
+						<Link to='/auth'>
+							<button>Log In</button>
+						</Link>
 					</div>
 				)}
 				<img className='logo' src={pochiLogo} alt='pochi-logo-img' />
+				<button onClick={() => setLang(true)}>🇺🇸EN</button>
+				<button className='日本' onClick={() => setLang(false)}>
+					🇯🇵日本
+				</button>
 			</div>
 			<br />
 			<Search

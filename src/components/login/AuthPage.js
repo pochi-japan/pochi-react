@@ -11,6 +11,7 @@ function AuthPage({
 	setJWT,
 	showRegister,
 	setShowRegister,
+	lang,
 }) {
 	// const [showRegister, setShowRegister] = useState(false);
 	return (
@@ -20,7 +21,7 @@ function AuthPage({
 				{showRegister ? 'Log In' : 'Sign Up'}
 			</button> */}
 			{showRegister ? (
-				<RegisterForm />
+				<RegisterForm lang={lang} />
 			) : (
 				<LoginForm
 					token={token}
@@ -29,6 +30,7 @@ function AuthPage({
 					setUser={setUser}
 					JWT={JWT}
 					setJWT={setJWT}
+					lang={lang}
 				/>
 			)}
 		</main>

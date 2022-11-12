@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
+function LoginForm({ token, setToken, user, setUser, JWT, setJWT, lang }) {
 	// const [credentials, setCredentials] = useState({
 	// 	email: '',
 	// 	password: '',
@@ -47,40 +47,93 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 
 	return (
 		<div>
-			<div onSubmit={handleSubmit}>
-				<form className='login-form' autoComplete='off'>
-					<div className='container'>
-						<label htmlFor='email'>Email:</label>
-						<br />
-						<input
-							autoFocus
-							id='email'
-							type='text'
-							name='email'
-							value={user.email}
-							onChange={handleChange}
-							required
-						/>
-						<br />
-						<label htmlFor='password'>Password:</label>
-						<br />
-						<input
-							id='password'
-							type='password'
-							name='password'
-							value={user.password}
-							onChange={handleChange}
-							required
-						/>
-						{invalidEmail ? <div>Username or password is incorrect. </div> : ''}
-						<br />
-						<button className='submit' type='submit'>
-							LOG IN
-						</button>
+			{lang ? (
+				<div>
+					<div onSubmit={handleSubmit}>
+						<form className='login-form' autoComplete='off'>
+							<div className='container'>
+								<label htmlFor='email'>Email:</label>
+								<br />
+								<input
+									autoFocus
+									id='email'
+									type='text'
+									name='email'
+									value={user.email}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label htmlFor='password'>Password:</label>
+								<br />
+								<input
+									id='password'
+									type='password'
+									name='password'
+									value={user.password}
+									onChange={handleChange}
+									required
+								/>
+								{invalidEmail ? (
+									<div>Username or password is incorrect. </div>
+								) : (
+									''
+								)}
+								<br />
+								<button className='submit' type='submit'>
+									LOG IN
+								</button>
+							</div>
+						</form>
 					</div>
-				</form>
-			</div>
-			<p className='error-message'>&nbsp;{error}</p>
+					<p className='error-message'>&nbsp;{error}</p>
+				</div>
+			) : (
+				<div>
+					<div onSubmit={handleSubmit}>
+						<form className='login-form' autoComplete='off'>
+							<div className='container'>
+								<label className='日本' htmlFor='email'>
+									Eメール:
+								</label>
+								<br />
+								<input
+									autoFocus
+									id='email'
+									type='text'
+									name='email'
+									value={user.email}
+									onChange={handleChange}
+									required
+								/>
+								<br />
+								<label className='日本' htmlFor='password'>
+									パスワード:
+								</label>
+								<br />
+								<input
+									id='password'
+									type='password'
+									name='password'
+									value={user.password}
+									onChange={handleChange}
+									required
+								/>
+								{invalidEmail ? (
+									<div>Username or password is incorrect. </div>
+								) : (
+									''
+								)}
+								<br />
+								<button className='submit 日本' type='submit'>
+									ログイン
+								</button>
+							</div>
+						</form>
+					</div>
+					<p className='error-message'>&nbsp;{error}</p>
+				</div>
+			)}
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import RecEditForm from './forms/RecEditForm';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function UserRecs({}) {
+function UserRecs({ lang }) {
 	const [userResult, setUserResult] = useState();
 	const [error, setError] = useState(null);
 
@@ -26,7 +26,11 @@ function UserRecs({}) {
 	return (
 		<div>
 			Your Recommendations
-			<RecEditForm userResult={userResult} userResultTemp={userResultTemp} />
+			<RecEditForm
+				userResult={userResult}
+				userResultTemp={userResultTemp}
+				lang={lang}
+			/>
 		</div>
 	);
 }
