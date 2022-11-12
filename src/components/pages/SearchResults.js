@@ -1,9 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function SearchResults({ searchString, setSearchString }) {
+function SearchResults() {
 	const [searchResults, setSearchResults] = useState([]);
+
+	let params = useParams();
+
+	useEffect(() => {
+		getResults(params.name);
+	}, [params.name]);
+
+	// Filter allResults to show only ones that include the params in either rec.name, description, or hashtag (do hashtag later cuz the logic is harder)
+	const getResults = () => {
+		const url = ``;
+	};
 
 	if (!searchResults.length) {
 		return <h2>No Results</h2>;
@@ -37,5 +49,35 @@ function SearchResults({ searchString, setSearchString }) {
 		</section>
 	);
 }
+
+// <div className='search-dropdown'>
+// 	{allResults
+// 		.filter((rec) => {
+// 			{
+// 				// console.log('rec in filter', rec);
+// 			}
+// 			const searchTerm = searchString.toLowerCase();
+// 			const name = rec.name.toLowerCase();
+// 			const description = rec.description.toLowerCase();
+// 			//hashtag is an array so this won't work yet
+// 			// const hashtag = rec.hashtag.toLowerCase();
+// 			return (
+// 				((searchTerm && name.includes(searchTerm)) ||
+// 					description.includes(searchTerm)) &&
+// 				// || (hashtag.includes(searchTerm)
+// 				name !== searchTerm &&
+// 				searchTerm !== ''
+// 			);
+// 		})
+// 		.slice(0, 10)
+// 		.map((rec) => (
+// 			<div
+// 				className='dropdown-row'
+// 				key={rec._id}
+// 				onClick={() => handleSubmit(rec.name)}>
+// 				{rec.name}
+// 			</div>
+// 		))}
+// </div>;
 
 export default SearchResults;

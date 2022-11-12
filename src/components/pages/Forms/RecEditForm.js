@@ -47,8 +47,6 @@ function EditForm({ userResult, userResultTemp }) {
 						required
 					/>
 					<br />
-					{/* <fieldset>
-						<legend>Category: </legend> */}
 					<input
 						type='radio'
 						id='place'
@@ -68,7 +66,6 @@ function EditForm({ userResult, userResultTemp }) {
 						onChange={handleChange}
 					/>
 					<label htmlFor='thing'>thing</label>
-					{/* </fieldset> */}
 					<br />
 					<label htmlFor='recRating'>Rating: </label>
 					<input

@@ -1,14 +1,29 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Search({
-	searchString,
-	setSearchString,
-	handleChange,
-	handleSubmit,
+	// searchString,
+	// setSearchString,
+	// handleChange,
+	// handleSubmit,
 	allResults,
 }) {
+	const [searchString, setSearchString] = useState('');
 	const [error, setError] = useState(null);
+	const navigate = useNavigate();
+
+	const handleChange = (e) => {
+		setSearchString(e.target.value);
+	};
+
+	const handleSubmit = (searchTerm) => {
+		// Fetches the searched Result
+		setSearchString(searchTerm);
+		console.log('search term:', searchTerm);
+		// Navigates to SearchResults.js
+		navigate(`/results/:${searchTerm}`);
+	};
 
 	return (
 		<div>

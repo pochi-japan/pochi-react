@@ -28,7 +28,7 @@ function App() {
 
 	// Search Bar
 	const [allResults, setAllResults] = useState([]);
-	const [searchString, setSearchString] = useState('');
+	// const [searchString, setSearchString] = useState('');
 
 	// Logging in - when user logs in, assign a token. JWT is the token value
 	const [user, setUser] = useState(defaultUser);
@@ -66,17 +66,17 @@ function App() {
 			});
 	}, []);
 
-	const handleChange = (e) => {
-		setSearchString(e.target.value);
-	};
+	// const handleChange = (e) => {
+	// 	setSearchString(e.target.value);
+	// };
 
-	const handleSubmit = (searchTerm) => {
-		// Fetches the searched Result
-		setSearchString(searchTerm);
-		console.log('search term:', searchTerm);
-		// Navigates to SearchResults.js
-		navigate(`/results/:${searchString}`);
-	};
+	// const handleSubmit = (searchTerm) => {
+	// 	// Fetches the searched Result
+	// 	setSearchString(searchTerm);
+	// 	console.log('search term:', searchTerm);
+	// 	// Navigates to SearchResults.js
+	// 	navigate(`/results/:${searchString}`);
+	// };
 
 	return (
 		<div className='App'>
@@ -89,10 +89,10 @@ function App() {
 				setUser={setUser}
 				defaultUser={defaultUser}
 				JWT={JWT}
-				searchString={searchString}
-				setSearchString={setSearchString}
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
+				// searchString={searchString}
+				// setSearchString={setSearchString}
+				// handleChange={handleChange}
+				// handleSubmit={handleSubmit}
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
@@ -127,9 +127,9 @@ function App() {
 					path='/results/:searchString'
 					element={
 						<SearchResults
-							allResults={allResults}
-							searchString={searchString}
-							setSearchString={setSearchString}
+						// allResults={allResults}
+						// searchString={searchString}
+						// setSearchString={setSearchString}
 						/>
 					}
 				/>

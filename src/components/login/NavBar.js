@@ -81,11 +81,12 @@ function NavBar({
 			</div>
 			<br />
 			<Search
-				searchString={searchString}
-				handleChange={handleChange}
-				handleSubmit={handleSubmit}
+				// searchString={searchString}
+				// handleChange={handleChange}
+				// handleSubmit={handleSubmit}
 				handleFilter={handleFilter}
 				allResults={allResults}
+				// setSearchString={setSearchString}
 			/>
 		</nav>
 	);
