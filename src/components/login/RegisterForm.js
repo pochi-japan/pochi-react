@@ -47,48 +47,62 @@ function RegisterForm() {
 
 	return (
 		<div>
-			<div className='form-container'>
-				<form autoComplete='off' onSubmit={handleSubmit}>
-					<label htmlFor='name'>Name</label>
-					<input
-						id='name'
-						type='text'
-						name='name'
-						value={register.name}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor='email'>Email</label>
-					<input
-						id='email'
-						type='email'
-						name='email'
-						value={register.email}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor='password'>Password</label>
-					<input
-						id='password'
-						type='password'
-						name='password'
-						value={register.password}
-						onChange={handleChange}
-						required
-					/>
-					<label htmlFor='confirm'>Confirm Password</label>
-					<input
-						id='confirm'
-						type='password'
-						name='confirm'
-						value={register.confirm}
-						onChange={handleChange}
-						required
-					/>
-					{duplicateUser ? <div>Username unavailable</div> : ''}
-					<button type='submit' disabled={disable}>
-						Sign Up
-					</button>
+			<div>
+				<form
+					className='signup-form'
+					autoComplete='off'
+					onSubmit={handleSubmit}>
+					<div className='container'>
+						<label htmlFor='name'>Name</label>
+						<br />
+						<input
+							autoFocus
+							id='name'
+							type='text'
+							name='name'
+							value={register.name}
+							onChange={handleChange}
+							required
+						/>
+						<br />
+						<label htmlFor='email'>Email</label>
+						<br />
+						<input
+							id='email'
+							type='email'
+							name='email'
+							value={register.email}
+							onChange={handleChange}
+							required
+						/>
+						<br />
+						<label htmlFor='password'>Password</label>
+						<br />
+						<input
+							id='password'
+							type='password'
+							name='password'
+							value={register.password}
+							onChange={handleChange}
+							required
+						/>
+						<br />
+						<label htmlFor='confirm'>Confirm Password</label>
+						<br />
+						<input
+							id='confirm'
+							type='password'
+							name='confirm'
+							value={register.confirm}
+							onChange={handleChange}
+							required
+						/>
+						{duplicateUser ? <div>Username unavailable</div> : ''}
+						<br />
+						<button type='submit' disabled={disable}>
+							Sign Up
+						</button>
+					</div>
 				</form>
 			</div>
 			<p className='error-message'>

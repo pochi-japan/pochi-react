@@ -48,29 +48,36 @@ function LoginForm({ token, setToken, user, setUser, JWT, setJWT }) {
 	return (
 		<div>
 			<div onSubmit={handleSubmit}>
-				<form className='login-form center' autoComplete='off'>
-					<label htmlFor='email'>Email</label>
-					<input
-						id='email'
-						type='text'
-						name='email'
-						value={user.email}
-						onChange={handleChange}
-						required
-					/>
-					<br />
-					<label htmlFor='password'>Password</label>
-					<input
-						id='password'
-						type='password'
-						name='password'
-						value={user.password}
-						onChange={handleChange}
-						required
-					/>
-					{invalidEmail ? <div>Username or password is incorrect. </div> : ''}
-					<br />
-					<button className='submit' type='submit'>LOG IN</button>
+				<form className='login-form' autoComplete='off'>
+					<div className='container'>
+						<label htmlFor='email'>Email:</label>
+						<br />
+						<input
+							autoFocus
+							id='email'
+							type='text'
+							name='email'
+							value={user.email}
+							onChange={handleChange}
+							required
+						/>
+						<br />
+						<label htmlFor='password'>Password:</label>
+						<br />
+						<input
+							id='password'
+							type='password'
+							name='password'
+							value={user.password}
+							onChange={handleChange}
+							required
+						/>
+						{invalidEmail ? <div>Username or password is incorrect. </div> : ''}
+						<br />
+						<button className='submit' type='submit'>
+							LOG IN
+						</button>
+					</div>
 				</form>
 			</div>
 			<p className='error-message'>&nbsp;{error}</p>

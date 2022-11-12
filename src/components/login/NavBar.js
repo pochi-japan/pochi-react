@@ -1,6 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import Search from '../Search';
 import { useState } from 'react';
+import pochiLogo from '../../images/pochilogoimg.png';
 
 function NavBar({
 	token,
@@ -28,32 +29,42 @@ function NavBar({
 	}
 
 	return (
-		<nav>
-			<div>
+		<nav className='nav'>
+			<div className='flex'>
 				{/* Links that show regardless of logged status */}
-				<Link to='/'>Home</Link>
-				<Search
-					searchString={searchString}
-					handleChange={handleChange}
-					handleSubmit={handleSubmit}
-					handleFilter={handleFilter}
-				/>
+				<button>
+					<Link to='/'>Home</Link>
+				</button>
 				{/* Requires logged in status */}
 				{token ? (
 					<div>
-						<Link to='/user-rec-form'>Add a Recommendation</Link>
-						<p></p>
-						<Link to='/user-recs'>Your Page</Link>
-						<p></p>
-						<Link to='' onClick={handleLogOut}>
-							Log Out
-						</Link>
+						<button>
+							<Link to='/user-rec-form'>Add a Recommendation</Link>
+						</button>
+						<button>
+							<Link to='/user-recs'>Your Page</Link>
+						</button>
+						<button>
+							<Link to='' onClick={handleLogOut}>
+								Log Out
+							</Link>
+						</button>
 					</div>
 				) : (
 					// Show below if not logged in
-					<Link to='/auth'>Log In</Link>
+					<button>
+						<Link to='/auth'>Log In</Link>
+					</button>
 				)}
+				<img className='logo' src={pochiLogo} alt='pochi-logo-img' />
 			</div>
+			<br />
+			<Search
+				searchString={searchString}
+				handleChange={handleChange}
+				handleSubmit={handleSubmit}
+				handleFilter={handleFilter}
+			/>
 		</nav>
 	);
 }

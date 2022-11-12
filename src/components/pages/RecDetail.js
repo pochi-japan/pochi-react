@@ -23,52 +23,58 @@ function RecDetail(props) {
 	}, []);
 
 	return (
-		<div>
-			Rec Detail
-			<h1>{rec.name}</h1>
-			<img
-				src={rec.picture1}
-				onError={(e) =>
-					(e.currentTarget.src =
-						'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-				}
-				alt={rec.name}
-			/>
-			<img
-				src={rec.picture2}
-				onError={(e) =>
-					(e.currentTarget.src =
-						'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-				}
-				alt={rec.name}
-			/>
-			<img
-				src={rec.picture3}
-				onError={(e) =>
-					(e.currentTarget.src =
-						'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-				}
-				alt={rec.name}
-			/>
-			<img
-				src={rec.picture4}
-				onError={(e) =>
-					(e.currentTarget.src =
-						'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-				}
-				alt={rec.name}
-			/>
-			<br />
-			Rating: {rec.recRating}
-			<br />
-			Description: {rec.description}
-			<br />
-			{/* Maybe try to render date (have to either update backend or we can use substring?) */}
-			Submitted on: {rec.updatedAt}
-			<br />
-			{/*  */}
-			Location: {rec.location}
-			URL: {rec.url}
+		<div className='flex'>
+			<div className=''>
+				Rec Detail - delete this line later
+				<h1>{rec.name}</h1>
+				<br />
+				Rating: {rec.recRating}
+				<br />
+				Description: {rec.description}
+				<br />
+				{/* Maybe try to render date (have to either update backend or we can use substring?) */}
+				Submitted on: {rec.updatedAt}
+				<br />
+				{/*  */}
+				Location: {rec.location}
+				<br />
+				URL: {rec.url}
+				<br />
+			</div>
+			<div className='flex'>
+				<img
+					src={rec.picture1}
+					onError={(e) =>
+						(e.currentTarget.src =
+							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+					}
+					alt={rec.name}
+				/>
+				<img
+					src={rec.picture2}
+					onError={(e) =>
+						(e.currentTarget.src =
+							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+					}
+					alt={rec.name}
+				/>
+				<img
+					src={rec.picture3}
+					onError={(e) =>
+						(e.currentTarget.src =
+							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+					}
+					alt={rec.name}
+				/>
+				<img
+					src={rec.picture4}
+					onError={(e) =>
+						(e.currentTarget.src =
+							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+					}
+					alt={rec.name}
+				/>
+			</div>
 		</div>
 	);
 }

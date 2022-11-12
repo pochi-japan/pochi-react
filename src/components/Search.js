@@ -7,7 +7,7 @@ function Search({ searchString, handleSubmit, handleChange }) {
 				onChange={handleChange}
 				name='searchString'
 				type='text'
-				placeholder='search a recommendation'
+				placeholder='search...'
 				value={searchString}
 			/>
 			<button type='submit'>Search</button>
