@@ -2,35 +2,35 @@ import RecEditForm from './forms/RecEditForm';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function UserRecs({ lang }) {
-	const [userResult, setUserResult] = useState();
+function UserRecs({ allResults, token, user, lang }) {
+	// const [userResult, setUserResult] = useState();
 	const [error, setError] = useState(null);
 
-	// Read results from API
-	// Read results from API
-	useEffect(() => {
-		//update to heroku later
-		axios
-			.get(`http://localhost:8000/api`)
-			.then((res) => {
-				setUserResult(res.data);
-				console.log('userrecs', res.data);
-			})
-			.catch((err) => {
-				setError(err.message);
-			});
-	}, []);
+	const includesUserEmail = (res) => {
+		if (res === user.email) return true;
+	};
 
-	let userResultTemp = userResult[0];
+	console.log(
+		'includesUserEmail function',
+		includesUserEmail(allResults.owner, user.email)
+	);
+
+	const userResults = allResults.filter(includesUserEmail);
+
+	console.log('user', user);
+	console.log('useremail', user.email);
+	console.log('allResults in UserRecs', allResults);
+	console.log('includes user email', userResults);
 
 	return (
 		<div>
 			Your Recommendations
-			<RecEditForm
-				userResult={userResult}
-				userResultTemp={userResultTemp}
-				lang={lang}
-			/>
+			{/* <RecEditForm /> */}
+			{/* {includesUserEmail(allResults).map((rec) => (
+				<div className='user-rec-container' key={rec._id}>
+					{rec.name}
+				</div>
+			))} */}
 		</div>
 	);
 }

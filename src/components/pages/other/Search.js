@@ -24,7 +24,7 @@ function Search({
 				{allResults
 					.filter((rec) => {
 						{
-							console.log('rec in filter', rec);
+							// console.log('rec in filter', rec);
 						}
 						const searchTerm = searchString.toLowerCase();
 						const name = rec.name.toLowerCase();

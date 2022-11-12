@@ -65,26 +65,10 @@ function App() {
 				setError(err.message);
 			});
 	}, []);
-	//End From Main Results
 
 	const handleChange = (e) => {
 		setSearchString(e.target.value);
 	};
-
-	// console.log('randomResults', randomResults);
-	// console.log('all Results', allResults);
-
-	// Showing the suggested results while user types
-	// const [searchShow, setSearchShow] = useState(false);
-
-	// Search Bar
-	// const filterResults = allResults.filter((res) => {
-	// 	return res.name.toLowerCase().includes(searchString.toLowerCase());
-	// ||
-	// res.description.toLowerCase().includes(searchString.toLowerCase())
-	// ||
-	// res.hashtag.toLowerCase().includes(searchString.toLowerCase())
-	// });
 
 	const handleSubmit = (searchTerm) => {
 		// Fetches the searched Result
@@ -109,8 +93,6 @@ function App() {
 				setSearchString={setSearchString}
 				handleChange={handleChange}
 				handleSubmit={handleSubmit}
-				// filterResults={filterResults}
-				// searchShow={searchShow}
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
@@ -137,6 +119,7 @@ function App() {
 							JWT={JWT}
 							setJWT={setJWT}
 							lang={lang}
+							allResults={allResults}
 						/>
 					}
 				/>
