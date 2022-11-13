@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Search({ allResults }) {
+function Search({ allResults, lang }) {
 	const [searchString, setSearchString] = useState('');
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
@@ -26,9 +26,14 @@ function Search({ allResults }) {
 				value={searchString}
 				onChange={handleChange}
 				// name='searchString'
-				placeholder='search a recommendation'
 			/>
-			<button onClick={() => handleSubmit(searchString)}>Search</button>
+			{lang ? (
+				<button onClick={() => handleSubmit(searchString)}>Search</button>
+			) : (
+				<button className='日本' onClick={() => handleSubmit(searchString)}>
+					検索
+				</button>
+			)}
 			<div className='search-dropdown'>
 				{allResults
 					.filter((rec) => {

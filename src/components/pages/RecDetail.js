@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-function RecDetail(props) {
+function RecDetail({ lang }) {
 	// States
 	const [rec, setRec] = useState({});
 	const [error, setError] = useState(null);
@@ -22,58 +22,83 @@ function RecDetail(props) {
 			});
 	}, []);
 
+	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
+
+	const imgs = [
+		{
+			id: 0,
+			value: rec.picture1 || bustedImg,
+		},
+		{
+			id: 1,
+			value: rec.picture2 || bustedImg,
+		},
+		{
+			id: 2,
+			value: rec.picture3 || bustedImg,
+		},
+		{
+			id: 3,
+			value: rec.picture4 || bustedImg,
+		},
+	];
+	const [pics, setPics] = useState(imgs[0]);
+	const handleClick = (idx) => {
+		const picSlider = imgs[idx];
+		setPics(picSlider);
+	};
+
 	return (
 		<div className='flex'>
-			<div className=''>
-				Rec Detail - delete this line later
-				<h1>{rec.name}</h1>
-				<br />
-				Rating: {rec.recRating}
-				<br />
-				Description: {rec.description}
-				<br />
-				{/* Modifies the updated timestamp to MM/DD/YYYY format */}
-				Submitted on: {new Date(rec.updatedAt).toLocaleDateString('en-US')}
-				<br />
-				{/* Try to set to a ternary */}
-				Location: {rec.location}
-				<br />
-				URL: {rec.url}
-				<br />
-			</div>
-			<div className='flex'>
-				<img
-					src={rec.picture1}
-					onError={(e) =>
-						(e.currentTarget.src =
-							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-					}
-					alt={rec.name}
-				/>
-				<img
-					src={rec.picture2}
-					onError={(e) =>
-						(e.currentTarget.src =
-							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-					}
-					alt={rec.name}
-				/>
-				<img
-					src={rec.picture3}
-					onError={(e) =>
-						(e.currentTarget.src =
-							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-					}
-					alt={rec.name}
-				/>
-				<img
-					src={rec.picture4}
-					onError={(e) =>
-						(e.currentTarget.src =
-							'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-					}
-					alt={rec.name}
-				/>
+			{lang ? (
+				<div>
+					<div className='container'>
+						<h1>{rec.name}</h1>
+						<p>Rating: {rec.recRating}</p>
+						<p>Description: {rec.description}</p>
+						{/* Modifies the updated timestamp to MM/DD/YYYY format */}
+						<p>
+							Last Updated:
+							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
+						</p>
+						{/* Try to set to a ternary */}
+						<p>Location: {rec.location}</p>
+						<p>URL: {rec.url}</p>
+					</div>
+				</div>
+			) : (
+				<div>
+					<div className='container'>
+						<h1>{rec.name}</h1>
+						<p className='日本'>評価: {rec.recRating}</p>
+						<p className='日本'>詳細: {rec.description}</p>
+						{/* Modifies the updated timestamp to MM/DD/YYYY format */}
+						<p className='日本'>
+							最終更新日:
+							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
+						</p>
+						{/* Try to set to a ternary */}
+						<p className='日本'>住所: {rec.location}</p>
+						<p className='日本'>URL: {rec.url}</p>
+					</div>
+				</div>
+			)}
+			<div className='pics container'>
+				<div className='flex curse'>
+					{imgs.map((data, i) => (
+						<div className='thumbnail' key={i}>
+							<img
+								alt={rec.name}
+								className={pics.id == i ? 'clicked' : ''}
+								src={data.value}
+								onClick={() => handleClick(i)}
+								height='70'
+								width='100'
+							/>
+						</div>
+					))}
+				</div>
+				<img src={pics.value} />
 			</div>
 		</div>
 	);

@@ -125,10 +125,12 @@ function App() {
 						/>
 					}
 				/>
-				<Route path='/detail/:id' element={<RecDetail />}></Route>
+				<Route path='/detail/:id' element={<RecDetail lang={lang} />}></Route>
 				<Route
 					path='/user-rec-form'
-					element={<UserRecForm user={user} JWT={JWT} token={token} />}
+					element={
+						<UserRecForm user={user} JWT={JWT} token={token} lang={lang} />
+					}
 				/>
 				<Route path='/success' element={<LoginSuccess />} />
 			</Routes>

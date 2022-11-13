@@ -17,9 +17,15 @@ function AuthPage({
 	return (
 		<main>
 			<h1>AuthPage</h1>
-			{/* <button onClick={() => setShowRegister(!showRegister)}>
-				{showRegister ? 'Log In' : 'Sign Up'}
-			</button> */}
+			{lang ? (
+				<button onClick={() => setShowRegister(!showRegister)}>
+					{showRegister ? 'Log In' : 'Sign Up'}
+				</button>
+			) : (
+				<button className='日本' onClick={() => setShowRegister(!showRegister)}>
+					{showRegister ? 'ログイン' : 'サインアップ'}
+				</button>
+			)}
 			{showRegister ? (
 				<RegisterForm lang={lang} />
 			) : (

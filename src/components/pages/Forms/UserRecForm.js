@@ -59,7 +59,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 			setError('Upload Failed. Please try again.');
 		}
 	};
-	console.log(rec);
+	console.log({ lang });
 	return (
 		<div>
 			{lang ? (

@@ -17,15 +17,19 @@ function MainResults({ randomResults, error, lang }) {
 						<div className='card' key={`${res.name}-card`}>
 							<div className='results-img'>
 								<Link to={`/detail/:${res._id}`} key={res.name}>
-									<img
-										className='slideshow'
-										src={res.picture1}
-										onError={(e) =>
-											(e.currentTarget.src =
-												'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-										}
-										alt={res.name}
-									/>
+									<div className='anime animate__animated animate__backInLeft'>
+										<div className='anime2'>
+											<img
+												className='slideshow'
+												src={res.picture1}
+												onError={(e) =>
+													(e.currentTarget.src =
+														'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
+												}
+												alt={res.name}
+											/>
+										</div>
+									</div>
 									<br />
 									<h1>
 										<button>{res.name}</button>
