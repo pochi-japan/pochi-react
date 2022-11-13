@@ -11,7 +11,7 @@ function RecDetail({ lang }) {
 	useEffect(() => {
 		//update to heroku later
 		axios
-			// Extract colon from params.id
+			// Extract colon from params.id with substring
 			.get(`http://localhost:8000/api/${params.id.substring(1)}`)
 			.then((res) => {
 				setRec(res.data);
@@ -47,6 +47,7 @@ function RecDetail({ lang }) {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
 	};
+	// console.log('params in RecDetail', params);
 
 	return (
 		<div className='flex'>

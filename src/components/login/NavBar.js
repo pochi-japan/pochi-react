@@ -118,15 +118,7 @@ function NavBar({
 				</div>
 			)}
 			<br />
-			<Search
-				// searchString={searchString}
-				// handleChange={handleChange}
-				// handleSubmit={handleSubmit}
-				handleFilter={handleFilter}
-				allResults={allResults}
-				// setSearchString={setSearchString}
-				lang={lang}
-			/>
+			<Search allResults={allResults} lang={lang} />
 		</nav>
 	);
 }
