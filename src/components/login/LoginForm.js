@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ setToken, user, setUser, setJWT, lang }) {
+function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
 	// const [credentials, setCredentials] = useState({
 	// 	email: '',
 	// 	password: '',
@@ -29,11 +29,11 @@ function LoginForm({ setToken, user, setUser, setJWT, lang }) {
 			console.log('Login Response: ', res);
 			console.log('res.data.token Response:', res.data.token);
 			console.log('user: ', user);
-			//setJWT is not working
-			setJWT(res.data.token);
-
 			localStorage.setItem('token', res.data.token);
 			localStorage.setItem('loginEmail', user.email);
+			//setJWT is not working
+			setJWT(res.data.token);
+			console.log('JWT', JWT);
 			if (res.data.token == null) {
 				setInvalidEmail(true);
 			} else if (res.data.token != null) {

@@ -1,6 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
 import Search from '../pages/other/Search';
-import { useState } from 'react';
 import pochiLogo from '../../images/pochilogoimg.png';
 
 function NavBar({

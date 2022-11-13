@@ -1,27 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function RecDetail({ lang }) {
-	// States
-	const [rec, setRec] = useState({});
-	const [error, setError] = useState(null);
-	let params = useParams();
+function UserRec({ rec, lang }) {
+	const [updateRec, setUpdateRec] = useState(null);
 
-	useEffect(() => {
-		//update to heroku later
-		axios
-			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${params.substring(1)}`)
-			.then((res) => {
-				setRec(res.data);
-				console.log('res.data in RecDetail', res.data);
-			})
-			.catch((err) => {
-				setError(err.message);
-			});
-	}, [params]);
-
+	const navigate = useNavigate();
 	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
 
 	const imgs = [
@@ -48,6 +33,45 @@ function RecDetail({ lang }) {
 		setPics(picSlider);
 	};
 
+	useEffect(() => {
+		fetch(`http://localhost:8000/api/id/${rec._id}`).then((res) =>
+			res.json().then((data) => setUpdateRec(data))
+		);
+	}, [rec._id]);
+
+	const handleDelete = () => {
+		axios.delete(`http://localhost:8000/api/id/${rec._id}`);
+		navigate('/user-rec');
+	};
+
+	// Have to use authorization bearer in handleDelete like below...
+	// const handleSubmit = async (e) => {
+	// 		e.preventDefault();
+
+	// 		try {
+	// 			const url = 'http://localhost:8000/api';
+	// 			const res = await axios.post(
+	// 				url,
+	// 				{ ...rec, hashtags: rec.hashtags.split(' ') },
+	// 				{
+	// 					// Bearer JWT is not working after refresh?
+	// 					headers: { Authorization: `Bearer ${JWT}` },
+	// 				}
+	// 			);
+
+	// 			if (res.status === 200) {
+	// 				setRec(initialRecState);
+	// 				navigate('/user-recs');
+	// 			}
+	// 		} catch (err) {
+	// 			setError('Upload Failed. Please try again.');
+	// 		}
+	// 	};
+
+	if (!rec) {
+		return <h1>No results found...</h1>;
+	}
+
 	return (
 		<div className='flex'>
 			{lang ? (
@@ -64,6 +88,10 @@ function RecDetail({ lang }) {
 						{/* Try to set to a ternary */}
 						<p>Location: {rec.location}</p>
 						<p>URL: {rec.url}</p>
+						<Link to={`/edit/:${rec._id}`}>
+							<button>Edit</button>
+						</Link>
+						<button onClick={handleDelete}>Delete</button>
 					</div>
 				</div>
 			) : (
@@ -80,6 +108,10 @@ function RecDetail({ lang }) {
 						{/* Try to set to a ternary */}
 						<p className='日本'>住所: {rec.location}</p>
 						<p className='日本'>URL: {rec.url}</p>
+						<Link to={`/edit/:${rec._id}`}>
+							<button>修正</button>
+						</Link>
+						<button onClick={handleDelete}>Delete</button>
 					</div>
 				</div>
 			)}
@@ -98,11 +130,10 @@ function RecDetail({ lang }) {
 						</div>
 					))}
 				</div>
-				{/* we have 4 pics total, check why it's rendering 5? */}
 				<img src={pics.value} alt='focused pic' />
 			</div>
 		</div>
 	);
 }
 
-export default RecDetail;
+export default UserRec;

@@ -1,26 +1,48 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function EditForm({ userResult, userResultTemp }) {
+function EditForm() {
 	const navigate = useNavigate();
-	const [userRec, setUserRec] = useState(null);
+	const params = useParams();
+	// const [userRec, setUserRec] = useState(null);
+	const [updateRec, setUpdateRec] = useState(null);
+	const [err, setError] = useState(null);
 
 	const handleChange = (e) => {
-		setUserRec({ [e.target.id]: e.target.value });
+		setUpdateRec({ ...updateRec, [e.target.id]: e.target.value });
 	};
+
+	useEffect(() => {
+		//update to heroku later
+		axios
+			// Extract colon from params.id with substring
+			.get(`http://localhost:8000/api/id/${params.id.substring(1)}`)
+			.then((res) => {
+				updateRec(res.data);
+				console.log('updateRec in RecDetail', updateRec);
+			})
+			.catch((err) => {
+				setError(err.message);
+			});
+	}, [params]);
 
 	const handleEdit = (e) => {
 		e.preventDefault();
 		axios
-			.patch(`http://localhost:8000/api/id/${userResultTemp._id}`, userRec)
+			.patch(
+				`http://localhost:8000/api/id/${params.id.substring(1)}`,
+				updateRec
+			)
 			.then((res) => res.data);
 		navigate('/user-rec');
 	};
 
 	return (
 		<div>
-			<h1>Editing {userResultTemp.name}</h1>
+			Edit Page
+			{/* <h1>Editing {updateRec.name}</h1>
 			<div className='rec-form-container'>
 				<form autoComplete='off' onSubmit={handleEdit}>
 					<label htmlFor='name'>Name: </label>
@@ -29,7 +51,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='name'
 						type='text'
 						name='name'
-						value={userResultTemp.name}
+						value={updateRec.name}
 						onChange={handleChange}
 						required
 					/>
@@ -42,7 +64,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='description'
 						type='text'
 						name='description'
-						value={userResultTemp.description}
+						value={updateRec.description}
 						onChange={handleChange}
 						required
 					/>
@@ -52,7 +74,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='place'
 						name='category'
 						value='place'
-						checked={userResultTemp.category === 'place'}
+						checked={updateRec.category === 'place'}
 						onChange={handleChange}
 						required
 					/>
@@ -62,7 +84,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='thing'
 						name='category'
 						value='thing'
-						checked={userResultTemp.category === 'thing'}
+						checked={updateRec.category === 'thing'}
 						onChange={handleChange}
 					/>
 					<label htmlFor='thing'>thing</label>
@@ -75,7 +97,7 @@ function EditForm({ userResult, userResultTemp }) {
 						min={1}
 						max={3}
 						name='recRating'
-						value={userResultTemp.recRating}
+						value={updateRec.recRating}
 						onChange={handleChange}
 						required
 					/>
@@ -87,8 +109,9 @@ function EditForm({ userResult, userResultTemp }) {
 						id='picture1'
 						type='text'
 						name='picture1'
-						value={userResultTemp.picture1}
+						value={updateRec.picture1}
 						onChange={handleChange}
+						alt='picture1'
 					/>
 					<br />
 					<label htmlFor='picture2'>Picture #2: </label>
@@ -97,8 +120,9 @@ function EditForm({ userResult, userResultTemp }) {
 						id='picture2'
 						type='text'
 						name='picture2'
-						value={userResultTemp.picture2}
+						value={updateRec.picture2}
 						onChange={handleChange}
+						alt='picture2'
 					/>
 					<label htmlFor='picture3'>Picture #3: </label>
 					<input
@@ -106,8 +130,9 @@ function EditForm({ userResult, userResultTemp }) {
 						id='picture3'
 						type='text'
 						name='picture3'
-						value={userResultTemp.picture3}
+						value={updateRec.picture3}
 						onChange={handleChange}
+						alt='picture3'
 					/>
 					<label htmlFor='picture4'>Picture #4: </label>
 					<input
@@ -115,7 +140,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='picture4'
 						type='text'
 						name='picture4'
-						value={userResultTemp.picture4}
+						value={updateRec.picture4}
 						onChange={handleChange}
 					/>
 					<label htmlFor='location'>Location: </label>
@@ -124,7 +149,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='location'
 						type='text'
 						name='location'
-						value={userResultTemp.location}
+						value={updateRec.location}
 						onChange={handleChange}
 					/>
 					<br />
@@ -134,7 +159,7 @@ function EditForm({ userResult, userResultTemp }) {
 						id='url'
 						type='text'
 						name='url'
-						value={userResultTemp.url}
+						value={updateRec.url}
 						onChange={handleChange}
 					/>
 					<br />
@@ -146,12 +171,12 @@ function EditForm({ userResult, userResultTemp }) {
 						id='hashtag'
 						type='text'
 						name='hashtag'
-						value={userResultTemp.hashtag}
+						value={updateRec.hashtag}
 						onChange={handleChange}
 					/>
 					<button type='submit'>SUBMIT</button>
 				</form>
-			</div>
+			</div> */}
 		</div>
 	);
 }

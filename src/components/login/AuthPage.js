@@ -1,11 +1,11 @@
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
-import { useState } from 'react';
 
 function AuthPage({
 	setToken,
 	user,
 	setUser,
+	JWT,
 	setJWT,
 	showRegister,
 	setShowRegister,
@@ -31,6 +31,7 @@ function AuthPage({
 					setToken={setToken}
 					user={user}
 					setUser={setUser}
+					JWT={JWT}
 					setJWT={setJWT}
 					lang={lang}
 				/>

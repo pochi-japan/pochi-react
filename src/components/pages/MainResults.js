@@ -1,6 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 function MainResults({ randomResults, error, lang }) {
 	return (

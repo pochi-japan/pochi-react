@@ -1,10 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Search({ allResults, lang }) {
 	const [searchString, setSearchString] = useState('');
-	const [error, setError] = useState(null);
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -12,10 +10,7 @@ function Search({ allResults, lang }) {
 	};
 
 	const handleSubmit = (searchTerm) => {
-		// Fetches the searched Result
 		setSearchString(searchTerm);
-		// console.log('search term:', searchTerm);
-		// Navigates to SearchResults.js
 		navigate(`/results/?q=${searchTerm}`);
 	};
 
@@ -37,9 +32,6 @@ function Search({ allResults, lang }) {
 			<div className='search-dropdown'>
 				{allResults
 					.filter((rec) => {
-						{
-							// console.log('rec in filter', rec);
-						}
 						const searchTerm = searchString.toLowerCase();
 						const name = rec.name.toLowerCase();
 						const description = rec.description.toLowerCase();

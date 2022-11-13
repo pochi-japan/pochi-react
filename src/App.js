@@ -1,16 +1,16 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import MainResults from './components/pages/MainResults';
-import UserRecs from './components/pages/UserRecs';
+import UserRecList from './components/pages/UserRecList';
 import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
 import UserRecForm from './components/pages/forms/UserRecForm';
 import LoginSuccess from './components/pages/LoginSuccess';
 import RecDetail from './components/pages/RecDetail';
+import RecEditForm from './components/pages/forms/RecEditForm';
 
 function App() {
 	const defaultUser = {
@@ -37,8 +37,6 @@ function App() {
 
 	const [lang, setLang] = useState(true);
 
-	let navigate = useNavigate();
-
 	//From MainResults
 	const [randomResults, setRandomResults] = useState([]);
 
@@ -57,7 +55,7 @@ function App() {
 			.get(`http://localhost:8000/api`)
 			.then((res) => {
 				setAllResults(res.data);
-				const data = shuffle(res.data);
+				shuffle(res.data);
 				//call the function to randomize the data
 				setRandomResults(res.data);
 				// console.log('useEffect res.data', res.data);
@@ -92,18 +90,15 @@ function App() {
 				<Route
 					path='/user-recs'
 					element={
-						<UserRecs
+						<UserRecList
 							user={user}
-							setUser={setUser}
 							token={token}
-							setToken={setToken}
-							JWT={JWT}
-							setJWT={setJWT}
-							lang={lang}
 							allResults={allResults}
+							lang={lang}
 						/>
 					}
 				/>
+				<Route path='/edit/:id' element={<RecEditForm />}></Route>
 				<Route path='/results' element={<SearchResults />} />
 				<Route
 					path='/auth'
@@ -112,6 +107,7 @@ function App() {
 							setToken={setToken}
 							user={user}
 							setUser={setUser}
+							JWT={JWT}
 							setJWT={setJWT}
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
