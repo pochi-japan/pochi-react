@@ -70,14 +70,10 @@ function App() {
 	return (
 		<div className='App'>
 			<NavBar
-				showRegister={showRegister}
-				setShowRegister={setShowRegister}
 				token={token}
 				setToken={setToken}
-				user={user}
 				setUser={setUser}
 				defaultUser={defaultUser}
-				JWT={JWT}
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
@@ -113,11 +109,9 @@ function App() {
 					path='/auth'
 					element={
 						<AuthPage
-							token={token}
 							setToken={setToken}
 							user={user}
 							setUser={setUser}
-							JWT={JWT}
 							setJWT={setJWT}
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}

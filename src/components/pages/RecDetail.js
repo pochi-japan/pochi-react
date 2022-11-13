@@ -12,7 +12,7 @@ function RecDetail({ lang }) {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/${params.id.substring(1)}`)
+			.get(`http://localhost:8000/api/id/${params.id.substring(1)}`)
 			.then((res) => {
 				setRec(res.data);
 				console.log('res.data in RecDetail', res.data);

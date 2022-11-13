@@ -13,7 +13,7 @@ function EditForm({ userResult, userResultTemp }) {
 	const handleEdit = (e) => {
 		e.preventDefault();
 		axios
-			.patch(`http://localhost:8000/api/${userResultTemp._id}`, userRec)
+			.patch(`http://localhost:8000/api/id/${userResultTemp._id}`, userRec)
 			.then((res) => res.data);
 		navigate('/user-rec');
 	};

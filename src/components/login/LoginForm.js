@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ token, setToken, user, setUser, JWT, setJWT, lang }) {
+function LoginForm({ setToken, user, setUser, setJWT, lang }) {
 	// const [credentials, setCredentials] = useState({
 	// 	email: '',
 	// 	password: '',

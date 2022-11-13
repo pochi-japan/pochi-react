@@ -1,8 +1,7 @@
 import RecEditForm from './forms/RecEditForm';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
-function UserRecs({ allResults, token, user, lang }) {
+function UserRecs({ allResults, user, token }) {
 	// const [userResult, setUserResult] = useState();
 	const [error, setError] = useState(null);
 
