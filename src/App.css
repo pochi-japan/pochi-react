@@ -13,6 +13,12 @@ h1 {
   font-size: 3.3rem;
 }
 
+nav {
+  background: black;
+  border: 3px solid rgba(167, 58, 62, .7);
+  border-radius: .3rem;
+}
+
 .日本 {
   font-family: 'Zen Maru Gothic', sans-serif;
   font-weight: bold;
