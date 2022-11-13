@@ -11,8 +11,8 @@ function MainResults({ randomResults, error, lang }) {
 				<h1 className='ポチ 日本'>ポチへようこそ</h1>
 			)}
 			<div className='main'>
-				{/* Limit random results to 5 images, set fallback image if image is null or gives an invalid image */}
-				{randomResults.slice(0, 4).map((res) => {
+				{/* Limit random results to 10 images, set fallback image if image is null or gives an invalid image */}
+				{randomResults.slice(0, 9).map((res) => {
 					return (
 						<div className='card' key={`${res.name}-card`}>
 							<div className='results-img'>

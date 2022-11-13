@@ -24,6 +24,7 @@ function App() {
 	// console.log('localStorage token:', localStorage.getItem('token'));
 	const [error, setError] = useState(null);
 
+	// Showing Registration form or Log in form
 	const [showRegister, setShowRegister] = useState(false);
 
 	// Search Bar
@@ -66,18 +67,6 @@ function App() {
 			});
 	}, []);
 
-	// const handleChange = (e) => {
-	// 	setSearchString(e.target.value);
-	// };
-
-	// const handleSubmit = (searchTerm) => {
-	// 	// Fetches the searched Result
-	// 	setSearchString(searchTerm);
-	// 	console.log('search term:', searchTerm);
-	// 	// Navigates to SearchResults.js
-	// 	navigate(`/results/:${searchString}`);
-	// };
-
 	return (
 		<div className='App'>
 			<NavBar
@@ -89,10 +78,6 @@ function App() {
 				setUser={setUser}
 				defaultUser={defaultUser}
 				JWT={JWT}
-				// searchString={searchString}
-				// setSearchString={setSearchString}
-				// handleChange={handleChange}
-				// handleSubmit={handleSubmit}
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
@@ -123,16 +108,7 @@ function App() {
 						/>
 					}
 				/>
-				<Route
-					path='/results'
-					element={
-						<SearchResults
-						// allResults={allResults}
-						// searchString={searchString}
-						// setSearchString={setSearchString}
-						/>
-					}
-				/>
+				<Route path='/results' element={<SearchResults />} />
 				<Route
 					path='/auth'
 					element={

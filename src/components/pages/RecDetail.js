@@ -32,10 +32,10 @@ function RecDetail(props) {
 				<br />
 				Description: {rec.description}
 				<br />
-				{/* Maybe try to render date (have to either update backend or we can use substring?) */}
-				Submitted on: {rec.updatedAt}
+				{/* Modifies the updated timestamp to MM/DD/YYYY format */}
+				Submitted on: {new Date(rec.updatedAt).toLocaleDateString('en-US')}
 				<br />
-				{/*  */}
+				{/* Try to set to a ternary */}
 				Location: {rec.location}
 				<br />
 				URL: {rec.url}

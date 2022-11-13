@@ -2,13 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Search({
-	// searchString,
-	// setSearchString,
-	// handleChange,
-	// handleSubmit,
-	allResults,
-}) {
+function Search({ allResults }) {
 	const [searchString, setSearchString] = useState('');
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();

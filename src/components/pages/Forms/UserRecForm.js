@@ -15,7 +15,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 		picture4: '',
 		location: '',
 		url: '',
-		hashtag: [],
+		hashtags: [],
 		owner: user.email,
 	};
 
@@ -44,7 +44,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 			const url = 'http://localhost:8000/api';
 			const res = await axios.post(
 				url,
-				{ ...rec, hashtag: rec.hashtag.split(' ') },
+				{ ...rec, hashtags: rec.hashtags.split(' ') },
 				{
 					// Bearer JWT is not working after refresh?
 					headers: { Authorization: `Bearer ${JWT}` },
@@ -197,15 +197,15 @@ function UserRecForm({ JWT, user, token, lang }) {
 								onChange={handleChange}
 							/>
 							<br />
-							<label htmlFor='hashtag'>Hashtags: </label>
+							<label htmlFor='hashtags'>Hashtags: </label>
 							<br />
 							<textarea
 								rows='4'
 								cols='30'
-								id='hashtag'
+								id='hashtags'
 								type='text'
-								name='hashtag'
-								value={rec.hashtag}
+								name='hashtags'
+								value={rec.hashtags}
 								onChange={handleChange}
 							/>
 							<br />
@@ -364,17 +364,17 @@ function UserRecForm({ JWT, user, token, lang }) {
 								onChange={handleChange}
 							/>
 							<br />
-							<label className='日本' htmlFor='hashtag'>
+							<label className='日本' htmlFor='hashtags'>
 								ハッシュタグ:
 							</label>
 							<br />
 							<textarea
 								rows='4'
 								cols='30'
-								id='hashtag'
+								id='hashtags'
 								type='text'
-								name='hashtag'
-								value={rec.hashtag}
+								name='hashtags'
+								value={rec.hashtags}
 								onChange={handleChange}
 							/>
 							<br />
