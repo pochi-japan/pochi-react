@@ -251,6 +251,11 @@ textarea {
   cursor: pointer;
 }
 
+.nav-butt {
+  box-shadow: .18rem .28rem whitesmoke;
+  border: 3px solid black;
+}
+
 /* @media only screen and (max-width: 600px) {
   .main {
       border: 3px solid black;
