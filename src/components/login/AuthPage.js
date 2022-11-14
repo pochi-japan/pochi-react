@@ -11,6 +11,7 @@ function AuthPage({
 	showRegister,
 	setShowRegister,
 	lang,
+	setLogin,
 }) {
 	// const [showRegister, setShowRegister] = useState(false);
 	return (
@@ -35,6 +36,7 @@ function AuthPage({
 					JWT={JWT}
 					setJWT={setJWT}
 					lang={lang}
+					setLogin={setLogin}
 				/>
 			)}
 		</main>

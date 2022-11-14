@@ -25,6 +25,8 @@ function App() {
 	const [token, setToken] = useState(localStorage.getItem('token') || false);
 	// console.log('localStorage token:', localStorage.getItem('token'));
 	const [error, setError] = useState(null);
+	// If Logged in
+	const [login, setLogin] = useState(false);
 
 	// Showing Registration form or Log in form
 	const [showRegister, setShowRegister] = useState(false);
@@ -76,6 +78,9 @@ function App() {
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
+				setLogin={setLogin}
+				login={login}
+				initialUser={initialUser}
 			/>
 			<Routes>
 				<Route
@@ -109,6 +114,7 @@ function App() {
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
 							lang={lang}
+							setLogin={setLogin}
 						/>
 					}
 				/>

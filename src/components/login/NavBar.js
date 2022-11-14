@@ -6,18 +6,20 @@ function NavBar({
 	token,
 	setToken,
 	setUser,
-	defaultUser,
+	initialUser,
 	allResults,
 	lang,
 	setLang,
+	login,
+	setLogin,
 }) {
 	let navigate = useNavigate();
 
 	// Log Out
 	function handleLogOut(e) {
 		e.preventDefault();
-		setToken(false); //can be null as well?
-		setUser(defaultUser);
+		setLogin(false); //can be null as well?
+		setUser(initialUser);
 		localStorage.clear();
 		navigate('/');
 	}
@@ -37,7 +39,7 @@ function NavBar({
 						<button>Things</button>
 					</Link>
 					{/* Requires logged in status */}
-					{token ? (
+					{login ? (
 						<div className='flex'>
 							<div className='nav-butt1'>
 								<Link to='/user-rec-form'>
@@ -82,7 +84,7 @@ function NavBar({
 						<button className='日本'>もの</button>
 					</Link>
 					{/* Requires logged in status */}
-					{token ? (
+					{login ? (
 						<div className='flex'>
 							<div className='nav-butt1'>
 								<Link to='/user-rec-form'>

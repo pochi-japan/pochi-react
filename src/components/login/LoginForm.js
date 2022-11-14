@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as usersService from '../../utilities/UsersService';
+import { signIn } from '../../utilities/ApiFunctions';
 
-function LoginForm({ user, setUser, lang, token, setToken, setJWT }) {
+function LoginForm({ user, setUser, lang, setToken, setLogin }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
@@ -22,42 +22,24 @@ function LoginForm({ user, setUser, lang, token, setToken, setJWT }) {
 		setError('');
 	}
 
-	console.log('creds', credentials);
+	// console.log('creds', credentials);
 
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	await setCredentials(credentials);
-	// 	try {
-	// 		// update to heroku later
-	// 		const url = 'http://localhost:8000/api/users/signin';
-	// 		// const url = 'https://pochi-japan.herokuapp.com/api/users/signin';
-	// 		const res = await axios.post(url, usersService.login(credentials));
-	// 		console.log('res: ', res);
-	// 		console.log('res.data.token Response:', res.data.token);
-	// 		setUser(res);
-	// 		if (res.data.token != null) {
-	// 			setToken(true);
-	// 			navigate('/');
-	// 		}
-	// 	} catch (err) {
-	// 		setError('Login failed. Try Again.');
-	// 		console.log(err);
-	// 	}
-	// };
-
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
-		try {
-			// The promise returned by the signUp service method
-			// will resolve to the user object included in the
-			// payload of the JSON Web Token (JWT)
-			const user = await usersService.login(credentials);
-			setUser(user);
-			console.log('user: ', user);
-			navigate('/');
-		} catch (err) {
-			setError(err);
-		}
+		signIn(credentials)
+			.then((res) => {
+				localStorage.setItem('token', res.token);
+				localStorage.setItem('email', res.email);
+				console.log('res', res);
+				// console.log('res.data', res.data);
+				// console.log('res.data.token', res.data.token);
+				// console.log('user: ', user);
+				setToken(res.token);
+				setLogin(true);
+				console.log('localStorage', localStorage);
+				navigate('/');
+			})
+			.catch((err) => setError('Login failed. Try Again.'));
 	}
 
 	return (

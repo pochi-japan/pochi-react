@@ -24,7 +24,7 @@ function SearchResults() {
 				setError(err.message);
 			});
 		// Change the results every time searchURL changes, which happens when a new search is issued
-	}, []);
+	}, [searchURL]);
 
 	if (!searchResults.length) {
 		return <h2>No Results</h2>;
