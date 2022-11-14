@@ -16,12 +16,7 @@ function Search({ allResults, lang }) {
 
 	return (
 		<div>
-			<input
-				type='text'
-				value={searchString}
-				onChange={handleChange}
-				placeholder='search a recommendation'
-			/>
+			<input type='text' value={searchString} onChange={handleChange} />
 			{lang ? (
 				<button onClick={() => handleSubmit(searchString)}>Search</button>
 			) : (

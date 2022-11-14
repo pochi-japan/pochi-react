@@ -17,6 +17,8 @@ nav {
   background: black;
   border: 3px solid rgba(167, 58, 62, .7);
   border-radius: .3rem;
+  /* position: fixed; */
+  width: 100%;
 }
 
 .日本 {
@@ -173,9 +175,10 @@ textarea {
 }
 
 .logo {
-  height: 2rem;
-  width: 2rem;
+  height: 3.5rem;
+  width: 3.5rem;
   border-radius: 1rem;
+  border: whitesmoke 4px solid;
 }
 
 .main {
