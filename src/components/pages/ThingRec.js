@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function UserRec({ rec, lang }) {
+import React from 'react';
+
+function ThingRec({ rec, lang }) {
 	const [updateRec, setUpdateRec] = useState(null);
 
 	const navigate = useNavigate();
@@ -163,4 +165,4 @@ function UserRec({ rec, lang }) {
 	);
 }
 
-export default UserRec;
+export default ThingRec;

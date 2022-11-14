@@ -7,6 +7,7 @@ body {
   background: whitesmoke;
   font-family: 'Jua', sans-serif;
   letter-spacing: .1rem;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -15,10 +16,12 @@ h1 {
 
 nav {
   background: black;
-  border: 3px solid rgba(167, 58, 62, .7);
   border-radius: .3rem;
-  /* position: fixed; */
+  position: sticky;
+  z-index: 1;
+  top: 0;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .日本 {
@@ -42,11 +45,6 @@ img {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: 1s ease-in-out;
 }
-
-/* img:hover {
-  opacity: 0.6;
-  transition: .5s;
-} */
 
 button {
   font-family: 'Jua', sans-serif;
@@ -84,6 +82,12 @@ input {
 input:focus {
   outline: none !important;
   border: 3px solid rgb(167, 58, 62);
+}
+
+hr {
+  border: dashed .5rem black;
+  margin-top: 5rem;
+  border-radius: 1rem;
 }
 
 .radio {
@@ -175,8 +179,8 @@ textarea {
 }
 
 .logo {
-  height: 3.5rem;
-  width: 3.5rem;
+  height: 2.6rem;
+  width: 2.6rem;
   border-radius: 1rem;
   border: whitesmoke 4px solid;
 }
@@ -184,15 +188,11 @@ textarea {
 .main {
   border: 3px solid black;
   background-image: url('./images/love-manga.jpeg');
-  /* background-color: rgba(167, 58, 62, .7);
-  background-image: linear-gradient(43deg, grey 0%, whitesmoke 46%, rgba(167, 58, 62, .7) 100%); */
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
   border-radius: .3rem;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  margin: 1rem;
-  margin-top: 6rem;
   padding: 3rem;
   scroll-behavior: smooth;
 }
@@ -205,7 +205,6 @@ textarea {
 .anime {
   animation: backInLeft;
     animation-duration: 1.5s;
-    /* opacity: .95; */
 }
 
 .anime:hover {
@@ -221,10 +220,12 @@ textarea {
   font-size: 3rem;
 }
 
-/* change this! */
 .search-dropdown {
-  background: rgba(137, 127, 127, 0.7);
-  margin: 0rem 10rem 0rem 10rem;
+  border-radius: .3rem;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
 }
 
 .pics {
@@ -249,3 +250,17 @@ textarea {
 .curse {
   cursor: pointer;
 }
+
+/* @media only screen and (max-width: 600px) {
+  .main {
+      border: 3px solid black;
+      background-image: url('./images/love-manga.jpeg');
+      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+      border-radius: .3rem;
+      overflow-y: scroll;
+      overflow-x: visible;
+      white-space: nowrap;
+      padding: 3rem;
+      scroll-behavior: smooth;
+    }
+} */

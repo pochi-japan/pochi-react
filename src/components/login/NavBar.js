@@ -30,6 +30,12 @@ function NavBar({
 					<Link to='/'>
 						<button>Home</button>
 					</Link>
+					<Link to='/places'>
+						<button>Places</button>
+					</Link>
+					<Link to='/things'>
+						<button>Things</button>
+					</Link>
 					{/* Requires logged in status */}
 					{token ? (
 						<div className='flex'>
@@ -68,6 +74,12 @@ function NavBar({
 					{/* Links that show regardless of logged status */}
 					<Link to='/'>
 						<button className='日本'>ホーム</button>
+					</Link>
+					<Link to='/places'>
+						<button className='日本'>場所</button>
+					</Link>
+					<Link to='/things'>
+						<button className='日本'>もの</button>
 					</Link>
 					{/* Requires logged in status */}
 					{token ? (

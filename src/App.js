@@ -11,6 +11,8 @@ import UserRecForm from './components/pages/forms/UserRecForm';
 import RegisterSuccess from './components/pages/RegisterSuccess';
 import RecDetail from './components/pages/RecDetail';
 import RecEditForm from './components/pages/forms/RecEditForm';
+import PlacesRecList from './components/pages/PlacesRecList';
+import ThingsRecList from './components/pages/ThingsRecList';
 
 function App() {
 	const initialUser = {
@@ -85,6 +87,14 @@ function App() {
 							lang={lang}
 						/>
 					}
+				/>
+				<Route
+					path='/places'
+					element={<PlacesRecList allResults={allResults} lang={lang} />}
+				/>
+				<Route
+					path='/things'
+					element={<ThingsRecList allResults={allResults} lang={lang} />}
 				/>
 				<Route path='/results' element={<SearchResults />} />
 				<Route

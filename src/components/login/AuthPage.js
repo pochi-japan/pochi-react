@@ -15,7 +15,6 @@ function AuthPage({
 	// const [showRegister, setShowRegister] = useState(false);
 	return (
 		<main>
-			<h1>AuthPage</h1>
 			{lang ? (
 				<button onClick={() => setShowRegister(!showRegister)}>
 					{showRegister ? 'Log In' : 'Sign Up'}
