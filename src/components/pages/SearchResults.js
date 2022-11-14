@@ -14,7 +14,9 @@ function SearchResults() {
 		//update to heroku later
 		axios
 			// Extract colon from params.id
-			.get(`http://localhost:8000/api/results/?name=${searchURL}`)
+			.get(
+				`http://localhost:8000/api/results/?name=${searchURL}&description=${searchURL}`
+			)
 			.then((res) => {
 				setSearchResults(res.data);
 			})
@@ -22,7 +24,7 @@ function SearchResults() {
 				setError(err.message);
 			});
 		// Change the results every time searchURL changes, which happens when a new search is issued
-	}, [searchURL]);
+	}, []);
 
 	if (!searchResults.length) {
 		return <h2>No Results</h2>;

@@ -1,15 +1,14 @@
-// import * as usersAPI from './UsersApi';
-// import { Buffer } from 'buffer';
+import * as usersAPI from './UsersApi';
 
-// // export async function signUp(userData) {
-// // 	// Delegate the network request code to the users-api.js API module
-// // 	// which will ultimately return a JSON Web Token (JWT)
-// // 	const token = await usersAPI.signUp(userData);
-// // 	// Persist the token to local storage
-// // 	// localStorage.setItem('token', token);
-// // 	// Baby step by returning whatever is sent back by the server
-// // 	return token;
-// // }
+export async function login(credentials) {
+	const token = await usersAPI.login(credentials);
+	localStorage.setItem('token', token);
+	return getUser();
+}
+
+export function logOut() {
+	localStorage.removeItem('token');
+}
 
 // export function getToken() {
 // 	// getItem returns null if there's no string
@@ -34,16 +33,20 @@
 // 	// If there's a token, return the user in the payload, otherwise return null
 // 	return token ? JSON.parse(token).user : null;
 // }
+// ********************************************************************* //
+// Return the token if valid, otherwise return null
+export function getToken() {
+	const token = localStorage.getItem('token');
+	if (!token) return null;
+	const payload = JSON.parse(atob(token.split('.')[1]));
+	if (payload.exp < Date.now() / 1000) {
+		localStorage.removeItem('token');
+		return null;
+	}
+	return token;
+}
 
-// export async function login(credentials) {
-// 	const token = await usersAPI.login(credentials);
-// 	console.log('login tokennnnnnn', token);
-// 	localStorage.setItem('token', JSON.stringify(token));
-// 	return getUser();
-// }
-
-// /*-- This is not necessary in your MERN-Stack projects ---*/
-// /*-- It's only to see how to send a token to the server ---*/
-// export function checkToken() {
-// 	return usersAPI.checkToken().then((dateStr) => new Date(dateStr));
-// }
+export function getUser() {
+	const token = getToken();
+	return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+}

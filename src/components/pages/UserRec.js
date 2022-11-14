@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function UserRec({ rec, lang }) {
 	const [updateRec, setUpdateRec] = useState(null);
@@ -12,22 +12,28 @@ function UserRec({ rec, lang }) {
 	const imgs = [
 		{
 			id: 0,
-			value: rec.picture1 || bustedImg,
+			value: rec.picture1,
+			alt: 'picture1',
 		},
 		{
 			id: 1,
 			value: rec.picture2 || bustedImg,
+			alt: 'picture2',
 		},
 		{
 			id: 2,
 			value: rec.picture3 || bustedImg,
+			alt: 'picture3',
 		},
 		{
 			id: 3,
 			value: rec.picture4 || bustedImg,
+			alt: 'picture4',
 		},
 	];
+
 	const [pics, setPics] = useState(imgs[0]);
+	const firstPic = pics.value || rec.picture1;
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
@@ -130,7 +136,7 @@ function UserRec({ rec, lang }) {
 						</div>
 					))}
 				</div>
-				<img src={pics.value} alt='focused pic' />
+				<img src={firstPic} alt='focused pic' />
 			</div>
 		</div>
 	);

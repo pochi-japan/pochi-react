@@ -1,18 +1,24 @@
 import UserRec from './UserRec';
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-function UserRecList({ allResults, user, token, lang }) {
-	console.log('useremail', user.email);
+function UserRecList({ allResults, user, lang }) {
+	// console.log('useremail', user.email);
 
+	// const [rec, setRec] = useState();
+	const navigate = useNavigate();
+	const location = useLocation();
 	const ownerResults = allResults.filter((rec) => rec.owner === user.email);
-
-	console.log('ownerResults', ownerResults);
-	console.log('token', token);
 
 	return (
 		<div>
 			<h1>Your Recommendations</h1>
-			{token ? <h2>Token is working</h2> : null}
-			{ownerResults.map((rec) => (
+			{/* {ownerResults.map((rec) => (
+				<UserRec rec={rec} lang={lang} key={rec._id} />
+			))} */}
+			{/* Temporarily showing all */}
+			{allResults.map((rec) => (
 				<UserRec rec={rec} lang={lang} key={rec._id} />
 			))}
 		</div>

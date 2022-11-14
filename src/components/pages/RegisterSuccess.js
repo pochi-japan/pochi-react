@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoginSuccess(props) {
+function RegisterSuccess(props) {
 	return (
 		<div>
 			<h1>
@@ -11,4 +11,4 @@ function LoginSuccess(props) {
 	);
 }
 
-export default LoginSuccess;
+export default RegisterSuccess;

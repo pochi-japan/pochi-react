@@ -1,52 +1,74 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as usersService from '../../utilities/UsersService';
 
-function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
-	// const [credentials, setCredentials] = useState({
-	// 	email: '',
-	// 	password: '',
-	// });
-	const navigate = useNavigate();
-	const [invalidEmail, setInvalidEmail] = useState(false);
+function LoginForm({ user, setUser, lang, token, setToken, setJWT }) {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [credentials, setCredentials] = useState({
+		email: '',
+		password: '',
+	});
+
+	const navigate = useNavigate();
 
 	function handleChange(e) {
-		setUser({
-			...user,
-			[e.target.id]: e.target.value,
+		setCredentials({
+			...credentials,
+			[e.target.name]: e.target.value,
 		});
+		setError('');
 	}
 
-	const handleSubmit = async (e) => {
+	console.log('creds', credentials);
+
+	// const handleSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	await setCredentials(credentials);
+	// 	try {
+	// 		// update to heroku later
+	// 		const url = 'http://localhost:8000/api/users/signin';
+	// 		// const url = 'https://pochi-japan.herokuapp.com/api/users/signin';
+	// 		const res = await axios.post(url, usersService.login(credentials));
+	// 		console.log('res: ', res);
+	// 		console.log('res.data.token Response:', res.data.token);
+	// 		setUser(res);
+	// 		if (res.data.token != null) {
+	// 			setToken(true);
+	// 			navigate('/');
+	// 		}
+	// 	} catch (err) {
+	// 		setError('Login failed. Try Again.');
+	// 		console.log(err);
+	// 	}
+	// };
+
+	async function handleSubmit(e) {
 		e.preventDefault();
-		await setUser(user);
 		try {
-			// update to heroku later
-			const url = 'http://localhost:8000/api/users/signin';
-			// const url = 'https://pochi-japan.herokuapp.com/api/users/signin';
-			const res = await axios.post(url, user);
-			console.log('Login Response: ', res);
-			console.log('res.data.token Response:', res.data.token);
+			// The promise returned by the signUp service method
+			// will resolve to the user object included in the
+			// payload of the JSON Web Token (JWT)
+			const user = await usersService.login(credentials);
+			setUser(user);
 			console.log('user: ', user);
-			localStorage.setItem('token', res.data.token);
-			localStorage.setItem('loginEmail', user.email);
-			//setJWT is not working
-			setJWT(res.data.token);
-			console.log('JWT', JWT);
-			if (res.data.token == null) {
-				setInvalidEmail(true);
-			} else if (res.data.token != null) {
-				setToken(true);
-				navigate('/');
-			}
+			navigate('/');
 		} catch (err) {
-			setError('Login failed. Try Again.');
+			setError(err);
 		}
-	};
+	}
 
 	return (
 		<div>
+			{/* Aria-live is for accessibility (screen readers) */}
+			{/* <p
+				ref={errRef}
+				className={errMsg ? 'errmsg' : 'offscreen'}
+				aria-live='assertive'>
+				{errMsg}
+			</p> */}
 			{lang ? (
 				<div>
 					<div onSubmit={handleSubmit}>
@@ -59,7 +81,7 @@ function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
 									id='email'
 									type='text'
 									name='email'
-									value={user.email}
+									value={credentials.email}
 									onChange={handleChange}
 									required
 								/>
@@ -70,15 +92,10 @@ function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
 									id='password'
 									type='password'
 									name='password'
-									value={user.password}
+									value={credentials.password}
 									onChange={handleChange}
 									required
 								/>
-								{invalidEmail ? (
-									<div>Username or password is incorrect. </div>
-								) : (
-									''
-								)}
 								<br />
 								<button className='submit' type='submit'>
 									LOG IN
@@ -102,7 +119,7 @@ function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
 									id='email'
 									type='text'
 									name='email'
-									value={user.email}
+									value={credentials.email}
 									onChange={handleChange}
 									required
 								/>
@@ -115,15 +132,10 @@ function LoginForm({ setToken, user, setUser, JWT, setJWT, lang }) {
 									id='password'
 									type='password'
 									name='password'
-									value={user.password}
+									value={credentials.password}
 									onChange={handleChange}
 									required
 								/>
-								{invalidEmail ? (
-									<div>Username or password is incorrect. </div>
-								) : (
-									''
-								)}
 								<br />
 								<button className='submit 日本' type='submit'>
 									ログイン

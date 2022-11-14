@@ -2,6 +2,7 @@ import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 
 function AuthPage({
+	token,
 	setToken,
 	user,
 	setUser,
@@ -28,6 +29,7 @@ function AuthPage({
 				<RegisterForm lang={lang} />
 			) : (
 				<LoginForm
+					token={token}
 					setToken={setToken}
 					user={user}
 					setUser={setUser}

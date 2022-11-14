@@ -7,12 +7,15 @@ function RecDetail({ lang }) {
 	const [rec, setRec] = useState({});
 	const [error, setError] = useState(null);
 	let params = useParams();
+	const endPoint = params.id.substring(1);
+
+	// console.log(params.id);
 
 	useEffect(() => {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${params.substring(1)}`)
+			.get(`http://localhost:8000/api/id/${endPoint}`)
 			.then((res) => {
 				setRec(res.data);
 				console.log('res.data in RecDetail', res.data);
@@ -20,29 +23,38 @@ function RecDetail({ lang }) {
 			.catch((err) => {
 				setError(err.message);
 			});
-	}, [params]);
+	}, []);
+
+	console.log('rec in RecDetail', rec);
 
 	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
 
 	const imgs = [
 		{
 			id: 0,
-			value: rec.picture1 || bustedImg,
+			value: rec.picture1,
+			alt: 'picture1',
 		},
 		{
 			id: 1,
 			value: rec.picture2 || bustedImg,
+			alt: 'picture2',
 		},
 		{
 			id: 2,
 			value: rec.picture3 || bustedImg,
+			alt: 'picture3',
 		},
 		{
 			id: 3,
 			value: rec.picture4 || bustedImg,
+			alt: 'picture4',
 		},
 	];
+
+	// It's not working for the first image when there is no image :(
 	const [pics, setPics] = useState(imgs[0]);
+	const firstPic = pics.value || rec.picture1;
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
@@ -98,8 +110,7 @@ function RecDetail({ lang }) {
 						</div>
 					))}
 				</div>
-				{/* we have 4 pics total, check why it's rendering 5? */}
-				<img src={pics.value} alt='focused pic' />
+				<img src={firstPic} alt='focused pic' />
 			</div>
 		</div>
 	);

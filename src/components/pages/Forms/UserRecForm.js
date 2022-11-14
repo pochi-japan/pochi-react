@@ -15,23 +15,26 @@ function UserRecForm({ JWT, user, token, lang }) {
 		picture4: '',
 		location: '',
 		url: '',
-		hashtags: [],
+		hashtags: [''],
 		owner: user.email,
 	};
+
+	console.log({ user });
 
 	const navigate = useNavigate();
 	const [rec, setRec] = useState(initialRecState);
 	const [error, setError] = useState('');
+	const [data, setData] = useState(initialRecState);
 
 	function handleChange(e) {
 		// Destructure event to access value, type, id
 		const { value, type, id } = e.target;
 		// If input type is radio, then set the category key to the value of the radio
 		if (type === 'radio') {
-			setRec({ ...rec, category: value });
+			setData({ ...data, category: value });
 		} else {
-			setRec({
-				...rec,
+			setData({
+				...data,
 				[id]: value,
 			});
 		}
@@ -44,11 +47,13 @@ function UserRecForm({ JWT, user, token, lang }) {
 			const url = 'http://localhost:8000/api';
 			const res = await axios.post(
 				url,
-				{ ...rec, hashtags: rec.hashtags.split(' ') },
+				{ ...res, hashtags: rec.hashtags.split(' ') },
 				{
 					// Bearer JWT is not working after refresh?
 					headers: { Authorization: `Bearer ${JWT}` },
-				}
+				},
+				setRec(res),
+				console.log(res)
 			);
 
 			if (res.status === 200) {
@@ -59,7 +64,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 			setError('Upload Failed. Please try again.');
 		}
 	};
-	console.log({ lang });
+
 	return (
 		<div>
 			{lang ? (
@@ -72,7 +77,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='name'
 								type='text'
 								name='name'
-								value={rec.name}
+								value={data.name}
 								onChange={handleChange}
 								required
 							/>
@@ -85,7 +90,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='description'
 								type='text'
 								name='description'
-								value={rec.description}
+								value={data.description}
 								onChange={handleChange}
 								required
 							/>
@@ -98,7 +103,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='place'
 									name='category'
 									value='place'
-									checked={rec.category === 'place'}
+									checked={data.category === 'place'}
 									onChange={handleChange}
 									required
 								/>
@@ -112,7 +117,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='thing'
 									name='category'
 									value='thing'
-									checked={rec.category === 'thing'}
+									checked={data.category === 'thing'}
 									onChange={handleChange}
 								/>
 								<label className='label' htmlFor='thing'>
@@ -129,7 +134,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								min={1}
 								max={3}
 								name='recRating'
-								value={rec.recRating}
+								value={data.recRating}
 								onChange={handleChange}
 								required
 							/>
@@ -142,7 +147,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture1'
 									type='text'
 									name='picture1'
-									value={rec.picture1}
+									value={data.picture1}
 									onChange={handleChange}
 								/>
 								<br />
@@ -152,7 +157,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture2'
 									type='text'
 									name='picture2'
-									value={rec.picture2}
+									value={data.picture2}
 									onChange={handleChange}
 								/>
 								<br />
@@ -162,7 +167,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture3'
 									type='text'
 									name='picture3'
-									value={rec.picture3}
+									value={data.picture3}
 									onChange={handleChange}
 								/>
 								<br />
@@ -172,7 +177,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture4'
 									type='text'
 									name='picture4'
-									value={rec.picture4}
+									value={data.picture4}
 									onChange={handleChange}
 								/>
 							</fieldset>
@@ -183,7 +188,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='location'
 								type='text'
 								name='location'
-								value={rec.location}
+								value={data.location}
 								onChange={handleChange}
 							/>
 							<br />
@@ -193,7 +198,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='url'
 								type='text'
 								name='url'
-								value={rec.url}
+								value={data.url}
 								onChange={handleChange}
 							/>
 							<br />
@@ -205,7 +210,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='hashtags'
 								type='text'
 								name='hashtags'
-								value={rec.hashtags}
+								value={data.hashtags}
 								onChange={handleChange}
 							/>
 							<br />
@@ -225,7 +230,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='name'
 								type='text'
 								name='name'
-								value={rec.name}
+								value={data.name}
 								onChange={handleChange}
 								required
 							/>
@@ -240,7 +245,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='description'
 								type='text'
 								name='description'
-								value={rec.description}
+								value={data.description}
 								onChange={handleChange}
 								required
 							/>
@@ -253,7 +258,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='place'
 									name='category'
 									value='place'
-									checked={rec.category === 'place'}
+									checked={data.category === 'place'}
 									onChange={handleChange}
 									required
 								/>
@@ -267,7 +272,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='thing'
 									name='category'
 									value='thing'
-									checked={rec.category === 'thing'}
+									checked={data.category === 'thing'}
 									onChange={handleChange}
 								/>
 								<label className='日本 label' htmlFor='thing'>
@@ -286,7 +291,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								min={1}
 								max={3}
 								name='recRating'
-								value={rec.recRating}
+								value={data.recRating}
 								onChange={handleChange}
 								required
 							/>
@@ -301,7 +306,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture1'
 									type='text'
 									name='picture1'
-									value={rec.picture1}
+									value={data.picture1}
 									onChange={handleChange}
 								/>
 								<br />
@@ -313,7 +318,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture2'
 									type='text'
 									name='picture2'
-									value={rec.picture2}
+									value={data.picture2}
 									onChange={handleChange}
 								/>
 								<br />
@@ -325,7 +330,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture3'
 									type='text'
 									name='picture3'
-									value={rec.picture3}
+									value={data.picture3}
 									onChange={handleChange}
 								/>
 								<br />
@@ -337,7 +342,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									id='picture4'
 									type='text'
 									name='picture4'
-									value={rec.picture4}
+									value={data.picture4}
 									onChange={handleChange}
 								/>
 							</fieldset>
@@ -350,7 +355,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='location'
 								type='text'
 								name='location'
-								value={rec.location}
+								value={data.location}
 								onChange={handleChange}
 							/>
 							<br />
@@ -360,7 +365,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='url'
 								type='text'
 								name='url'
-								value={rec.url}
+								value={data.url}
 								onChange={handleChange}
 							/>
 							<br />
@@ -374,7 +379,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 								id='hashtags'
 								type='text'
 								name='hashtags'
-								value={rec.hashtags}
+								value={data.hashtags}
 								onChange={handleChange}
 							/>
 							<br />

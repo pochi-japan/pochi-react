@@ -8,17 +8,17 @@ import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
 import UserRecForm from './components/pages/forms/UserRecForm';
-import LoginSuccess from './components/pages/LoginSuccess';
+import RegisterSuccess from './components/pages/RegisterSuccess';
 import RecDetail from './components/pages/RecDetail';
 import RecEditForm from './components/pages/forms/RecEditForm';
 
 function App() {
-	const defaultUser = {
+	const initialUser = {
 		email: '',
 		password: '',
 	};
-
 	// STATES
+	const [user, setUser] = useState(initialUser);
 	// If a user is signed in, use the token that's saved in localStorage (true/false)
 	const [token, setToken] = useState(localStorage.getItem('token') || false);
 	// console.log('localStorage token:', localStorage.getItem('token'));
@@ -32,7 +32,7 @@ function App() {
 	// const [searchString, setSearchString] = useState('');
 
 	// Logging in - when user logs in, assign a token. JWT is the token value
-	const [user, setUser] = useState(defaultUser);
+
 	const [JWT, setJWT] = useState('');
 
 	const [lang, setLang] = useState(true);
@@ -71,7 +71,6 @@ function App() {
 				token={token}
 				setToken={setToken}
 				setUser={setUser}
-				defaultUser={defaultUser}
 				allResults={allResults}
 				lang={lang}
 				setLang={setLang}
@@ -87,27 +86,15 @@ function App() {
 						/>
 					}
 				/>
-				<Route
-					path='/user-recs'
-					element={
-						<UserRecList
-							user={user}
-							token={token}
-							allResults={allResults}
-							lang={lang}
-						/>
-					}
-				/>
-				<Route path='/edit/:id' element={<RecEditForm />}></Route>
 				<Route path='/results' element={<SearchResults />} />
 				<Route
 					path='/auth'
 					element={
 						<AuthPage
-							setToken={setToken}
 							user={user}
 							setUser={setUser}
-							JWT={JWT}
+							token={token}
+							setToken={setToken}
 							setJWT={setJWT}
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
@@ -116,13 +103,21 @@ function App() {
 					}
 				/>
 				<Route path='/detail/:id' element={<RecDetail lang={lang} />}></Route>
+				{/* <Route path='*' element={<ErrorPage />}></Route> */}
+				<Route
+					path='/user-recs'
+					element={
+						<UserRecList user={user} allResults={allResults} lang={lang} />
+					}
+				/>
+				<Route path='/edit/:id' element={<RecEditForm />}></Route>
 				<Route
 					path='/user-rec-form'
 					element={
-						<UserRecForm user={user} JWT={JWT} token={token} lang={lang} />
+						<UserRecForm user={user} token={token} lang={lang} JWT={JWT} />
 					}
 				/>
-				<Route path='/success' element={<LoginSuccess />} />
+				<Route path='/success' element={<RegisterSuccess />} />
 			</Routes>
 		</div>
 	);

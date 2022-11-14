@@ -11,7 +11,7 @@ function Search({ allResults, lang }) {
 
 	const handleSubmit = (searchTerm) => {
 		setSearchString(searchTerm);
-		navigate(`/results/?q=${searchTerm}`);
+		navigate(`/results/?q=${searchTerm}&description=${searchTerm}`);
 	};
 
 	return (

@@ -6,7 +6,8 @@ import { useParams } from 'react-router-dom';
 function EditForm() {
 	const navigate = useNavigate();
 	const params = useParams();
-	// const [userRec, setUserRec] = useState(null);
+	const endPoint = params.id.substring(1);
+	const [editRec, setEditRec] = useState(null);
 	const [updateRec, setUpdateRec] = useState(null);
 	const [err, setError] = useState(null);
 
@@ -18,23 +19,19 @@ function EditForm() {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${params.id.substring(1)}`)
+			.get(`http://localhost:8000/api/id/${endPoint}`)
 			.then((res) => {
-				updateRec(res.data);
-				console.log('updateRec in RecDetail', updateRec);
+				setEditRec(res.data);
 			})
 			.catch((err) => {
 				setError(err.message);
 			});
-	}, [params]);
+	}, ['']);
 
 	const handleEdit = (e) => {
 		e.preventDefault();
 		axios
-			.patch(
-				`http://localhost:8000/api/id/${params.id.substring(1)}`,
-				updateRec
-			)
+			.patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
 			.then((res) => res.data);
 		navigate('/user-rec');
 	};
@@ -42,7 +39,7 @@ function EditForm() {
 	return (
 		<div>
 			Edit Page
-			{/* <h1>Editing {updateRec.name}</h1>
+			<h1>Editing {updateRec.name}</h1>
 			<div className='rec-form-container'>
 				<form autoComplete='off' onSubmit={handleEdit}>
 					<label htmlFor='name'>Name: </label>
@@ -176,7 +173,7 @@ function EditForm() {
 					/>
 					<button type='submit'>SUBMIT</button>
 				</form>
-			</div> */}
+			</div>
 		</div>
 	);
 }
