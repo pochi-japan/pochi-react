@@ -8,18 +8,18 @@ function UserRecForm({ JWT, user, token, lang }) {
 		name: '',
 		description: '',
 		category: '',
-		recRating: 3,
+		recRating: '3',
 		picture1: '',
 		picture2: '',
 		picture3: '',
 		picture4: '',
 		location: '',
 		url: '',
-		hashtags: [''],
-		owner: user.email,
+		hashtags: '',
+		owner: localStorage.getItem('email'),
 	};
 
-	console.log({ user });
+	// console.log({ user });
 
 	const navigate = useNavigate();
 	const [rec, setRec] = useState(initialRecState);
@@ -39,30 +39,36 @@ function UserRecForm({ JWT, user, token, lang }) {
 			});
 		}
 	}
+	console.log('data', data);
+	console.log('token', token);
+	console.log('user email', user.email);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		try {
-			const url = 'http://localhost:8000/api';
-			const res = await axios.post(
-				url,
-				{ ...res, hashtags: rec.hashtags.split(' ') },
-				{
-					// Bearer JWT is not working after refresh?
-					headers: { Authorization: `Bearer ${JWT}` },
-				},
-				setRec(res),
-				console.log(res)
-			);
-
-			if (res.status === 200) {
-				setRec(initialRecState);
-				navigate('/user-recs');
-			}
-		} catch (err) {
-			setError('Upload Failed. Please try again.');
-		}
+		// 	{ ...data, hashtags: data.hashtags.split(' ') } Use this code in the future to split up hashtags
+		const config = {
+			url: 'http://localhost:8000/api/id',
+			method: 'POST',
+			data: data,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		console.log(config);
+		axios
+			.request(config)
+			.then((res) => {
+				if (res.status === 200) {
+					setData(initialRecState);
+					navigate('/user-recs');
+					// Make the window refresh to show new rec for now - fix this code to use state in the future
+					window.location.reload(true);
+				}
+			})
+			.catch((err) => {
+				console.log('Error', err.message);
+			});
 	};
 
 	return (

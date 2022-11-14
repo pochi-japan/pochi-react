@@ -7,7 +7,7 @@ export async function signIn(loginData) {
 	try {
 		const res = await axios.post(url, loginData);
 		console.log('res from signIn function', res);
-		// console.log('resdata', res.data);
+		console.log('login function resdata', res.data);
 		return res.data;
 	} catch (err) {
 		throw err;

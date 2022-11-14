@@ -24,6 +24,8 @@ function NavBar({
 		navigate('/');
 	}
 
+	const loggedInLocalStorage = localStorage.getItem('loggedIn');
+
 	return (
 		<nav className='nav'>
 			{lang ? (
@@ -39,7 +41,8 @@ function NavBar({
 						<button className='nav-butt'>Things</button>
 					</Link>
 					{/* Requires logged in status */}
-					{login ? (
+					{/* {login ? ( */}
+					{loggedInLocalStorage ? (
 						<div className='flex'>
 							<div className='nav-butt1'>
 								<Link to='/user-rec-form'>
@@ -86,7 +89,7 @@ function NavBar({
 						<button className='日本 nav-butt'>もの</button>
 					</Link>
 					{/* Requires logged in status */}
-					{login ? (
+					{loggedInLocalStorage ? (
 						<div className='flex'>
 							<div className='nav-butt1'>
 								<Link to='/user-rec-form'>

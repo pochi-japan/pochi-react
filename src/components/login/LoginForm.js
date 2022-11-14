@@ -1,11 +1,8 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../utilities/ApiFunctions';
 
-function LoginForm({ user, setUser, lang, setToken, setLogin }) {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+function LoginForm({ token, user, setUser, lang, setToken, setLogin }) {
 	const [error, setError] = useState('');
 	const [credentials, setCredentials] = useState({
 		email: '',
@@ -29,13 +26,18 @@ function LoginForm({ user, setUser, lang, setToken, setLogin }) {
 		signIn(credentials)
 			.then((res) => {
 				localStorage.setItem('token', res.token);
+				localStorage.setItem('loggedIn', true);
 				localStorage.setItem('email', res.email);
+				// localStorage.setItem('email', credentials.email);
 				console.log('res', res);
 				// console.log('res.data', res.data);
 				// console.log('res.data.token', res.data.token);
 				// console.log('user: ', user);
 				setToken(res.token);
 				setLogin(true);
+				setUser(credentials);
+				// console.log('credentials', credentials);
+				// console.log('checking token', token);
 				console.log('localStorage', localStorage);
 				navigate('/');
 			})
