@@ -33,10 +33,7 @@ function RecDetail({ lang }) {
 		{
 			id: 0,
 			value: rec.picture1,
-<<<<<<< HEAD
 			alt: 'picture1',
-=======
->>>>>>> b4a7d16 (add css)
 		},
 		{
 			id: 1,
@@ -113,11 +110,7 @@ function RecDetail({ lang }) {
 						</div>
 					))}
 				</div>
-<<<<<<< HEAD
 				<img src={firstPic} alt='focused pic' />
-=======
-				<img src={firstPic} />
->>>>>>> b4a7d16 (add css)
 			</div>
 		</div>
 	);
