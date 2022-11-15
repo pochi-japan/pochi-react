@@ -15,9 +15,15 @@ function MainResults({ allResults, lang }) {
 	return (
 		<section>
 			{lang ? (
-				<h1 className='en'>Welcome to Pochi</h1>
+				<div>
+					<h1 className='en'>Welcome to Pochi</h1>
+					<h3>A recommendations place for all things Japan!</h3>
+				</div>
 			) : (
-				<h1 className='ポチ 日本'>ポチへようこそ</h1>
+				<div>
+					<h1 className='ポチ 日本'>ポチへようこそ</h1>
+					<h3>日本のおすすめ色々！</h3>
+				</div>
 			)}
 			<div className='main'>
 				{/* Limit random results to 10 images, set fallback image if image is null or gives an invalid image */}

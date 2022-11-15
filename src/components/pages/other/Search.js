@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Search({ allResults, lang }) {
@@ -18,6 +18,8 @@ function Search({ allResults, lang }) {
 		navigate(`/results/?q=${searchTerm}&description=${searchTerm}`);
 	};
 
+	// Searching only works once because I believe searchTerm is not changing to an empty state, but I cannot do that here as the useEffect is in a different logic (page navigates). I will work on fixing this.
+
 	// ******* RETURN *******
 	return (
 		<div>
@@ -32,7 +34,7 @@ function Search({ allResults, lang }) {
 			<div className='search-dropdown'>
 				{allResults
 					.filter((rec) => {
-						const searchTerm = searchString.toLowerCase();
+						let searchTerm = searchString.toLowerCase();
 						const name = rec.name.toLowerCase();
 						const description = rec.description.toLowerCase();
 						//hashtag is an array so this won't work yet

@@ -65,7 +65,7 @@ function RecDetail({ lang }) {
 					</div>
 				);
 			});
-	}, []);
+	}, [endPoint]);
 
 	return (
 		<div className='container flex detail'>
