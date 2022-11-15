@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import axios from 'axios';
 import pochiNoImage from '../../images/pochi-noimage.png';
+import RecEditForm from '../pages/userforms/RecEditForm';
 
 function UserRec({ ownersRec, lang, token }) {
 	// ******* VARIABLES *******
@@ -36,11 +37,19 @@ function UserRec({ ownersRec, lang, token }) {
 	// ******* STATES *******
 	const [updateRec, setUpdateRec] = useState(null);
 	const [pics, setPics] = useState(imgs[0]);
+	const [editModal, setEditModal] = useState(false);
+	const [id, setId] = useState('');
 
 	// ******* FUNCTIONS *******
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
+	};
+
+	//SET ID: open edit modal and set the id of which item user is editing
+	const editId = (id) => {
+		setEditModal(true);
+		setId(id);
 	};
 
 	const handleDelete = async (e) => {
@@ -95,9 +104,15 @@ function UserRec({ ownersRec, lang, token }) {
 								</p>
 								<p>Location: {ownersRec.location}</p>
 								<p>URL: {ownersRec.url}</p>
-								<Link to={`/edit/:${ownersRec._id}`}>
-									<button>Edit</button>
-								</Link>
+								{/* Work on Edit Later */}
+								{/* <button onClick={() => editId(ownersRec._id)}>Edit</button>
+								{editModal && id === ownersRec._id && (
+									<RecEditForm
+										closeModal={setEditModal}
+										ownersRec={ownersRec}
+										lang={lang}
+									/>
+								)} */}
 								<button onClick={handleDelete}>Delete</button>
 							</div>
 							<div className='pics container'>
@@ -134,12 +149,17 @@ function UserRec({ ownersRec, lang, token }) {
 								</p>
 								<p className='日本'>住所: {ownersRec.location}</p>
 								<p className='日本'>URL: {ownersRec.url}</p>
-								<Link to={`/edit/:${ownersRec._id}`}>
+								{/* <Link to={`/edit/:${ownersRec._id}`}>
 									<button className='日本'>修正</button>
-								</Link>
-								<button className='日本' onClick={handleDelete}>
-									削除
-								</button>
+								</Link> */}
+								{/* <button onClick={() => editId(ownersRec._id)}>修正</button>
+								{editModal && id === ownersRec._id && (
+									<RecEditForm
+										closeModal={setEditModal}
+										ownersRec={ownersRec}
+										lang={lang}
+									/>
+								)} */}
 							</div>
 							<div className='pics container'>
 								<div className='flex curse'>

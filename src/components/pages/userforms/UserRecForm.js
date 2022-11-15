@@ -23,8 +23,6 @@ function UserRecForm({ token, lang }) {
 	const navigate = useNavigate();
 
 	// ******* STATES *******
-	const [rec, setRec] = useState(initialRecState);
-	const [error, setError] = useState('');
 	const [data, setData] = useState(initialRecState);
 
 	// ******* FUNCTIONS *******
@@ -55,7 +53,6 @@ function UserRecForm({ token, lang }) {
 				Authorization: `Bearer ${token}`,
 			},
 		};
-		console.log(config);
 		axios
 			.request(config)
 			.then((res) => {
