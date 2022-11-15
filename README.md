@@ -1,7 +1,8 @@
 ## Pochi
 
-- screenshot of app goes here
+- <img width="1414" alt="Screen Shot 2022-11-15 at 09 44 40" src="https://user-images.githubusercontent.com/105613673/201990323-5245a228-7429-49e9-ad7d-e387adde6fef.png">
 
+- <img width="1414" alt="Screen Shot 2022-11-15 at 09 44 54" src="https://user-images.githubusercontent.com/105613673/201990342-eef2fdb6-70e1-449f-be62-5d2b46c69b22.png">
 
 ## Created By
 
