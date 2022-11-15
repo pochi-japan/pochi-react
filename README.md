@@ -20,10 +20,6 @@ Here is a link to our [planning board](https://crawling-snarl-6d7.notion.site/b6
 
 ![pochi-wireframe](https://user-images.githubusercontent.com/105613673/200079296-97b01d75-a861-4a9c-8632-2db27a615e4f.png)
 
-## Features
-
-- 
-
 ## User Stories
 
 - AAU I want to see an about page with instructions so I know how to use the app
