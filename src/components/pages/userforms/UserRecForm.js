@@ -46,7 +46,8 @@ function UserRecForm({ token, lang }) {
 		e.preventDefault();
 		// 	{ ...data, hashtags: data.hashtags.split(' ') } Use this code in the future to split up hashtags
 		const config = {
-			url: 'http://localhost:8000/api/id',
+			// url: 'http://localhost:8000/api/id',
+			url: 'https://pochi-japan.herokuapp.com/api/id/',
 			method: 'POST',
 			data: data,
 			headers: {
