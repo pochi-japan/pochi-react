@@ -25,7 +25,6 @@ function RegisterForm({ lang }) {
 			...register,
 			[e.target.id]: e.target.value,
 		});
-		console.log(register);
 	}
 
 	const handleSubmit = async (e) => {
