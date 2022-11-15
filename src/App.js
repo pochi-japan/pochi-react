@@ -8,12 +8,13 @@ import SearchResults from './components/pages/SearchResults';
 import NavBar from './components/login/NavBar';
 import AuthPage from './components/login/AuthPage';
 import UserRecForm from './components/pages/userforms/UserRecForm';
-import RegisterSuccess from './components/pages/RegisterSuccess';
+import RegisterSuccess from './components/login/RegisterSuccess';
 import RecDetail from './components/pages/RecDetail';
 import RecEditForm from './components/pages/userforms/RecEditForm';
 import PlacesRecList from './components/pages/PlacesRecList';
 import ThingsRecList from './components/pages/ThingsRecList';
 import ErrorPage from './components/pages/ErrorPage';
+import About from './components/pages/About';
 
 function App() {
 	// ******* VARIABLE *******
@@ -71,6 +72,7 @@ function App() {
 					path='/'
 					element={<MainResults lang={lang} allResults={allResults} />}
 				/>
+				<Route path='/about' element={<About lang={lang} />} />
 				<Route
 					path='/places'
 					element={<PlacesRecList allResults={allResults} lang={lang} />}

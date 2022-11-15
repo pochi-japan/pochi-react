@@ -102,8 +102,20 @@ function UserRec({ ownersRec, lang, token }) {
 									Last Updated:
 									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
 								</p>
-								<p>Location: {ownersRec.location}</p>
-								<p>URL: {ownersRec.url}</p>
+								{ownersRec.location ? (
+									<p>Location: {ownersRec.location}</p>
+								) : (
+									''
+								)}
+								{ownersRec.url ? (
+									<p>
+										<a href={ownersRec.url} target='_blank'>
+											URL: {ownersRec.url}
+										</a>
+									</p>
+								) : (
+									''
+								)}
 								{/* Work on Edit Later */}
 								{/* <button onClick={() => editId(ownersRec._id)}>Edit</button>
 								{editModal && id === ownersRec._id && (
@@ -147,8 +159,20 @@ function UserRec({ ownersRec, lang, token }) {
 									最終更新日:
 									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
 								</p>
-								<p className='日本'>住所: {ownersRec.location}</p>
-								<p className='日本'>URL: {ownersRec.url}</p>
+								{ownersRec.location ? (
+									<p className='日本'>住所: {ownersRec.location}</p>
+								) : (
+									''
+								)}
+								{ownersRec.url ? (
+									<p className='日本'>
+										<a href={ownersRec.url} target='_blank'>
+											URL: {ownersRec.url}
+										</a>
+									</p>
+								) : (
+									''
+								)}
 								{/* <Link to={`/edit/:${ownersRec._id}`}>
 									<button className='日本'>修正</button>
 								</Link> */}

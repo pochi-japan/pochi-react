@@ -80,8 +80,16 @@ function RecDetail({ lang }) {
 							Last Updated:
 							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
 						</p>
-						<p>Location: {rec.location}</p>
-						<p>URL: {rec.url}</p>
+						{rec.location ? <p>Location: {rec.location}</p> : ''}
+						{rec.url ? (
+							<p>
+								<a href={rec.url} target='_blank'>
+									URL: {rec.url}
+								</a>
+							</p>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 			) : (
@@ -95,8 +103,16 @@ function RecDetail({ lang }) {
 							最終更新日:
 							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
 						</p>
-						<p className='日本'>住所: {rec.location}</p>
-						<p className='日本'>URL: {rec.url}</p>
+						{rec.location ? <p className='日本'>住所: {rec.location}</p> : ''}
+						{rec.url ? (
+							<p className='日本'>
+								<a href={rec.url} target='_blank'>
+									URL: {rec.url}
+								</a>
+							</p>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 			)}
