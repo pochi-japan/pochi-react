@@ -9,7 +9,7 @@ Ai Terada & Trey Towers
 
 ## Description
 
-Pochi is a Japan travel recommendation app that has recommendations on places to visit and things to purchase in Japan. Users can view a list of recommendations and click on an item to view the recommended place/thing in detail. Users can also perform CRUD on their own recommendation.
+Pochi is a Japan travel recommendation app that has recommendations on places to visit and things to purchase in Japan. Users can view a list of recommendations and click on an item to view the recommended place/thing in detail. Users can also perform CRUD on their own recommendation. (Edit button is in progress)
 
 ## Planning
 
@@ -28,7 +28,7 @@ Here is a link to our [planning board](https://crawling-snarl-6d7.notion.site/b6
 - AAU I want to see an about page with instructions so I know how to use the app
 - AAU I want to see a navigation bar on every page so I can be routed to alternate pages
 - AAU I want to navigate to a page where I can see an organized list of recommendations of places to visit or things to try while visiting Japan
-- AAU I want to see a search bar so I can look up recommendations by name or hashtag
+- AAU I want to see a search bar so I can look up recommendations by name or description (hash tags in the future)
 - AAU I want to be able to be able to click on an item from the list to be taken to a details page where I can see further details (ie. name, location (address), rating, pictures, descriptions, outside links, or hashtags)
 - AAU I want to be taken to a form page where I can add a recommendation of a place or thing
 
@@ -38,14 +38,21 @@ Here is a link to our [planning board](https://crawling-snarl-6d7.notion.site/b6
 - HTML
 - CSS 
 - Javascript
+- Node
+- MongoDB, Mongoose
+- Express
 
 ## Getting Started
 
-Netlify link goes here!!!!!!!
-Github link goes here!!!!!!! Then you can fork and clone the repository and start the app locally.
+[Front-End Deployed App](https://pochi-japan.netlify.app/)
+
+You can fork and clone the repository and start the app locally by typing ```npm start``` then ```npm i``` to install dependencies.
 
 ## Contribution Guidelines
 
 To contribute, give feedback, or identify any bugs please create an issue or pull request.
 
 ## Thank You!
+
+## Credits
+-Manga images by [Saya Miyauchi](https://saya-miyauchi.wixsite.com/3838)
