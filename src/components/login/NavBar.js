@@ -26,6 +26,9 @@ function NavBar({ setUser, initialUser, allResults, lang, setLang }) {
 					<Link to='/'>
 						<button className='nav-butt'>Home</button>
 					</Link>
+					<Link to='/about'>
+						<button className='nav-butt'>About</button>
+					</Link>
 					<Link to='/places'>
 						<button className='nav-butt'>Places</button>
 					</Link>
@@ -73,6 +76,9 @@ function NavBar({ setUser, initialUser, allResults, lang, setLang }) {
 					{/* Links that show regardless of logged status */}
 					<Link to='/'>
 						<button className='日本 nav-butt'>ホーム</button>
+					</Link>
+					<Link to='/about'>
+						<button className='日本 nav-butt'>アバウト</button>
 					</Link>
 					<Link to='/places'>
 						<button className='日本 nav-butt'>場所</button>
