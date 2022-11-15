@@ -106,7 +106,7 @@ function App() {
 				/>
 				<Route path='/success' element={<RegisterSuccess />} />
 				{/* Catch all for pages that do not exist */}
-				<Route path='*' element={<ErrorPage lang={lang} />}></Route>
+				<Route path='/*' element={<ErrorPage lang={lang} />}></Route>
 			</Routes>
 		</div>
 	);
