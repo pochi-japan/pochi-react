@@ -4,7 +4,9 @@ import pochiNoImage from '../../images/pochi-noimage.png';
 function PlacesRecList({ allResults, lang }) {
 	// ******* VARIABLE *******
 	// Filtering out recommendations based on places category
-	const placesResults = allResults.filter((rec) => rec.category === 'place');
+	const placesResults = allResults
+		.filter((rec) => rec.category === 'place')
+		.reverse();
 
 	// ******* RETURN *******
 	return (
