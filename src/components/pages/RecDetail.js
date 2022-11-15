@@ -18,7 +18,7 @@ function RecDetail({ lang }) {
 	const imgs = [
 		{
 			id: 0,
-			value: rec.picture1,
+			value: rec.picture1 || bustedImg,
 			alt: 'picture1',
 		},
 		{

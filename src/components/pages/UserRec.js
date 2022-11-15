@@ -13,7 +13,7 @@ function UserRec({ ownersRec, lang, token }) {
 	const imgs = [
 		{
 			id: 0,
-			value: ownersRec.picture1,
+			value: ownersRec.picture1 || bustedImg,
 			alt: 'picture1',
 		},
 		{
