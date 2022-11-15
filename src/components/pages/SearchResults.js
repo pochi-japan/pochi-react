@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import pochiNoImage from '../../images/pochi-noimage.png';
 
 function SearchResults() {
 	// ******* VARIABLES *******
@@ -18,7 +19,8 @@ function SearchResults() {
 		axios
 			// Extract colon from params.id
 			.get(
-				`http://localhost:8000/api/results/?name=${searchURL}&description=${searchURL}`
+				// `http://localhost:8000/api/results/?name=${searchURL}&description=${searchURL}`
+				`https://pochi-japan.herokuapp.com/api/results/?name=${searchURL}&description=${searchURL}`
 			)
 			.then((res) => {
 				setSearchResults(res.data);
@@ -49,10 +51,7 @@ function SearchResults() {
 											<img
 												className='slideshow'
 												src={res.picture1}
-												onError={(e) =>
-													(e.currentTarget.src =
-														'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-												}
+												onError={(e) => (e.currentTarget.src = pochiNoImage)}
 												alt={res.name}
 											/>
 										</div>

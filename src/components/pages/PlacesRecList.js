@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import pochiNoImage from '../../images/pochi-noimage.png';
 
 function PlacesRecList({ allResults, lang }) {
 	// ******* VARIABLE *******
@@ -27,10 +27,7 @@ function PlacesRecList({ allResults, lang }) {
 											<img
 												className='slideshow'
 												src={res.picture1}
-												onError={(e) =>
-													(e.currentTarget.src =
-														'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-												}
+												onError={(e) => (e.currentTarget.src = pochiNoImage)}
 												alt={res.name}
 											/>
 										</div>

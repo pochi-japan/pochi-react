@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import pochiNoImage from '../../images/pochi-noimage.png';
 
 function MainResults({ allResults, lang }) {
 	// ******* VARIABLES *******
@@ -24,18 +25,15 @@ function MainResults({ allResults, lang }) {
 					return (
 						<div className='card' key={`${res.name}-card`}>
 							<div className='results-img'>
-								<button className='card-butt'>{res.name}</button>
-								<br />
 								<Link to={`/detail/:${res._id}`} key={res.name}>
+									<button className='card-butt'>{res.name}</button>
+									<br />
 									<div className='anime animate__animated animate__backInLeft'>
 										<div className='anime2'>
 											<img
 												className='slideshow'
 												src={res.picture1}
-												onError={(e) =>
-													(e.currentTarget.src =
-														'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif')
-												}
+												onError={(e) => (e.currentTarget.src = pochiNoImage)}
 												alt={res.name}
 											/>
 										</div>

@@ -33,8 +33,8 @@ function RegisterForm({ lang }) {
 		await setRegister(register);
 
 		try {
-			const url = 'http://localhost:8000/api/users/signup';
-			// const url = 'https://pochi-japan.herokuapp.com/api/users/signup';
+			// const url = 'http://localhost:8000/api/users/signup';
+			const url = 'https://pochi-japan.herokuapp.com/api/users/signup';
 			const res = await axios.post(url, register);
 			console.log('Register Response:', res);
 

@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import pochiNoImage from '../../images/pochi-noimage.png';
 
 function UserRec({ ownersRec, lang, token }) {
 	// ******* VARIABLES *******
-	const [updateRec, setUpdateRec] = useState(null);
 	const navigate = useNavigate();
-	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
+
+	const bustedImg = pochiNoImage;
 
 	const imgs = [
 		{
@@ -33,30 +34,26 @@ function UserRec({ ownersRec, lang, token }) {
 	];
 
 	// ******* STATES *******
+	const [updateRec, setUpdateRec] = useState(null);
 	const [pics, setPics] = useState(imgs[0]);
-	const firstPic = pics.value || ownersRec.picture1;
+
+	// ******* FUNCTIONS *******
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
 	};
 
-	useEffect(() => {
-		fetch(`http://localhost:8000/api/id/${ownersRec._id}`).then((res) =>
-			res.json().then((data) => setUpdateRec(data))
-		);
-	}, [ownersRec._id]);
-
 	const handleDelete = async (e) => {
 		e.preventDefault();
 		const config = {
-			url: `http://localhost:8000/api/id/${ownersRec._id}`,
+			// url: `http://localhost:8000/api/id/${ownersRec._id}`,
+			url: `https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`,
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`,
 			},
 		};
-		console.log(config);
 		axios
 			.request(config)
 			.then((res) => {
@@ -71,13 +68,23 @@ function UserRec({ ownersRec, lang, token }) {
 			});
 	};
 
+	// ******* API RESULTS *******
+	useEffect(() => {
+		// fetch(`http://localhost:8000/api/id/${ownersRec._id}`).then((res) =>
+		fetch(`https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`).then(
+			(res) => res.json().then((data) => setUpdateRec(data))
+		);
+	}, [ownersRec._id]);
+
+	// ******* RETURN *******
 	return (
 		<div className='flex user-rec'>
 			{ownersRec ? (
 				<div>
 					{lang ? (
-						<div>
-							<div className='container'>
+						<div className='container'>
+							<div>
+								<hr />
 								<h1>{ownersRec.name}</h1>
 								<p>Rating: {ownersRec.recRating}</p>
 								<p>Description: {ownersRec.description}</p>
@@ -86,7 +93,6 @@ function UserRec({ ownersRec, lang, token }) {
 									Last Updated:
 									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
 								</p>
-								{/* Try to set to a ternary */}
 								<p>Location: {ownersRec.location}</p>
 								<p>URL: {ownersRec.url}</p>
 								<Link to={`/edit/:${ownersRec._id}`}>
@@ -98,24 +104,26 @@ function UserRec({ ownersRec, lang, token }) {
 								<div className='flex curse'>
 									{imgs.map((data, i) => (
 										<div className='thumbnail' key={i}>
+											<hr />
 											<img
 												alt={ownersRec.name}
 												className={pics.id === i ? 'clicked' : ''}
 												src={data.value}
 												onClick={() => handleClick(i)}
-												height='70'
+												height='100'
 												width='100'
 											/>
 										</div>
 									))}
 								</div>
-								<img src={firstPic} alt='focused pic' />
+								<img src={pics.value} alt='focused pic' />
 							</div>
 							<hr />
 						</div>
 					) : (
-						<div>
-							<div className='container'>
+						<div className='container'>
+							<div>
+								<hr />
 								<h1>{ownersRec.name}</h1>
 								<p className='日本'>評価: {ownersRec.recRating}</p>
 								<p className='日本'>詳細: {ownersRec.description}</p>
@@ -124,7 +132,6 @@ function UserRec({ ownersRec, lang, token }) {
 									最終更新日:
 									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
 								</p>
-								{/* Try to set to a ternary */}
 								<p className='日本'>住所: {ownersRec.location}</p>
 								<p className='日本'>URL: {ownersRec.url}</p>
 								<Link to={`/edit/:${ownersRec._id}`}>
@@ -138,18 +145,19 @@ function UserRec({ ownersRec, lang, token }) {
 								<div className='flex curse'>
 									{imgs.map((data, i) => (
 										<div className='thumbnail' key={i}>
+											<hr />
 											<img
 												alt={ownersRec.name}
 												className={pics.id === i ? 'clicked' : ''}
 												src={data.value}
 												onClick={() => handleClick(i)}
-												height='70'
+												height='100'
 												width='100'
 											/>
 										</div>
 									))}
 								</div>
-								<img src={firstPic} alt='focused pic' />
+								<img src={pics.value} alt='focused pic' />
 							</div>
 							<hr />
 						</div>

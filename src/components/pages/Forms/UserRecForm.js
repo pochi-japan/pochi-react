@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
-function UserRecForm({ JWT, user, token, lang }) {
+function UserRecForm({ token, lang }) {
 	// ******* VARIABLES *******
 	const initialRecState = {
 		name: '',

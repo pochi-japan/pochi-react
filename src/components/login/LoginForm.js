@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../utilities/ApiFunctions';
 
-function LoginForm({ token, user, setUser, lang, setToken, setLogin }) {
+function LoginForm({ setUser, lang, setToken }) {
 	// ******* VARIABLES *******
 	const [credentials, setCredentials] = useState({
 		email: '',

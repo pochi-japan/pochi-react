@@ -16,7 +16,7 @@ import ThingsRecList from './components/pages/ThingsRecList';
 import ErrorPage from './components/pages/ErrorPage';
 
 function App() {
-	// ******* INITIAL STATE FOR USER *******
+	// ******* VARIABLE *******
 	const initialUser = {
 		email: '',
 		password: '',
@@ -42,7 +42,8 @@ function App() {
 	useEffect(() => {
 		//update to heroku later
 		axios
-			.get(`http://localhost:8000/api`)
+			// .get(`http://localhost:8000/api`)
+			.get(`https://pochi-japan.herokuapp.com/api`)
 			.then((res) => {
 				setAllResults(res.data);
 			})
@@ -58,13 +59,12 @@ function App() {
 	return (
 		<div className='App'>
 			<NavBar
-				token={token}
-				setToken={setToken}
 				setUser={setUser}
+				initialUser={initialUser}
 				allResults={allResults}
+				token={token}
 				lang={lang}
 				setLang={setLang}
-				initialUser={initialUser}
 			/>
 			<Routes>
 				<Route
@@ -84,10 +84,8 @@ function App() {
 					path='/auth'
 					element={
 						<AuthPage
-							user={user}
-							setUser={setUser}
-							token={token}
 							setToken={setToken}
+							setUser={setUser}
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
 							lang={lang}
@@ -98,18 +96,13 @@ function App() {
 				<Route
 					path='/user-recs'
 					element={
-						<UserRecList
-							user={user}
-							allResults={allResults}
-							lang={lang}
-							token={token}
-						/>
+						<UserRecList allResults={allResults} lang={lang} token={token} />
 					}
 				/>
 				<Route path='/edit/:id' element={<RecEditForm />}></Route>
 				<Route
 					path='/user-rec-form'
-					element={<UserRecForm user={user} token={token} lang={lang} />}
+					element={<UserRecForm token={token} lang={lang} />}
 				/>
 				<Route path='/success' element={<RegisterSuccess />} />
 				{/* Catch all for pages that do not exist */}

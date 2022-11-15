@@ -86,7 +86,6 @@ input:focus {
 
 hr {
   border: dashed .5rem whitesmoke;
-  margin-top: 5rem;
   border-radius: 1rem;
 }
 
@@ -291,18 +290,12 @@ textarea {
   border: 1px solid black;
   background-image: url(/src/images/dog-doo.jpeg);
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  border-radius: .3rem;
+  margin: 3rem;
 }
 
-/* @media only screen and (max-width: 600px) {
-  .main {
-      border: 3px solid black;
-      background-image: url('./images/love-manga.jpeg');
-      box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
-      border-radius: .3rem;
-      overflow-y: scroll;
-      overflow-x: visible;
-      white-space: nowrap;
-      padding: 3rem;
-      scroll-behavior: smooth;
-    }
-} */
+.detail {
+  background-image: url(/src/images/hi5.jpeg);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  height: fit-content;
+}

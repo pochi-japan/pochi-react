@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import pochiNoImage from '../../images/pochi-noimage.png';
 
 function RecDetail({ lang }) {
+	// ******* STATES *******
+	const [rec, setRec] = useState({});
+	const [error, setError] = useState('');
+
 	// ******* VARIABLES *******
 	let params = useParams();
 
 	const endPoint = params.id.substring(1);
 
-	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
-
-	const firstPic = pics.value || rec.picture1;
+	const bustedImg = pochiNoImage;
 
 	const imgs = [
 		{
@@ -35,9 +38,8 @@ function RecDetail({ lang }) {
 		},
 	];
 
-	// ******* STATES *******
-	const [rec, setRec] = useState({});
-	const [error, setError] = useState('');
+	// ******* STATE *******
+	// This state has to be under the imgs constant
 	const [pics, setPics] = useState(imgs[0]);
 
 	// ******* FUNCTIONS *******
@@ -51,10 +53,10 @@ function RecDetail({ lang }) {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${endPoint}`)
+			// .get(`http://localhost:8000/api/id/${endPoint}`)
+			.get(`https://pochi-japan.herokuapp.com/api/id/${endPoint}`)
 			.then((res) => {
 				setRec(res.data);
-				console.log('res.data in RecDetail', res.data);
 			})
 			.catch((err) => {
 				setError(
@@ -66,10 +68,10 @@ function RecDetail({ lang }) {
 	}, []);
 
 	return (
-		<div className='flex'>
+		<div className='container flex detail'>
 			{lang ? (
-				<div>
-					<div className='container'>
+				<div className='container'>
+					<div>
 						<h1>{rec.name}</h1>
 						<p>Rating: {rec.recRating}</p>
 						<p>Description: {rec.description}</p>
@@ -78,14 +80,13 @@ function RecDetail({ lang }) {
 							Last Updated:
 							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
 						</p>
-						{/* Try to set to a ternary */}
 						<p>Location: {rec.location}</p>
 						<p>URL: {rec.url}</p>
 					</div>
 				</div>
 			) : (
-				<div>
-					<div className='container'>
+				<div className='container'>
+					<div>
 						<h1>{rec.name}</h1>
 						<p className='日本'>評価: {rec.recRating}</p>
 						<p className='日本'>詳細: {rec.description}</p>
@@ -94,7 +95,6 @@ function RecDetail({ lang }) {
 							最終更新日:
 							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
 						</p>
-						{/* Try to set to a ternary */}
 						<p className='日本'>住所: {rec.location}</p>
 						<p className='日本'>URL: {rec.url}</p>
 					</div>
@@ -104,18 +104,19 @@ function RecDetail({ lang }) {
 				<div className='flex curse'>
 					{imgs.map((data, i) => (
 						<div className='thumbnail' key={i}>
+							<hr />
 							<img
 								alt={rec.name}
 								className={pics.id === i ? 'clicked' : ''}
 								src={data.value}
 								onClick={() => handleClick(i)}
-								height='70'
+								height='100'
 								width='100'
 							/>
 						</div>
 					))}
 				</div>
-				<img src={firstPic} alt='focused pic' />
+				<img src={pics.value} alt='focused pic' />
 			</div>
 		</div>
 	);

@@ -1,9 +1,11 @@
 import UserRec from './UserRec';
 
-function UserRecList({ allResults, user, lang, token }) {
+function UserRecList({ allResults, lang, token }) {
+	// ******* VARIABLES *******
 	const usersEmail = localStorage.getItem('email');
 	const ownerResults = allResults.filter((rec) => rec.owner === usersEmail);
 
+	// ******* RETURN *******
 	return (
 		<div>
 			{lang ? (

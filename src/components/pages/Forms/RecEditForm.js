@@ -22,7 +22,11 @@ function EditForm() {
 	const handleEdit = (e) => {
 		e.preventDefault();
 		axios
-			.patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
+			// .patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
+			.patch(
+				`https://pochi-japan.herokuapp.com/api/id/${params.id.substring(1)}`,
+				editRec
+			)
 			.then((res) => res.data);
 		navigate('/user-rec');
 	};
@@ -32,7 +36,8 @@ function EditForm() {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${endPoint}`)
+			// .get(`http://localhost:8000/api/id/${endPoint}`)
+			.get(`https://pochi-japan.herokuapp.com/api/id/${endPoint}`)
 			.then((res) => {
 				setEditRec(res.data);
 			})
