@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
 
-function MainResults({ randomResults, error, lang }) {
+function MainResults({ allResults, lang }) {
+	// ******* VARIABLES *******
+	// Save allResults to a new variable so it doesn't mutate allResults for other pages
+	let randomResults = allResults;
+
+	// Function to shuffle the results
+	let shuffledResults = randomResults.sort(function () {
+		return Math.random() - 0.5;
+	});
+
+	// ******* RETURN *******
 	return (
 		<section>
 			{lang ? (
@@ -10,10 +20,12 @@ function MainResults({ randomResults, error, lang }) {
 			)}
 			<div className='main'>
 				{/* Limit random results to 10 images, set fallback image if image is null or gives an invalid image */}
-				{randomResults.slice(0, 9).map((res) => {
+				{shuffledResults.slice(0, 9).map((res) => {
 					return (
 						<div className='card' key={`${res.name}-card`}>
 							<div className='results-img'>
+								<button className='card-butt'>{res.name}</button>
+								<br />
 								<Link to={`/detail/:${res._id}`} key={res.name}>
 									<div className='anime animate__animated animate__backInLeft'>
 										<div className='anime2'>
@@ -28,16 +40,11 @@ function MainResults({ randomResults, error, lang }) {
 											/>
 										</div>
 									</div>
-									<br />
-									<h1>
-										<button>{res.name}</button>
-									</h1>
 								</Link>
 							</div>
 						</div>
 					);
 				})}
-				{error ? <div>{error}</div> : <div>{''}</div>}
 			</div>
 		</section>
 	);

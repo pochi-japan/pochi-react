@@ -4,6 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 function UserRecForm({ JWT, user, token, lang }) {
+	// ******* VARIABLES *******
 	const initialRecState = {
 		name: '',
 		description: '',
@@ -19,13 +20,14 @@ function UserRecForm({ JWT, user, token, lang }) {
 		owner: localStorage.getItem('email'),
 	};
 
-	// console.log({ user });
-
 	const navigate = useNavigate();
+
+	// ******* STATES *******
 	const [rec, setRec] = useState(initialRecState);
 	const [error, setError] = useState('');
 	const [data, setData] = useState(initialRecState);
 
+	// ******* FUNCTIONS *******
 	function handleChange(e) {
 		// Destructure event to access value, type, id
 		const { value, type, id } = e.target;
@@ -39,9 +41,6 @@ function UserRecForm({ JWT, user, token, lang }) {
 			});
 		}
 	}
-	console.log('data', data);
-	console.log('token', token);
-	console.log('user email', user.email);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -71,6 +70,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 			});
 	};
 
+	// ******* RETURN *******
 	return (
 		<div>
 			{lang ? (
@@ -155,6 +155,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									name='picture1'
 									value={data.picture1}
 									onChange={handleChange}
+									required
 								/>
 								<br />
 								<label htmlFor='picture2'>Picture #2: </label>
@@ -314,6 +315,7 @@ function UserRecForm({ JWT, user, token, lang }) {
 									name='picture1'
 									value={data.picture1}
 									onChange={handleChange}
+									required
 								/>
 								<br />
 								<label className='日本' htmlFor='picture2'>

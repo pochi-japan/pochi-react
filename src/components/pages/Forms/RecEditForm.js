@@ -4,17 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 function EditForm() {
+	// ******* VARIABLES *******
 	const navigate = useNavigate();
 	const params = useParams();
 	const endPoint = params.id.substring(1);
+
+	// ******* STATES *******
 	const [editRec, setEditRec] = useState(null);
 	const [updateRec, setUpdateRec] = useState(null);
 	const [err, setError] = useState(null);
 
+	// ******* FUNCTIONS *******
 	const handleChange = (e) => {
 		setUpdateRec({ ...updateRec, [e.target.id]: e.target.value });
 	};
 
+	const handleEdit = (e) => {
+		e.preventDefault();
+		axios
+			.patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
+			.then((res) => res.data);
+		navigate('/user-rec');
+	};
+
+	// ******* API RESULTS *******
 	useEffect(() => {
 		//update to heroku later
 		axios
@@ -28,14 +41,7 @@ function EditForm() {
 			});
 	}, ['']);
 
-	const handleEdit = (e) => {
-		e.preventDefault();
-		axios
-			.patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
-			.then((res) => res.data);
-		navigate('/user-rec');
-	};
-
+	// ******* RETURN *******
 	return (
 		<div>
 			Edit Page

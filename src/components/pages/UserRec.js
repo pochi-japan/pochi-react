@@ -3,160 +3,165 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function UserRec({ rec, lang }) {
+function UserRec({ ownersRec, lang, token }) {
+	// ******* VARIABLES *******
 	const [updateRec, setUpdateRec] = useState(null);
-
 	const navigate = useNavigate();
 	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
 
 	const imgs = [
 		{
 			id: 0,
-			value: rec.picture1,
+			value: ownersRec.picture1,
 			alt: 'picture1',
 		},
 		{
 			id: 1,
-			value: rec.picture2 || bustedImg,
+			value: ownersRec.picture2 || bustedImg,
 			alt: 'picture2',
 		},
 		{
 			id: 2,
-			value: rec.picture3 || bustedImg,
+			value: ownersRec.picture3 || bustedImg,
 			alt: 'picture3',
 		},
 		{
 			id: 3,
-			value: rec.picture4 || bustedImg,
+			value: ownersRec.picture4 || bustedImg,
 			alt: 'picture4',
 		},
 	];
 
+	// ******* STATES *******
 	const [pics, setPics] = useState(imgs[0]);
-	const firstPic = pics.value || rec.picture1;
+	const firstPic = pics.value || ownersRec.picture1;
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:8000/api/id/${rec._id}`).then((res) =>
+		fetch(`http://localhost:8000/api/id/${ownersRec._id}`).then((res) =>
 			res.json().then((data) => setUpdateRec(data))
 		);
-	}, [rec._id]);
+	}, [ownersRec._id]);
 
-	const handleDelete = () => {
-		axios.delete(`http://localhost:8000/api/id/${rec._id}`);
-		navigate('/user-rec');
+	const handleDelete = async (e) => {
+		e.preventDefault();
+		const config = {
+			url: `http://localhost:8000/api/id/${ownersRec._id}`,
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		};
+		console.log(config);
+		axios
+			.request(config)
+			.then((res) => {
+				if (res.status === 200) {
+					navigate('/user-recs');
+					// Make the window refresh to show new rec for now - fix this code to use state in the future
+					window.location.reload(true);
+				}
+			})
+			.catch((err) => {
+				console.log('Error', err.message);
+			});
 	};
 
-	// Have to use authorization bearer in handleDelete like below...
-	// const handleSubmit = async (e) => {
-	// 		e.preventDefault();
-
-	// 		try {
-	// 			const url = 'http://localhost:8000/api';
-	// 			const res = await axios.post(
-	// 				url,
-	// 				{ ...rec, hashtags: rec.hashtags.split(' ') },
-	// 				{
-	// 					// Bearer JWT is not working after refresh?
-	// 					headers: { Authorization: `Bearer ${JWT}` },
-	// 				}
-	// 			);
-
-	// 			if (res.status === 200) {
-	// 				setRec(initialRecState);
-	// 				navigate('/user-recs');
-	// 			}
-	// 		} catch (err) {
-	// 			setError('Upload Failed. Please try again.');
-	// 		}
-	// 	};
-
-	if (!rec) {
-		return <h1>No results found...</h1>;
-	}
-
 	return (
-		<div className='flex'>
-			{lang ? (
+		<div className='flex user-rec'>
+			{ownersRec ? (
 				<div>
-					<div className='container'>
-						<h1>{rec.name}</h1>
-						<p>Rating: {rec.recRating}</p>
-						<p>Description: {rec.description}</p>
-						{/* Modifies the updated timestamp to MM/DD/YYYY format */}
-						<p>
-							Last Updated:
-							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
-						</p>
-						{/* Try to set to a ternary */}
-						<p>Location: {rec.location}</p>
-						<p>URL: {rec.url}</p>
-						<Link to={`/edit/:${rec._id}`}>
-							<button>Edit</button>
-						</Link>
-						<button onClick={handleDelete}>Delete</button>
-					</div>
-					<div className='pics container'>
-						<div className='flex curse'>
-							{imgs.map((data, i) => (
-								<div className='thumbnail' key={i}>
-									<img
-										alt={rec.name}
-										className={pics.id === i ? 'clicked' : ''}
-										src={data.value}
-										onClick={() => handleClick(i)}
-										height='70'
-										width='100'
-									/>
+					{lang ? (
+						<div>
+							<div className='container'>
+								<h1>{ownersRec.name}</h1>
+								<p>Rating: {ownersRec.recRating}</p>
+								<p>Description: {ownersRec.description}</p>
+								{/* Modifies the updated timestamp to MM/DD/YYYY format */}
+								<p>
+									Last Updated:
+									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
+								</p>
+								{/* Try to set to a ternary */}
+								<p>Location: {ownersRec.location}</p>
+								<p>URL: {ownersRec.url}</p>
+								<Link to={`/edit/:${ownersRec._id}`}>
+									<button>Edit</button>
+								</Link>
+								<button onClick={handleDelete}>Delete</button>
+							</div>
+							<div className='pics container'>
+								<div className='flex curse'>
+									{imgs.map((data, i) => (
+										<div className='thumbnail' key={i}>
+											<img
+												alt={ownersRec.name}
+												className={pics.id === i ? 'clicked' : ''}
+												src={data.value}
+												onClick={() => handleClick(i)}
+												height='70'
+												width='100'
+											/>
+										</div>
+									))}
 								</div>
-							))}
+								<img src={firstPic} alt='focused pic' />
+							</div>
+							<hr />
 						</div>
-						<img src={firstPic} alt='focused pic' />
-					</div>
-					<hr />
+					) : (
+						<div>
+							<div className='container'>
+								<h1>{ownersRec.name}</h1>
+								<p className='日本'>評価: {ownersRec.recRating}</p>
+								<p className='日本'>詳細: {ownersRec.description}</p>
+								{/* Modifies the updated timestamp to MM/DD/YYYY format */}
+								<p className='日本'>
+									最終更新日:
+									{new Date(ownersRec.updatedAt).toLocaleDateString('en-US')}
+								</p>
+								{/* Try to set to a ternary */}
+								<p className='日本'>住所: {ownersRec.location}</p>
+								<p className='日本'>URL: {ownersRec.url}</p>
+								<Link to={`/edit/:${ownersRec._id}`}>
+									<button className='日本'>修正</button>
+								</Link>
+								<button className='日本' onClick={handleDelete}>
+									削除
+								</button>
+							</div>
+							<div className='pics container'>
+								<div className='flex curse'>
+									{imgs.map((data, i) => (
+										<div className='thumbnail' key={i}>
+											<img
+												alt={ownersRec.name}
+												className={pics.id === i ? 'clicked' : ''}
+												src={data.value}
+												onClick={() => handleClick(i)}
+												height='70'
+												width='100'
+											/>
+										</div>
+									))}
+								</div>
+								<img src={firstPic} alt='focused pic' />
+							</div>
+							<hr />
+						</div>
+					)}
 				</div>
 			) : (
 				<div>
-					<div className='container'>
-						<h1>{rec.name}</h1>
-						<p className='日本'>評価: {rec.recRating}</p>
-						<p className='日本'>詳細: {rec.description}</p>
-						{/* Modifies the updated timestamp to MM/DD/YYYY format */}
-						<p className='日本'>
-							最終更新日:
-							{new Date(rec.updatedAt).toLocaleDateString('en-US')}
-						</p>
-						{/* Try to set to a ternary */}
-						<p className='日本'>住所: {rec.location}</p>
-						<p className='日本'>URL: {rec.url}</p>
-						<Link to={`/edit/:${rec._id}`}>
-							<button className='日本'>修正</button>
-						</Link>
-						<button className='日本' onClick={handleDelete}>
-							削除
-						</button>
-					</div>
-					<div className='pics container'>
-						<div className='flex curse'>
-							{imgs.map((data, i) => (
-								<div className='thumbnail' key={i}>
-									<img
-										alt={rec.name}
-										className={pics.id === i ? 'clicked' : ''}
-										src={data.value}
-										onClick={() => handleClick(i)}
-										height='70'
-										width='100'
-									/>
-								</div>
-							))}
-						</div>
-						<img src={firstPic} alt='focused pic' />
-					</div>
-					<hr />
+					{lang ? (
+						<h1>No results found...</h1>
+					) : (
+						<h1 className='日本'>検索結果が見つかりませんでした...</h1>
+					)}
 				</div>
 			)}
 		</div>

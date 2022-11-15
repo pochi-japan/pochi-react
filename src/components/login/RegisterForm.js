@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useState } from 'react';
 
 function RegisterForm({ lang }) {
-	const defaultRegister = {
+	// ******* VARIABLES *******
+	const initialRegister = {
 		name: '',
 		email: '',
 		password: '',
@@ -11,11 +12,14 @@ function RegisterForm({ lang }) {
 	};
 
 	const navigate = useNavigate();
-	const [register, setRegister] = useState(defaultRegister);
+
+	// ******* STATES *******
+	const [register, setRegister] = useState(initialRegister);
 	const [duplicateUser, setDuplicateUser] = useState(false);
 	const [error, setError] = useState('');
 	const disable = register.password !== register.confirm;
 
+	// ******* FUNCTIONS *******
 	function handleChange(e) {
 		setRegister({
 			...register,
@@ -36,7 +40,7 @@ function RegisterForm({ lang }) {
 
 			if (res.status === 201) {
 				setDuplicateUser(false);
-				setRegister(defaultRegister);
+				setRegister(initialRegister);
 				navigate('/success');
 			}
 		} catch (err) {
@@ -45,6 +49,7 @@ function RegisterForm({ lang }) {
 		}
 	};
 
+	// ******* RETURN *******
 	return (
 		<div>
 			{lang ? (

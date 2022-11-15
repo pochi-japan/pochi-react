@@ -85,7 +85,7 @@ input:focus {
 }
 
 hr {
-  border: dashed .5rem black;
+  border: dashed .5rem whitesmoke;
   margin-top: 5rem;
   border-radius: 1rem;
 }
@@ -182,7 +182,7 @@ textarea {
   height: 2.6rem;
   width: 2.6rem;
   border-radius: 1rem;
-  border: whitesmoke 4px solid;
+  border: grey 4px solid;
 }
 
 .main {
@@ -221,11 +221,14 @@ textarea {
 }
 
 .search-dropdown {
-  border-radius: .3rem;
-  color: white;
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+  color: rgb(167, 58, 62);
+  background: whitesmoke;
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .pics {
@@ -252,8 +255,42 @@ textarea {
 }
 
 .nav-butt {
-  box-shadow: .18rem .28rem whitesmoke;
+  box-shadow: .18rem .28rem grey;
   border: 3px solid black;
+}
+
+.card-butt {
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+
+.slideshow {
+  height: 24rem;
+  width: 24rem;
+}
+
+.error {
+  width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-container {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 45rem;
+  height: 65rem;
+  background-image: url('/src/images/error.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  border-radius: .3rem;
+}
+
+.user-rec {
+  border: 1px solid black;
+  background-image: url(/src/images/dog-doo.jpeg);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
 }
 
 /* @media only screen and (max-width: 600px) {

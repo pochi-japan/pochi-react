@@ -3,31 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function RecDetail({ lang }) {
-	// States
-	const [rec, setRec] = useState({});
-	const [error, setError] = useState(null);
+	// ******* VARIABLES *******
 	let params = useParams();
+
 	const endPoint = params.id.substring(1);
 
-	// console.log(params.id);
-
-	useEffect(() => {
-		//update to heroku later
-		axios
-			// Extract colon from params.id with substring
-			.get(`http://localhost:8000/api/id/${endPoint}`)
-			.then((res) => {
-				setRec(res.data);
-				console.log('res.data in RecDetail', res.data);
-			})
-			.catch((err) => {
-				setError(err.message);
-			});
-	}, []);
-
-	console.log('rec in RecDetail', rec);
-
 	const bustedImg = 'https://media.giphy.com/media/qdFCb59rXKZ1K/giphy.gif';
+
+	const firstPic = pics.value || rec.picture1;
 
 	const imgs = [
 		{
@@ -52,13 +35,35 @@ function RecDetail({ lang }) {
 		},
 	];
 
-	// It's not working for the first image when there is no image :(
+	// ******* STATES *******
+	const [rec, setRec] = useState({});
+	const [error, setError] = useState('');
 	const [pics, setPics] = useState(imgs[0]);
-	const firstPic = pics.value || rec.picture1;
+
+	// ******* FUNCTIONS *******
 	const handleClick = (idx) => {
 		const picSlider = imgs[idx];
 		setPics(picSlider);
 	};
+
+	// ******* API RESULTS *******
+	useEffect(() => {
+		//update to heroku later
+		axios
+			// Extract colon from params.id with substring
+			.get(`http://localhost:8000/api/id/${endPoint}`)
+			.then((res) => {
+				setRec(res.data);
+				console.log('res.data in RecDetail', res.data);
+			})
+			.catch((err) => {
+				setError(
+					<div className='日本'>
+						{lang ? 'No Results' : 'ページが見つかりませんでした'}
+					</div>
+				);
+			});
+	}, []);
 
 	return (
 		<div className='flex'>

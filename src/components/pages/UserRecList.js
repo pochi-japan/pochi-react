@@ -1,10 +1,8 @@
 import UserRec from './UserRec';
-import { useNavigate, useLocation } from 'react-router-dom';
 
-function UserRecList({ allResults, user, lang }) {
-	const navigate = useNavigate();
-	const location = useLocation();
-	const ownerResults = allResults.filter((rec) => rec.owner === user.email);
+function UserRecList({ allResults, user, lang, token }) {
+	const usersEmail = localStorage.getItem('email');
+	const ownerResults = allResults.filter((rec) => rec.owner === usersEmail);
 
 	return (
 		<div>
@@ -13,8 +11,13 @@ function UserRecList({ allResults, user, lang }) {
 			) : (
 				<h1 className='日本'>ユーザーのおすすめ</h1>
 			)}
-			{allResults.map((rec) => (
-				<UserRec rec={rec} lang={lang} key={rec._id} />
+			{ownerResults.map((ownersRec) => (
+				<UserRec
+					ownersRec={ownersRec}
+					lang={lang}
+					key={ownersRec._id}
+					token={token}
+				/>
 			))}
 		</div>
 	);

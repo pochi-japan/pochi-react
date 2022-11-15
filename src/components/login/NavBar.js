@@ -2,30 +2,22 @@ import { useNavigate, Link } from 'react-router-dom';
 import Search from '../pages/other/Search';
 import pochiLogo from '../../images/pochilogoimg.png';
 
-function NavBar({
-	token,
-	setToken,
-	setUser,
-	initialUser,
-	allResults,
-	lang,
-	setLang,
-	login,
-	setLogin,
-}) {
+function NavBar({ setUser, initialUser, allResults, lang, setLang }) {
+	// ******* VARIABLES *******
 	let navigate = useNavigate();
+	// Check if user is logged in using localStorage key that we saved at log in
+	const loggedInLocalStorage = localStorage.getItem('loggedIn');
 
-	// Log Out
+	// ******* FUNCTIONS *******
+	// Log Out: Clear local storage data & navigate user to homepage
 	function handleLogOut(e) {
 		e.preventDefault();
-		setLogin(false); //can be null as well?
 		setUser(initialUser);
 		localStorage.clear();
 		navigate('/');
 	}
 
-	const loggedInLocalStorage = localStorage.getItem('loggedIn');
-
+	// ******* RETURN *******
 	return (
 		<nav className='nav'>
 			{lang ? (
@@ -116,7 +108,9 @@ function NavBar({
 						</div>
 					)}
 					<img className='logo' src={pochiLogo} alt='pochi-logo-img' />
-					<button onClick={() => setLang(true)}>🇺🇸EN</button>
+					<button className='nav-butt' onClick={() => setLang(true)}>
+						🇺🇸EN
+					</button>
 					<button className='日本 nav-butt' onClick={() => setLang(false)}>
 						🇯🇵日本
 					</button>

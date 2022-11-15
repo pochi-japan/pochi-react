@@ -13,7 +13,7 @@ function AuthPage({
 	lang,
 	setLogin,
 }) {
-	// const [showRegister, setShowRegister] = useState(false);
+	// ******* RETURN *******
 	return (
 		<main>
 			{lang ? (

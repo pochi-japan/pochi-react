@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function SearchResults() {
+	// ******* VARIABLES *******
+	const urlParams = new URLSearchParams(window.location.search);
+	// Grabs the search param text after q= in URL
+	let searchURL = urlParams.get('q');
+
+	// ******* STATES *******
 	const [searchResults, setSearchResults] = useState([]);
 	const [error, setError] = useState(null);
-	// Grabs the search param text after q= in URL
-	const urlParams = new URLSearchParams(window.location.search);
-	let searchURL = urlParams.get('q');
-	// console.log('searchURL', searchURL);
 
+	// ******* API RESULTS *******
 	useEffect(() => {
 		//update to heroku later
 		axios
@@ -30,6 +33,7 @@ function SearchResults() {
 		return <h2>No Results</h2>;
 	}
 
+	// ******* RETURN *******
 	return (
 		<section>
 			Showing Results for: {`${searchURL}`}

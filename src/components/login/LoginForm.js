@@ -3,13 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { signIn } from '../../utilities/ApiFunctions';
 
 function LoginForm({ token, user, setUser, lang, setToken, setLogin }) {
-	const [error, setError] = useState('');
+	// ******* VARIABLES *******
 	const [credentials, setCredentials] = useState({
 		email: '',
 		password: '',
 	});
 
 	const navigate = useNavigate();
+
+	// ******* STATES *******
+	const [error, setError] = useState('');
 
 	function handleChange(e) {
 		setCredentials({
@@ -19,8 +22,7 @@ function LoginForm({ token, user, setUser, lang, setToken, setLogin }) {
 		setError('');
 	}
 
-	// console.log('creds', credentials);
-
+	// ******* FUNCTIONS *******
 	function handleSubmit(e) {
 		e.preventDefault();
 		signIn(credentials)
@@ -28,31 +30,24 @@ function LoginForm({ token, user, setUser, lang, setToken, setLogin }) {
 				localStorage.setItem('token', res.token);
 				localStorage.setItem('loggedIn', true);
 				localStorage.setItem('email', res.email);
-				// localStorage.setItem('email', credentials.email);
-				console.log('res', res);
-				// console.log('res.data', res.data);
-				// console.log('res.data.token', res.data.token);
-				// console.log('user: ', user);
 				setToken(res.token);
-				setLogin(true);
 				setUser(credentials);
-				// console.log('credentials', credentials);
-				// console.log('checking token', token);
-				console.log('localStorage', localStorage);
 				navigate('/');
 			})
-			.catch((err) => setError('Login failed. Try Again.'));
+			.catch((err) =>
+				setError(
+					<div className='日本'>
+						{lang
+							? 'Login credentials failed. Try Again.'
+							: 'ログインに失敗しました。もう一度入力してください。'}
+					</div>
+				)
+			);
 	}
 
+	// ******* RETURN *******
 	return (
 		<div>
-			{/* Aria-live is for accessibility (screen readers) */}
-			{/* <p
-				ref={errRef}
-				className={errMsg ? 'errmsg' : 'offscreen'}
-				aria-live='assertive'>
-				{errMsg}
-			</p> */}
 			{lang ? (
 				<div>
 					<div onSubmit={handleSubmit}>

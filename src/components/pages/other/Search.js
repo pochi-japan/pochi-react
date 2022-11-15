@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Search({ allResults, lang }) {
-	const [searchString, setSearchString] = useState('');
+	// ******* VARIABLES *******
 	const navigate = useNavigate();
 
+	// ******* STATE *******
+	const [searchString, setSearchString] = useState('');
+
+	// ******* FUNCTIONS *******
 	const handleChange = (e) => {
 		setSearchString(e.target.value);
 	};
@@ -14,6 +18,7 @@ function Search({ allResults, lang }) {
 		navigate(`/results/?q=${searchTerm}&description=${searchTerm}`);
 	};
 
+	// ******* RETURN *******
 	return (
 		<div>
 			<input type='text' value={searchString} onChange={handleChange} />
