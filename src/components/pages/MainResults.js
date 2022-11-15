@@ -22,7 +22,7 @@ function MainResults({ allResults, lang }) {
 			) : (
 				<div>
 					<h1 className='ポチ 日本'>ポチへようこそ</h1>
-					<h3>日本のおすすめ色々！</h3>
+					<h3>日本でのおすすめ色々！</h3>
 				</div>
 			)}
 			<div className='main'>
