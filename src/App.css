@@ -1,38 +1,301 @@
 .App {
   text-align: center;
+  text-shadow: .5px .5px .10px black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background: whitesmoke;
+  font-family: 'Jua', sans-serif;
+  letter-spacing: .1rem;
+  scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 3.3rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+nav {
+  background: black;
+  border-radius: .3rem;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.日本 {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: bold;
+}
+
+a {
+  color: rgba(167, 58, 62, .7);
+  transition: 1s ease-in-out;
+}
+
+a:hover {
+  color: black;
+  transition: .5s;
+}
+
+img {
+  border: 3px solid black;
+  border-radius: .3rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: 1s ease-in-out;
+}
+
+button {
+  font-family: 'Jua', sans-serif;
+  font-size: 1rem;
+  text-shadow: .5px .5px .10px black;
+  box-shadow: .18rem .28rem black;
+  border-radius: .3rem;
+  padding: .5rem;
+  margin: .3rem;
   color: white;
+  border: 3px solid black;
+  background-image: linear-gradient(30deg, rgba(167, 58, 62, .8) 50%, transparent 50%);
+  background-size: 500px;
+  transition: 2s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-position: 100%;
+  color: rgba(167, 58, 62, .8);
+  box-shadow: none;
+  cursor: pointer;
+  transition: 1.5s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  width: 12rem;
+  color: rgb(167, 58, 62);
+  border: rgb(167, 58, 62) 1px solid;
+  border-radius: .3rem;
+  font-size: 1.2rem;
+  font-family: 'Jua', sans-serif;
+  background-color: rgb(215, 215, 215);
+}
+
+input:focus {
+  outline: none !important;
+  border: 3px solid rgb(167, 58, 62);
+}
+
+hr {
+  border: dashed .5rem whitesmoke;
+  border-radius: 1rem;
+}
+
+.radio {
+  accent-color: rgb(167, 58, 62);
+  margin-left: -6rem;
+}
+
+.label {
+  margin-left: -4rem;
+}
+
+textarea:focus {
+  outline: none !important;
+  border: 3px solid rgb(167, 58, 62);
+}
+
+textarea {
+  resize: none;
+  color: rgb(167, 58, 62);
+  border: rgb(167, 58, 62) 1px solid;
+  font-size: 1.2rem;
+  font-family: 'Jua', sans-serif;
+  background-color: rgb(215, 215, 215);
+  border-radius: .3rem;
+}
+
+.login-form {
+  height: 15rem;
+  margin-top: 5rem;
+  padding: 8rem;
+  border: 3px solid black;
+  font-size: .8rem;
+  border-radius: .3rem;
+  width: fit-content;
+  background-image: url('./images/shiba-manga.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  background-position: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signup-form {
+  height: 20rem;
+  margin-top: 5rem;
+  padding: 8rem;
+  border: 3px solid black;
+  font-size: .8rem;
+  border-radius: .3rem;
+  width: fit-content;
+  background-image: url('./images/leash-manga.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  background-position: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rec-form {
+  height: 60rem;
+  margin-top: 5rem;
+  padding: 8rem;
+  border: 3px solid black;
+  font-size: .8rem;
+  border-radius: .3rem;
+  width: fit-content;
+  background-image: url('./images/happy-manga.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  background-position: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  margin-top: 5rem;
+  border: 3px solid black;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: .3rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 2.6rem;
+  width: 2.6rem;
+  border-radius: 1rem;
+  border: grey 4px solid;
+}
+
+.main {
+  border: 3px solid black;
+  background-image: url('./images/love-manga.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+  border-radius: .3rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 3rem;
+  scroll-behavior: smooth;
+}
+
+.card {
+  display: inline-block;
+  margin: 1rem;
+}
+
+.anime {
+  animation: backInLeft;
+    animation-duration: 1.5s;
+}
+
+.anime:hover {
+  opacity: 1;
+}
+
+.anime2:hover {
+  animation: pulse;
+  animation-duration: 2s;
+}
+
+.ポチ {
+  font-size: 3rem;
+}
+
+.search-dropdown {
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem;
+  color: rgb(167, 58, 62);
+  background: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.pics {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.flex_row {
+  justify-content: center;
+  display: flex;
+  padding-top: 20px;
+}
+
+.thumbnail {
+  padding-left: 20px;
+}
+
+.clicked {
+  border: 5px solid rgb(167, 58, 62);
+}
+
+.curse {
+  cursor: pointer;
+}
+
+.nav-butt {
+  box-shadow: .18rem .28rem grey;
+  border: 3px solid black;
+}
+
+.card-butt {
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+
+.slideshow {
+  height: 24rem;
+  width: 24rem;
+}
+
+.error {
+  width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-container {
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 45rem;
+  height: 65rem;
+  background-image: url('/src/images/error.jpeg');
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  border-radius: .3rem;
+}
+
+.user-rec {
+  border: 1px solid black;
+  background-image: url(/src/images/dog-doo.jpeg);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  border-radius: .3rem;
+  margin: 3rem;
+}
+
+.detail {
+  background-image: url(/src/images/hi5.jpeg);
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.2);
+  height: fit-content;
 }
