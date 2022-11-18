@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import pochiNoImage from '../../images/pochi-noimage.png';
 
-function RecDetail({ lang }) {
+function RecDetail({ lang, baseURL }) {
 	// ******* STATES *******
 	const [rec, setRec] = useState({});
 	const [error, setError] = useState('');
@@ -53,8 +53,7 @@ function RecDetail({ lang }) {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			// .get(`http://localhost:8000/api/id/${endPoint}`)
-			.get(`https://pochi-japan.herokuapp.com/api/id/${endPoint}`)
+			.get(`${baseURL}id/${endPoint}`)
 			.then((res) => {
 				setRec(res.data);
 			})

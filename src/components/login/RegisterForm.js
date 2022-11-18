@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 
-function RegisterForm({ lang }) {
+function RegisterForm({ lang, baseURL }) {
 	// ******* VARIABLES *******
 	const initialRegister = {
 		name: '',
@@ -32,8 +32,7 @@ function RegisterForm({ lang }) {
 		await setRegister(register);
 
 		try {
-			// const url = 'http://localhost:8000/api/users/signup';
-			const url = 'https://pochi-japan.herokuapp.com/api/users/signup';
+			const url = `${baseURL}/users/signup`;
 			const res = await axios.post(url, register);
 			console.log('Register Response:', res);
 

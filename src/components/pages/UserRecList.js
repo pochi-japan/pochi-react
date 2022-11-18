@@ -21,6 +21,7 @@ function UserRecList({ allResults, lang, token }) {
 					lang={lang}
 					key={ownersRec._id}
 					token={token}
+					baseURL={baseURL}
 				/>
 			))}
 		</div>

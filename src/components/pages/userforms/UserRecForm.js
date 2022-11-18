@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
-function UserRecForm({ token, lang }) {
+function UserRecForm({ token, lang, baseURL }) {
 	// ******* VARIABLES *******
 	const initialRecState = {
 		name: '',
@@ -44,8 +44,7 @@ function UserRecForm({ token, lang }) {
 		e.preventDefault();
 		// 	{ ...data, hashtags: data.hashtags.split(' ') } Use this code in the future to split up hashtags
 		const config = {
-			// url: 'http://localhost:8000/api/id',
-			url: 'https://pochi-japan.herokuapp.com/api/id/',
+			url: `${baseURL}id`,
 			method: 'POST',
 			data: data,
 			headers: {
