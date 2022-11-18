@@ -106,8 +106,9 @@ function RecDetail({ lang }) {
 						{rec.location ? <p className='日本'>住所: {rec.location}</p> : ''}
 						{rec.url ? (
 							<p className='日本'>
+								URL:{' '}
 								<a href={rec.url} target='_blank'>
-									URL: {rec.url}
+									{rec.url}
 								</a>
 							</p>
 						) : (
