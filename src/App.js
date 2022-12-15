@@ -115,7 +115,7 @@ function App() {
 					element={<RecEditForm baseURL={baseURL} />}></Route>
 				<Route
 					path='/user-rec-form'
-					element={<UserRecForm token={token} lang={lang} baseUR={baseURL} />}
+					element={<UserRecForm token={token} lang={lang} baseURL={baseURL} />}
 				/>
 				<Route path='/success' element={<RegisterSuccess />} />
 				{/* Catch all for pages that do not exist */}
