@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Search from '../pages/other/Search';
 import pochiLogo from '../../images/pochilogoimg.png';
 
-function NavBar({ setUser, initialUser, allResults, lang, setLang }) {
+function NavBar({ setUser, initialUser, allResults, lang, setLang, baseURL }) {
 	// ******* VARIABLES *******
 	let navigate = useNavigate();
 	// Check if user is logged in using localStorage key that we saved at log in
@@ -123,7 +123,7 @@ function NavBar({ setUser, initialUser, allResults, lang, setLang }) {
 				</div>
 			)}
 			<br />
-			<Search allResults={allResults} lang={lang} />
+			<Search allResults={allResults} lang={lang} baseURL={baseURL} />
 		</nav>
 	);
 }

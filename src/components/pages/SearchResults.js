@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import pochiNoImage from '../../images/pochi-noimage.png';
 
-function SearchResults() {
+function SearchResults(baseURL) {
 	// ******* VARIABLES *******
 	const urlParams = new URLSearchParams(window.location.search);
 	// Grabs the search param text after q= in URL
@@ -18,10 +18,7 @@ function SearchResults() {
 		//update to heroku later
 		axios
 			// Extract colon from params.id
-			.get(
-				// `http://localhost:8000/api/results/?name=${searchURL}&description=${searchURL}`
-				`https://pochi-japan.herokuapp.com/api/results/?name=${searchURL}&description=${searchURL}`
-			)
+			.get(`${baseURL}/results/?name=${searchURL}&description=${searchURL}`)
 			.then((res) => {
 				setSearchResults(res.data);
 			})

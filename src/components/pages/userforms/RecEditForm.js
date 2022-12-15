@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-function EditForm({ ownersRec, closeModal, lang }) {
+function EditForm({ ownersRec, closeModal, lang, baseURL }) {
 	// ******* VARIABLES *******
 	const initialUpdateState = {
 		name: '',
@@ -44,31 +44,12 @@ function EditForm({ ownersRec, closeModal, lang }) {
 		}
 	}
 
-	// const handleEdit = (e) => {
-	// 	e.preventDefault();
-	// 	axios
-	// 		// .patch(`http://localhost:8000/api/id/${params.id.substring(1)}`, editRec)
-	// 		// .patch(`https://pochi-japan.herokuapp.com/api/id/${endPoint}`, updateRec)
-	// 		.patch(
-	// 			`https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`,
-	// 			updateRec,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${token}`,
-	// 				},
-	// 			}
-	// 		)
-	// 		.then((res) => res.data);
-	// 	closeModal(false);
-	// 	navigate('/user-recs');
-	// };
-
 	const handleEdit = async (e) => {
 		e.preventDefault();
 		// 	{ ...data, hashtags: data.hashtags.split(' ') } Use this code in the future to split up hashtags
 		const config = {
-			// url: 'http://localhost:8000/api/id',
-			url: `https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`,
+			url: `${baseURL}` + `${ownersRec._id}`,
+			// double check above later
 			method: 'PATCH',
 			data: updateRec,
 			headers: {

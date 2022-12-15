@@ -1,6 +1,6 @@
 import UserRec from './UserRec';
 
-function UserRecList({ allResults, lang, token }) {
+function UserRecList({ allResults, lang, token, baseURL }) {
 	// ******* VARIABLES *******
 	const usersEmail = localStorage.getItem('email');
 	const ownerResults = allResults
@@ -21,6 +21,7 @@ function UserRecList({ allResults, lang, token }) {
 					lang={lang}
 					key={ownersRec._id}
 					token={token}
+					baseURL={baseURL}
 				/>
 			))}
 		</div>

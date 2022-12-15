@@ -23,6 +23,8 @@ function App() {
 		password: '',
 	};
 
+	const baseURL = 'https://pochi.onrender.com/api';
+
 	// ******* STATES *******
 	const [user, setUser] = useState(initialUser);
 
@@ -41,10 +43,8 @@ function App() {
 	// ******* API RESULTS *******
 
 	useEffect(() => {
-		//update to heroku later
 		axios
-			// .get(`http://localhost:8000/api`)
-			.get(`https://pochi-japan.herokuapp.com/api`)
+			.get(`${baseURL}`)
 			.then((res) => {
 				setAllResults(res.data);
 			})
@@ -66,6 +66,7 @@ function App() {
 				token={token}
 				lang={lang}
 				setLang={setLang}
+				baseURL={baseURL}
 			/>
 			<Routes>
 				<Route
@@ -91,20 +92,30 @@ function App() {
 							showRegister={showRegister}
 							setShowRegister={setShowRegister}
 							lang={lang}
+							baseURL={baseURL}
 						/>
 					}
 				/>
-				<Route path='/detail/:id' element={<RecDetail lang={lang} />}></Route>
+				<Route
+					path='/detail/:id'
+					element={<RecDetail lang={lang} baseURL={baseURL} />}></Route>
 				<Route
 					path='/user-recs'
 					element={
-						<UserRecList allResults={allResults} lang={lang} token={token} />
+						<UserRecList
+							allResults={allResults}
+							lang={lang}
+							token={token}
+							baseURL={baseURL}
+						/>
 					}
 				/>
-				<Route path='/edit/:id' element={<RecEditForm />}></Route>
+				<Route
+					path='/edit/:id'
+					element={<RecEditForm baseURL={baseURL} />}></Route>
 				<Route
 					path='/user-rec-form'
-					element={<UserRecForm token={token} lang={lang} />}
+					element={<UserRecForm token={token} lang={lang} baseUR={baseURL} />}
 				/>
 				<Route path='/success' element={<RegisterSuccess />} />
 				{/* Catch all for pages that do not exist */}

@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import axios from 'axios';
 import pochiNoImage from '../../images/pochi-noimage.png';
-import RecEditForm from '../pages/userforms/RecEditForm';
+// import RecEditForm from '../pages/userforms/RecEditForm';
 
-function UserRec({ ownersRec, lang, token }) {
+function UserRec({ ownersRec, lang, token, baseURL }) {
 	// ******* VARIABLES *******
 	const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ function UserRec({ ownersRec, lang, token }) {
 		e.preventDefault();
 		const config = {
 			// url: `http://localhost:8000/api/id/${ownersRec._id}`,
-			url: `https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`,
+			url: `${baseURL}/id/${ownersRec._id}`,
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
@@ -80,8 +80,8 @@ function UserRec({ ownersRec, lang, token }) {
 	// ******* API RESULTS *******
 	useEffect(() => {
 		// fetch(`http://localhost:8000/api/id/${ownersRec._id}`).then((res) =>
-		fetch(`https://pochi-japan.herokuapp.com/api/id/${ownersRec._id}`).then(
-			(res) => res.json().then((data) => setUpdateRec(data))
+		fetch(`${baseURL}/id/${ownersRec._id}`).then((res) =>
+			res.json().then((data) => setUpdateRec(data))
 		);
 	}, [ownersRec._id]);
 
