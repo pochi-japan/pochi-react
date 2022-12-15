@@ -23,7 +23,7 @@ function App() {
 		password: '',
 	};
 
-	const baseURL = 'https://pochi.onrender.com/api/';
+	const baseURL = 'https://pochi.onrender.com/api';
 
 	// ******* STATES *******
 	const [user, setUser] = useState(initialUser);

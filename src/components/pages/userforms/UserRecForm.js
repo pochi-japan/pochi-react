@@ -44,7 +44,7 @@ function UserRecForm({ token, lang, baseURL }) {
 		e.preventDefault();
 		// 	{ ...data, hashtags: data.hashtags.split(' ') } Use this code in the future to split up hashtags
 		const config = {
-			url: `${baseURL}id`,
+			url: `${baseURL}/id`,
 			method: 'POST',
 			data: data,
 			headers: {

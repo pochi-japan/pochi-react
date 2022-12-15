@@ -18,7 +18,7 @@ function SearchResults(baseURL) {
 		//update to heroku later
 		axios
 			// Extract colon from params.id
-			.get(`${baseURL}results/?name=${searchURL}&description=${searchURL}`)
+			.get(`${baseURL}/results/?name=${searchURL}&description=${searchURL}`)
 			.then((res) => {
 				setSearchResults(res.data);
 			})

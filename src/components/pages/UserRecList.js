@@ -1,6 +1,6 @@
 import UserRec from './UserRec';
 
-function UserRecList({ allResults, lang, token }) {
+function UserRecList({ allResults, lang, token, baseURL }) {
 	// ******* VARIABLES *******
 	const usersEmail = localStorage.getItem('email');
 	const ownerResults = allResults

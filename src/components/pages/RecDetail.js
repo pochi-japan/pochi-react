@@ -53,7 +53,7 @@ function RecDetail({ lang, baseURL }) {
 		//update to heroku later
 		axios
 			// Extract colon from params.id with substring
-			.get(`${baseURL}id/${endPoint}`)
+			.get(`${baseURL}/id/${endPoint}`)
 			.then((res) => {
 				setRec(res.data);
 			})
